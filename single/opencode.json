@@ -1,0 +1,48 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "provider": {
+    "deepseek": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "DeepSeek \u4e91\u7aef",
+      "options": {
+        "baseURL": "https://api.deepseek.com/v1",
+        "apiKey": "{env:DEEPSEEK_API_KEY}"
+      },
+      "models": {
+        "deepseek-chat": {
+          "name": "DeepSeek Chat",
+          "tools": true
+        },
+        "deepseek-reasoner": {
+          "name": "DeepSeek Reasoner",
+          "tools": true
+        },
+        "deepseek-v4-flash": {
+          "name": "DeepSeek V4 Flash",
+          "tools": true,
+          "limit": {
+            "context": 262144,
+            "output": 65536
+          }
+        }
+      }
+    }
+  },
+  "model": "deepseek/deepseek-v4-flash",
+  "small_model": "deepseek/deepseek-chat",
+  "mcp": {
+    "codegraph": {
+      "type": "local",
+      "command": ["codegraph", "serve", "--mcp"],
+      "enabled": true
+    }
+  },
+  "plugin": [
+    "oh-my-openagent@latest",
+    "opencode-codegraph",
+    "@tarquinen/opencode-dcp@latest",
+    "opencode-yaml-hooks",
+    "opencode-autoresearch@latest",
+    "opencode-localmemory"
+  ]
+}

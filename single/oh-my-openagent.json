@@ -1,0 +1,74 @@
+{
+  "$schema": "https://raw.githubusercontent.com/code-yeongyu/oh-my-openagent/dev/assets/oh-my-opencode.schema.json",
+  "agents": {
+    "sisyphus": {
+      "model": "deepseek/deepseek-v4-flash",
+      "variant": "max"
+    },
+    "hephaestus": {
+      "model": "deepseek/deepseek-v4-flash",
+      "variant": "medium"
+    },
+    "oracle": {
+      "model": "deepseek/deepseek-reasoner",
+      "variant": "high"
+    },
+    "librarian": {
+      "model": "deepseek/deepseek-chat"
+    },
+    "explore": {
+      "model": "deepseek/deepseek-chat"
+    },
+    "multimodal-looker": {
+      "model": "deepseek/deepseek-v4-flash",
+      "variant": "medium"
+    },
+    "prometheus": {
+      "model": "deepseek/deepseek-v4-flash",
+      "variant": "max"
+    },
+    "metis": {
+      "model": "deepseek/deepseek-v4-flash"
+    },
+    "momus": {
+      "model": "deepseek/deepseek-reasoner",
+      "variant": "xhigh"
+    },
+    "atlas": {
+      "model": "deepseek/deepseek-v4-flash"
+    },
+    "sisyphus-junior": {
+      "model": "deepseek/deepseek-v4-flash"
+    }
+  },
+  "categories": {
+    "visual-engineering": {
+      "model": "deepseek/deepseek-v4-flash",
+      "variant": "high"
+    },
+    "ultrabrain": {
+      "model": "deepseek/deepseek-reasoner",
+      "variant": "xhigh"
+    },
+    "deep": {
+      "model": "deepseek/deepseek-v4-flash",
+      "variant": "medium"
+    },
+    "artistry": {
+      "model": "deepseek/deepseek-v4-flash",
+      "variant": "high"
+    },
+    "quick": {
+      "model": "deepseek/deepseek-chat"
+    },
+    "unspecified-low": {
+      "model": "deepseek/deepseek-chat"
+    },
+    "unspecified-high": {
+      "model": "deepseek/deepseek-v4-flash"
+    },
+    "writing": {
+      "model": "deepseek/deepseek-chat"
+    }
+  }
+}
