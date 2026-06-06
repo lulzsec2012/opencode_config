@@ -28,6 +28,7 @@
       }
     }
   },
+  "instructions": ["../instructions/behavior.md"],
   "model": "deepseek/deepseek-v4-flash",
   "small_model": "deepseek/deepseek-chat",
   "mcp": {

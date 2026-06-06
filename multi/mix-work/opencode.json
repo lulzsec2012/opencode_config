@@ -53,6 +53,7 @@
       }
     }
   },
+  "instructions": ["../../instructions/behavior.md"],
   "model": "deepseek/deepseek-v4-flash",
   "small_model": "ollama/qwen2.5-coder:14b",
   "plugin": [
