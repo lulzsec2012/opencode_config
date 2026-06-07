@@ -3,7 +3,7 @@
   "provider": {
     "deepseek": {
       "npm": "@ai-sdk/openai-compatible",
-      "name": "DeepSeek \u4e91\u7aef",
+      "name": "DeepSeek 云端",
       "options": {
         "baseURL": "https://api.deepseek.com/v1",
         "apiKey": "{env:DEEPSEEK_API_KEY}"
@@ -28,22 +28,30 @@
       }
     }
   },
-  "instructions": ["../instructions/behavior.md"],
+  "instructions": [
+    "../instructions/behavior.md"
+  ],
   "model": "deepseek/deepseek-v4-flash",
   "small_model": "deepseek/deepseek-chat",
   "mcp": {
     "codegraph": {
       "type": "local",
-      "command": ["codegraph", "serve", "--mcp"],
+      "command": [
+        "codegraph",
+        "serve",
+        "--mcp"
+      ],
       "enabled": true
     }
   },
   "plugin": [
-    "oh-my-openagent@latest",
-    "opencode-codegraph",
     "@tarquinen/opencode-dcp@latest",
-    "opencode-yaml-hooks",
+    "oh-my-openagent@latest",
+    "opencode-agent-context",
     "opencode-autoresearch@latest",
-    "opencode-localmemory"
+    "opencode-codegraph",
+    "opencode-localmemory",
+    "opencode-skill-creator",
+    "opencode-yaml-hooks"
   ]
 }
