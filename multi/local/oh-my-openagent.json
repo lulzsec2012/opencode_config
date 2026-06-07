@@ -1,10 +1,5 @@
 {
   "$schema": "https://raw.githubusercontent.com/code-yeongyu/oh-my-openagent/refs/heads/dev/assets/oh-my-opencode.schema.json",
-  "default_agent": "sisyphus",
-  "hashline_edit": true,
-  "background_task": {
-    "defaultConcurrency": 3
-  },
   "agents": {
     "sisyphus": {
       "model": "ollama/qwen3-coder-next:latest",
@@ -48,6 +43,26 @@
         "deepseek/deepseek-v4-flash"
       ]
     },
+    "oracle": {
+      "model": "ollama/qwen3.6:27b",
+      "description": "只读推理专家（本地高阶 / 极难问题云端兜底）",
+      "maxTokens": 16384,
+      "prompt_append": "",
+      "fallback_models": [
+        "ollama/qwen3-coder-next:latest",
+        "deepseek/deepseek-v4-flash"
+      ]
+    },
+    "explore": {
+      "model": "ollama/qwen3-coder-next:latest",
+      "description": "代码理解（本地）",
+      "maxTokens": 16384,
+      "prompt_append": "",
+      "fallback_models": [
+        "ollama/qwen3.6:27b",
+        "deepseek/deepseek-v4-flash"
+      ]
+    },
     "metis": {
       "model": "ollama/qwen2.5-coder:14b",
       "description": "风险评估（轻量本地）",
@@ -55,6 +70,16 @@
       "prompt_append": "You are an AI assistant. You must always respond in Simplified Chinese (中文). 你必须始终用中文回复用户。即使思考过程可以用英文，最终回复必须是中文。",
       "fallback_models": [
         "ollama/qwen3-coder-next:latest"
+      ]
+    },
+    "librarian": {
+      "model": "ollama/qwen3.6:27b",
+      "description": "文档处理（本地高质量）",
+      "maxTokens": 16384,
+      "prompt_append": "",
+      "fallback_models": [
+        "ollama/qwen3-coder-next:latest",
+        "deepseek/deepseek-v4-flash"
       ]
     },
     "atlas": {
@@ -66,24 +91,6 @@
         "ollama/qwen3-coder-next:latest"
       ]
     },
-    "explore": {
-      "model": "ollama/qwen3-coder-next:latest",
-      "description": "代码理解（本地）",
-      "maxTokens": 16384,
-      "fallback_models": [
-        "ollama/qwen3.6:27b",
-        "deepseek/deepseek-v4-flash"
-      ]
-    },
-    "librarian": {
-      "model": "ollama/qwen3.6:27b",
-      "description": "文档处理（本地高质量）",
-      "maxTokens": 16384,
-      "fallback_models": [
-        "ollama/qwen3-coder-next:latest",
-        "deepseek/deepseek-v4-flash"
-      ]
-    },
     "multimodal-looker": {
       "model": "ollama/qwen3-coder-next:latest",
       "description": "视觉任务",
@@ -92,16 +99,10 @@
         "ollama/qwen3.6:27b",
         "deepseek/deepseek-v4-flash"
       ]
-    },
-    "oracle": {
-      "model": "ollama/qwen3.6:27b",
-      "description": "只读推理专家（本地高阶 / 极难问题云端兜底）",
-      "maxTokens": 16384,
-      "fallback_models": [
-        "ollama/qwen3-coder-next:latest",
-        "deepseek/deepseek-v4-flash"
-      ]
     }
+  },
+  "background_task": {
+    "defaultConcurrency": 3
   },
   "categories": {
     "visual-engineering": {
@@ -179,5 +180,7 @@
         "deepseek/deepseek-v4-flash"
       ]
     }
-  }
+  },
+  "default_agent": "sisyphus",
+  "hashline_edit": true
 }

@@ -3,72 +3,209 @@
   "agents": {
     "sisyphus": {
       "model": "deepseek/deepseek-v4-flash",
+      "description": "主协调者（云端决策核心）",
+      "maxTokens": 32768,
+      "fallback_models": [
+        "deepseek/deepseek-chat"
+      ],
+      "variant": "max"
+    },
+    "prometheus": {
+      "model": "deepseek/deepseek-v4-flash",
+      "description": "需求分析 / 规划（云端高阶推理）",
+      "maxTokens": 16384,
+      "reasoningEffort": "high",
+      "fallback_models": [
+        "deepseek/deepseek-v4-flash"
+      ],
       "variant": "max"
     },
     "hephaestus": {
       "model": "deepseek/deepseek-v4-flash",
+      "description": "代码执行（本地 Ollama / 云端兜底）",
+      "maxTokens": 32768,
+      "temperature": 0.2,
+      "fallback_models": [
+        "deepseek/deepseek-v4-flash"
+      ],
       "variant": "medium"
     },
     "oracle": {
       "model": "deepseek/deepseek-reasoner",
+      "description": "架构顾问 / 只读推理（云端高阶）",
+      "maxTokens": 32768,
+      "reasoningEffort": "high",
+      "fallback_models": [
+        "deepseek/deepseek-v4-flash"
+      ],
       "variant": "high"
-    },
-    "librarian": {
-      "model": "deepseek/deepseek-chat"
-    },
-    "explore": {
-      "model": "deepseek/deepseek-chat"
-    },
-    "multimodal-looker": {
-      "model": "deepseek/deepseek-v4-flash",
-      "variant": "medium"
-    },
-    "prometheus": {
-      "model": "deepseek/deepseek-v4-flash",
-      "variant": "max"
-    },
-    "metis": {
-      "model": "deepseek/deepseek-v4-flash"
     },
     "momus": {
       "model": "deepseek/deepseek-reasoner",
+      "description": "代码审查（云端质量裁判）",
+      "maxTokens": 16384,
+      "temperature": 0.1,
+      "fallback_models": [
+        "deepseek/deepseek-v4-flash"
+      ],
       "variant": "xhigh"
     },
+    "metis": {
+      "model": "deepseek/deepseek-v4-flash",
+      "description": "风险分析（云端决策）",
+      "maxTokens": 8192,
+      "fallback_models": [
+        "deepseek/deepseek-v4-flash"
+      ]
+    },
     "atlas": {
-      "model": "deepseek/deepseek-v4-flash"
+      "model": "deepseek/deepseek-v4-flash",
+      "description": "任务拆解（本地 Ollama）",
+      "maxTokens": 8192,
+      "fallback_models": [
+        "deepseek/deepseek-v4-flash"
+      ]
     },
     "sisyphus-junior": {
-      "model": "deepseek/deepseek-v4-flash"
+      "model": "deepseek/deepseek-v4-flash",
+      "description": "轻量任务（本地 Ollama）",
+      "maxTokens": 8192,
+      "fallback_models": [
+        "deepseek/deepseek-v4-flash"
+      ]
+    },
+    "explore": {
+      "model": "deepseek/deepseek-chat",
+      "description": "代码库理解（本地 Ollama，工具调用强）",
+      "maxTokens": 8192,
+      "fallback_models": [
+        "deepseek/deepseek-v4-flash"
+      ]
+    },
+    "librarian": {
+      "model": "deepseek/deepseek-chat",
+      "description": "文档总结（本地 Ollama）",
+      "thinking": {
+        "type": "enabled",
+        "budgetTokens": 8192
+      },
+      "maxTokens": 8192,
+      "fallback_models": [
+        "deepseek/deepseek-v4-flash"
+      ]
+    },
+    "multimodal-looker": {
+      "model": "deepseek/deepseek-v4-flash",
+      "description": "视觉任务（云端视觉模型）",
+      "maxTokens": 8192,
+      "fallback_models": [
+        "deepseek/deepseek-v4-flash"
+      ],
+      "variant": "medium"
+    },
+    "frontend-ui-ux-engineer": {
+      "model": "ollama-remote/qwen3-coder-next:latest",
+      "description": "前端 UI/UX 开发（本地 Ollama）",
+      "maxTokens": 8192,
+      "fallback_models": [
+        "deepseek/deepseek-v4-flash"
+      ]
     }
   },
   "categories": {
     "visual-engineering": {
       "model": "deepseek/deepseek-v4-flash",
+      "description": "前端 / UI/UX / 设计 / 样式 / 动画",
+      "maxTokens": 16384,
+      "fallback_models": [
+        "ollama-remote/qwen3-coder-next:latest"
+      ],
+      "variant": "high"
+    },
+    "artistry": {
+      "model": "deepseek/deepseek-v4-flash",
+      "description": "创意问题解决 — 超越常规模式",
+      "maxTokens": 16384,
+      "fallback_models": [
+        "ollama-remote/qwen3-coder-next:latest"
+      ],
       "variant": "high"
     },
     "ultrabrain": {
       "model": "deepseek/deepseek-reasoner",
+      "description": "超复杂推理（云端 DeepSeek Reasoner）",
+      "maxTokens": 16384,
+      "fallback_models": [
+        "deepseek/deepseek-chat"
+      ],
       "variant": "xhigh"
     },
     "deep": {
       "model": "deepseek/deepseek-v4-flash",
+      "description": "复杂编码（本地 Ollama）",
+      "maxTokens": 16384,
+      "fallback_models": [
+        "deepseek/deepseek-v4-flash"
+      ],
       "variant": "medium"
     },
-    "artistry": {
-      "model": "deepseek/deepseek-v4-flash",
-      "variant": "high"
-    },
     "quick": {
-      "model": "deepseek/deepseek-chat"
+      "model": "deepseek/deepseek-chat",
+      "description": "快速任务（本地 Ollama）",
+      "maxTokens": 8192,
+      "fallback_models": [
+        "deepseek/deepseek-v4-flash"
+      ]
     },
     "unspecified-low": {
-      "model": "deepseek/deepseek-chat"
+      "model": "deepseek/deepseek-chat",
+      "description": "低价值杂务（本地 Ollama）",
+      "maxTokens": 4096,
+      "fallback_models": [
+        "deepseek/deepseek-v4-flash"
+      ]
     },
     "unspecified-high": {
-      "model": "deepseek/deepseek-v4-flash"
+      "model": "deepseek/deepseek-v4-flash",
+      "description": "默认高质量路径（云端）",
+      "maxTokens": 16384,
+      "fallback_models": [
+        "ollama-remote/qwen3-coder-next:latest"
+      ]
     },
     "writing": {
-      "model": "deepseek/deepseek-chat"
+      "model": "deepseek/deepseek-chat",
+      "description": "文档写作（本地 Ollama）",
+      "maxTokens": 8192,
+      "fallback_models": [
+        "deepseek/deepseek-v4-flash"
+      ]
+    },
+    "coder": {
+      "model": "ollama-remote/qwen3-coder-next:latest",
+      "description": "核心编码任务（本地 Ollama）",
+      "maxTokens": 16384,
+      "fallback_models": [
+        "deepseek/deepseek-v4-flash"
+      ]
+    },
+    "analysis-lite": {
+      "model": "ollama-remote/qwen3-coder-next:latest",
+      "description": "轻量分析（本地 Ollama）",
+      "maxTokens": 8192,
+      "fallback_models": [
+        "deepseek/deepseek-v4-flash"
+      ]
     }
+  },
+  "default_agent": "sisyphus",
+  "disabled_hooks": [
+    "atlas-orchestrator"
+  ],
+  "sisyphus_agent": {
+    "disabled": false,
+    "default_builder_enabled": true,
+    "planner_enabled": true,
+    "replace_plan": true
   }
 }

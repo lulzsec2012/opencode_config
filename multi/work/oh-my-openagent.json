@@ -1,23 +1,5 @@
 {
   "$schema": "https://raw.githubusercontent.com/code-yeongyu/oh-my-openagent/refs/heads/dev/assets/oh-my-opencode.schema.json",
-  "default_agent": "sisyphus",
-  "hashline_edit": true,
-  "background_task": {
-    "defaultConcurrency": 3
-  },
-
-  "sisyphus_agent": {
-    "disabled": false,
-    "default_builder_enabled": true,
-    "planner_enabled": true,
-    "replace_plan": true
-  },
-
-  "disabled_hooks": [
-    "todo-continuation-enforcer",
-    "atlas-orchestrator"
-  ],
-
   "agents": {
     "sisyphus": {
       "model": "deepseek/deepseek-v4-flash",
@@ -28,7 +10,6 @@
         "deepseek/deepseek-v4-flash"
       ]
     },
-
     "prometheus": {
       "model": "deepseek/deepseek-v4-pro",
       "description": "需求分析 / 规划（云端高阶推理）",
@@ -39,7 +20,6 @@
         "deepseek/deepseek-v4-flash"
       ]
     },
-
     "hephaestus": {
       "model": "deepseek/deepseek-v4-flash",
       "description": "代码执行（云端保证代码质量）",
@@ -50,7 +30,6 @@
         "deepseek/deepseek-v4-flash"
       ]
     },
-
     "oracle": {
       "model": "deepseek/deepseek-v4-pro",
       "description": "只读推理专家（云端高阶兜底）",
@@ -61,7 +40,6 @@
         "deepseek/deepseek-v4-flash"
       ]
     },
-
     "momus": {
       "model": "deepseek/deepseek-v4-pro",
       "description": "代码审查（云端质量裁判）",
@@ -72,7 +50,6 @@
         "deepseek/deepseek-v4-flash"
       ]
     },
-
     "metis": {
       "model": "deepseek/deepseek-v4-pro",
       "description": "风险分析（云端决策）",
@@ -82,7 +59,6 @@
         "deepseek/deepseek-v4-flash"
       ]
     },
-
     "atlas": {
       "model": "deepseek/deepseek-v4-flash",
       "description": "任务拆解（轻量云）",
@@ -92,7 +68,6 @@
         "deepseek/deepseek-v4-flash"
       ]
     },
-
     "explore": {
       "model": "deepseek/deepseek-v4-flash",
       "description": "代码库理解（本地高速搜索）",
@@ -101,7 +76,6 @@
         "deepseek/deepseek-v4-flash"
       ]
     },
-
     "sisyphus-junior": {
       "model": "deepseek/deepseek-v4-flash",
       "description": "轻量执行任务",
@@ -110,7 +84,6 @@
         "deepseek/deepseek-v4-flash"
       ]
     },
-
     "librarian": {
       "model": "deepseek/deepseek-v4-flash",
       "description": "文档总结（本地低成本）",
@@ -119,7 +92,6 @@
         "deepseek/deepseek-v4-flash"
       ]
     },
-
     "multimodal-looker": {
       "model": "deepseek/deepseek-v4-flash",
       "description": "视觉任务",
@@ -130,7 +102,9 @@
       ]
     }
   },
-
+  "background_task": {
+    "defaultConcurrency": 3
+  },
   "categories": {
     "visual-engineering": {
       "model": "deepseek/deepseek-v4-flash",
@@ -140,7 +114,6 @@
         "deepseek/deepseek-v4-flash"
       ]
     },
-
     "artistry": {
       "model": "deepseek/deepseek-v4-flash",
       "description": "创意写作（本地省成本）",
@@ -149,7 +122,6 @@
         "deepseek/deepseek-v4-flash"
       ]
     },
-
     "ultrabrain": {
       "model": "deepseek/deepseek-v4-pro",
       "description": "复杂推理（云端高阶）",
@@ -159,7 +131,6 @@
         "deepseek/deepseek-v4-flash"
       ]
     },
-
     "coder": {
       "model": "deepseek/deepseek-v4-flash",
       "description": "代码执行（云端高质量）",
@@ -168,7 +139,6 @@
         "deepseek/deepseek-v4-flash"
       ]
     },
-
     "deep": {
       "model": "deepseek/deepseek-v4-pro",
       "description": "深度研究（云端自主解决）",
@@ -178,7 +148,6 @@
         "deepseek/deepseek-v4-flash"
       ]
     },
-
     "quick": {
       "model": "deepseek/deepseek-v4-flash",
       "description": "快速轻量任务",
@@ -187,7 +156,6 @@
         "deepseek/deepseek-v4-flash"
       ]
     },
-
     "writing": {
       "model": "deepseek/deepseek-v4-flash",
       "description": "文档写作（本地省成本，有云端退路）",
@@ -196,7 +164,6 @@
         "deepseek/deepseek-v4-flash"
       ]
     },
-
     "analysis-lite": {
       "model": "deepseek/deepseek-v4-flash",
       "description": "轻量分析",
@@ -205,7 +172,6 @@
         "deepseek/deepseek-v4-flash"
       ]
     },
-
     "unspecified-low": {
       "model": "deepseek/deepseek-v4-flash",
       "description": "低成本任务",
@@ -214,7 +180,6 @@
         "deepseek/deepseek-v4-flash"
       ]
     },
-
     "unspecified-high": {
       "model": "deepseek/deepseek-v4-flash",
       "description": "默认高质量路径（云端）",
@@ -223,5 +188,17 @@
         "deepseek/deepseek-v4-flash"
       ]
     }
+  },
+  "default_agent": "sisyphus",
+  "disabled_hooks": [
+    "todo-continuation-enforcer",
+    "atlas-orchestrator"
+  ],
+  "hashline_edit": true,
+  "sisyphus_agent": {
+    "disabled": false,
+    "default_builder_enabled": true,
+    "planner_enabled": true,
+    "replace_plan": true
   }
 }

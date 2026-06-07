@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 # setup.sh — 将 repo 配置部署到系统路径
 #
+# 支持 Linux / macOS。
+#
 # 对每个配置文件：
 #   1. 系统路径不存在         → 直接建立软连接到 repo
 #   2. 系统路径已是 repo 链接 → 跳过
@@ -15,17 +17,45 @@
 set -euo pipefail
 
 REPO_DIR="$(cd "$(dirname "$0")/.." && pwd)"
-OPENCODE_CFG="$HOME/.config/opencode"
-OPENCODE_MULTI="$HOME/.config/opencode-multi/profiles"
 SINGLE_SRC="$REPO_DIR/single"
 MULTI_SRC="$REPO_DIR/multi"
 BACKUP_DIR="$HOME/.config/opencode-backup-$(date +%Y%m%d%H%M%S)"
+
+# ---------- OS detection ----------
+_os="linux"
+case "$(uname -s)" in
+  Darwin) _os="macos" ;;
+esac
+
+# ---------- Platform-specific config paths ----------
+# opencode: always ~/.config/opencode/ (per opencode docs)
+OPENCODE_CFG="$HOME/.config/opencode"
+
+# opencode-multi: uses dirs crate → XDG on Linux, ~/Library on macOS
+if [ "$_os" = "macos" ]; then
+  _xdg="${XDG_CONFIG_HOME:-}"
+  if [ -n "$_xdg" ]; then
+    OPENCODE_MULTI_PROFILES="$_xdg/opencode-multi/profiles"
+  else
+    OPENCODE_MULTI_PROFILES="$HOME/Library/Application Support/opencode-multi/profiles"
+  fi
+else
+  OPENCODE_MULTI_PROFILES="${XDG_CONFIG_HOME:-$HOME/.config}/opencode-multi/profiles"
+fi
 
 # ---------- helpers ----------
 info()  { echo -e "  \033[36m->\033[0m $*"; }
 ok()    { echo -e "  \033[32mOK\033[0m $*"; }
 warn()  { echo -e "  \033[33m!>\033[0m $*"; }
 action(){ echo -e "\033[1m\n== $* ==\033[0m"; }
+
+_mktemp() {
+  if [ "$_os" = "macos" ]; then
+    mktemp -t "opencode-merge" 2>/dev/null || mktemp "${TMPDIR:-/tmp}/opencode-merge.XXXXXXXXXX"
+  else
+    mktemp
+  fi
+}
 
 is_repo_link() {
   [ -L "$1" ] && case "$(readlink "$1")" in "$REPO_DIR"/*|"$REPO_DIR") return 0;; esac
@@ -34,6 +64,18 @@ is_repo_link() {
 
 do_link() { ln -snf "$1" "$2"; }
 
+check_jq() {
+  if ! command -v jq &>/dev/null; then
+    echo "  Error: jq is required but not found." >&2
+    if [ "$_os" = "macos" ]; then
+      echo "  Install: brew install jq" >&2
+    else
+      echo "  Install: apt install jq  (or: yum install jq)" >&2
+    fi
+    exit 1
+  fi
+}
+
 # ---------- jq merge filters ----------
 JQ_MERGE_OPENCODE='
 def merge_opencode($r; $l):
@@ -41,7 +83,7 @@ def merge_opencode($r; $l):
   reduce $all[] as $k (
     {};
     if $k == "plugin" then
-      .[$k] = (($l[$k] // []) + ($r[$k] // [])) | unique
+      .[$k] = ((($l[$k] // []) + ($r[$k] // [])) | unique)
     elif $k == "mcp" then
       .[$k] = (($l[$k] // {}) * ($r[$k] // {}))
     elif ($r | has($k)) then
@@ -116,7 +158,7 @@ deploy_single() {
       mkdir -p "$BACKUP_DIR/single"
       cp "$dst" "$BACKUP_DIR/single/$f"
 
-      local tmpfile; tmpfile=$(mktemp)
+      local tmpfile; tmpfile=$(_mktemp)
       merge_json "$mtype" "$src" "$dst" "$tmpfile"
       cp "$tmpfile" "$src"
       rm -f "$tmpfile"
@@ -130,13 +172,13 @@ deploy_single() {
 
 # ---------- deploy multi profiles ----------
 deploy_multi() {
-  action "opencode-multi profiles → $OPENCODE_MULTI/"
-  mkdir -p "$OPENCODE_MULTI"
+  action "opencode-multi profiles → $OPENCODE_MULTI_PROFILES/"
+  mkdir -p "$OPENCODE_MULTI_PROFILES"
 
   for profile_dir in "$MULTI_SRC"/*/; do
     [ -d "$profile_dir" ] || continue
     local name; name=$(basename "$profile_dir")
-    local dst="$OPENCODE_MULTI/$name"
+    local dst="$OPENCODE_MULTI_PROFILES/$name"
 
     if is_repo_link "$dst"; then
       ok "$name 已指向 repo，跳过"
@@ -158,7 +200,7 @@ deploy_multi() {
         local mtype="opencode"
         [[ "$f" == *oh-my-openagent* ]] && mtype="ohmyagent"
 
-        local tmpfile; tmpfile=$(mktemp)
+        local tmpfile; tmpfile=$(_mktemp)
         merge_json "$mtype" "$src_file" "$dst_file" "$tmpfile"
         cp "$tmpfile" "$src_file"
         rm -f "$tmpfile"
@@ -166,6 +208,8 @@ deploy_multi() {
       info "本机独有配置已合并到 repo"
     fi
 
+    # Remove existing dir before linking (ln -sf won't replace a directory)
+    [ -d "$dst" ] && rm -rf "$dst"
     do_link "$profile_dir" "$dst"
     ok "$name → $dst"
   done
@@ -175,7 +219,10 @@ deploy_multi() {
 echo ""
 echo "opencode_config — 配置部署工具"
 echo "仓库: $REPO_DIR"
+echo "系统: $_os"
 echo ""
+
+check_jq
 
 deploy_single
 deploy_multi
