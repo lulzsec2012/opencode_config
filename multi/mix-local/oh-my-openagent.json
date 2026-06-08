@@ -1,10 +1,5 @@
 {
   "$schema": "https://raw.githubusercontent.com/code-yeongyu/oh-my-openagent/refs/heads/dev/assets/oh-my-opencode.schema.json",
-  "default_agent": "sisyphus",
-  "hashline_edit": true,
-  "background_task": {
-    "defaultConcurrency": 3
-  },
   "agents": {
     "sisyphus": {
       "model": "deepseek/deepseek-v4-flash",
@@ -103,6 +98,9 @@
       ]
     }
   },
+  "background_task": {
+    "defaultConcurrency": 3
+  },
   "categories": {
     "visual-engineering": {
       "model": "ollama/qwen3-coder-next:latest",
@@ -179,5 +177,7 @@
         "ollama/qwen3-coder-next:latest"
       ]
     }
-  }
+  },
+  "default_agent": "sisyphus",
+  "hashline_edit": true
 }

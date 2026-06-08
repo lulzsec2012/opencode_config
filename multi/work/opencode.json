@@ -3,12 +3,22 @@
   "instructions": [
     "../../instructions/behavior.md"
   ],
+  "mcp": {
+    "codegraph": {
+      "type": "local",
+      "command": [
+        "codegraph",
+        "serve",
+        "--mcp"
+      ],
+      "enabled": true
+    }
+  },
   "model": "deepseek/deepseek-v4-flash",
   "plugin": [
     "@tarquinen/opencode-dcp@latest",
     "oh-my-openagent@latest",
     "opencode-agent-context",
-    "opencode-autoresearch@latest",
     "opencode-codegraph",
     "opencode-localmemory",
     "opencode-skill-creator",
@@ -32,7 +42,40 @@
           }
         }
       }
+    },
+    "ollama": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "Ollama 本地 [work]",
+      "options": {
+        "baseURL": "http://127.0.0.1:11434/v1"
+      },
+      "models": {
+        "qwen3-coder-next:latest": {
+          "name": "Qwen3 Coder Next 主力模型",
+          "tools": true,
+          "limit": {
+            "context": 262144,
+            "output": 32768
+          }
+        },
+        "qwen3.6:27b": {
+          "name": "Qwen3.6 27B 高阶推理",
+          "tools": true,
+          "limit": {
+            "context": 262144,
+            "output": 32768
+          }
+        },
+        "qwen2.5-coder:14b": {
+          "name": "Qwen2.5 Coder 14B 轻量",
+          "tools": true,
+          "limit": {
+            "context": 32768,
+            "output": 8192
+          }
+        }
+      }
     }
   },
-  "small_model": "deepseek/deepseek-v4-flash"
+  "small_model": "ollama/qwen2.5-coder:14b"
 }

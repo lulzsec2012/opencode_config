@@ -79,7 +79,7 @@
     "sisyphus-junior": {
       "model": "deepseek/deepseek-v4-flash",
       "description": "轻量执行任务",
-      "maxTokens": 4096,
+      "maxTokens": 16384,
       "fallback_models": [
         "deepseek/deepseek-v4-flash"
       ]
@@ -191,7 +191,6 @@
   },
   "default_agent": "sisyphus",
   "disabled_hooks": [
-    "todo-continuation-enforcer",
     "atlas-orchestrator"
   ],
   "hashline_edit": true,
