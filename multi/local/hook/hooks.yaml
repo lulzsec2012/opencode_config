@@ -1,0 +1,7 @@
+hooks:
+  - event: file.changed
+    conditions:
+      - matchesCodeFiles
+    actions:
+      # 从 stdin JSON payload 提取变更文件，传递给 biome 检查
+      - bash: "cat | jq -r '.files[]' | xargs -r biome format --write"
