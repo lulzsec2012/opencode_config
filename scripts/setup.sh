@@ -62,7 +62,11 @@ is_repo_link() {
   return 1
 }
 
-do_link() { ln -snf "$1" "$2"; }
+do_link() {
+  # rm destination if it's a real dir (ln -f won't replace dir with symlink)
+  if [ -d "$2" ] && [ ! -L "$2" ]; then rm -rf "$2"; fi
+  ln -snf "$1" "$2"
+}
 
 check_jq() {
   if ! command -v jq &>/dev/null; then

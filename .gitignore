@@ -1,1 +1,5 @@
 node_modules/
+multi/*/package.json
+multi/*/package-lock.json
+multi/*/bun.lock
+._*
