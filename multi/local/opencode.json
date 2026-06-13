@@ -14,7 +14,7 @@
       "enabled": true
     }
   },
-  "model": "deepseek/deepseek-v4-flash",
+  "model": "mixapi/qwen3.6-27b",
   "plugin": [
     "@tarquinen/opencode-dcp@latest",
     "oh-my-openagent@latest",
@@ -42,7 +42,33 @@
           }
         }
       }
+    },
+    "mixapi": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "MIX API 聚合 [ECS 39.102.52.1]",
+      "options": {
+        "baseURL": "http://39.102.52.1:3000/v1",
+        "apiKey": "{env:MIX_API_KEY}"
+      },
+      "models": {
+        "qwen3.6-27b": {
+          "name": "Qwen3.6 27B（vLLM）",
+          "tools": true,
+          "limit": {
+            "context": 65536,
+            "output": 32768
+          }
+        },
+        "gemma4-26b-fp8": {
+          "name": "Gemma4 26B FP8（vLLM）",
+          "tools": true,
+          "limit": {
+            "context": 65536,
+            "output": 32768
+          }
+        }
+      }
     }
   },
-  "small_model": "deepseek/deepseek-v4-flash"
+  "small_model": "mixapi/qwen3.6-27b"
 }
