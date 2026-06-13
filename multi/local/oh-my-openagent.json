@@ -2,82 +2,187 @@
   "$schema": "https://raw.githubusercontent.com/code-yeongyu/oh-my-openagent/refs/heads/dev/assets/oh-my-opencode.schema.json",
   "agents": {
     "sisyphus": {
-      "model": "deepseek/deepseek-v4-flash",
-      "description": "调度核心（云端）",
+      "model": "mixapi/qwen3.6-27b",
+      "description": "主协调者（ECS 推理核心）",
       "maxTokens": 32768,
       "prompt_append": "You are an AI assistant. You must always respond in Simplified Chinese (中文). 你必须始终用中文回复用户。即使思考过程可以用英文，最终回复必须是中文。",
       "fallback_models": [
-        "deepseek/deepseek-chat"
+        "mixapi/gemma4-26b-fp8",
+        "deepseek/deepseek-v4-flash"
       ]
     },
     "prometheus": {
-      "model": "deepseek/deepseek-v4-flash",
-      "description": "规划（云端高阶推理）",
+      "model": "mixapi/qwen3.6-27b",
+      "description": "规划（ECS 高阶推理）",
       "maxTokens": 16384,
+      "reasoningEffort": "high",
       "prompt_append": "You are an AI assistant. You must always respond in Simplified Chinese (中文). 你必须始终用中文回复用户。即使思考过程可以用英文，最终回复必须是中文。",
       "fallback_models": [
-        "deepseek/deepseek-chat"
+        "deepseek/deepseek-v4-flash",
+        "mixapi/gemma4-26b-fp8"
       ]
     },
     "hephaestus": {
-      "model": "deepseek/deepseek-v4-flash",
-      "description": "代码执行核心",
+      "model": "mixapi/qwen3.6-27b",
+      "description": "代码执行核心（ECS 保障质量）",
       "maxTokens": 32768,
       "temperature": 0.2,
       "prompt_append": "You are an AI assistant. You must always respond in Simplified Chinese (中文). 你必须始终用中文回复用户。即使思考过程可以用英文，最终回复必须是中文。",
       "fallback_models": [
-        "deepseek/deepseek-chat"
-      ]
-    },
-    "momus": {
-      "model": "deepseek/deepseek-v4-flash",
-      "description": "质量裁判（云端审查）",
-      "maxTokens": 16384,
-      "temperature": 0.1,
-      "prompt_append": "You are an AI assistant. You must always respond in Simplified Chinese (中文). 你必须始终用中文回复用户。即使思考过程可以用英文，最终回复必须是中文。",
-      "fallback_models": [
-        "deepseek/deepseek-chat"
+        "mixapi/gemma4-26b-fp8",
+        "deepseek/deepseek-v4-flash"
       ]
     },
     "oracle": {
       "model": "deepseek/deepseek-v4-flash",
-      "description": "只读分析（云端高阶推理）",
+      "description": "只读推理专家（云端高阶兜底）",
       "maxTokens": 32768,
+      "reasoningEffort": "high",
       "prompt_append": "",
       "fallback_models": [
-        "deepseek/deepseek-chat"
+        "mixapi/qwen3.6-27b",
+        "mixapi/gemma4-26b-fp8"
       ]
     },
-    "explore": {
-      "model": "deepseek/deepseek-v4-flash",
-      "description": "代码库搜索",
-      "maxTokens": 8192,
+    "momus": {
+      "model": "mixapi/qwen3.6-27b",
+      "description": "质量裁判（ECS 审查）",
+      "maxTokens": 16384,
+      "temperature": 0.1,
       "prompt_append": "",
       "fallback_models": [
-        "deepseek/deepseek-chat"
+        "mixapi/gemma4-26b-fp8",
+        "deepseek/deepseek-v4-flash"
       ]
     },
     "metis": {
-      "model": "deepseek/deepseek-v4-flash",
-      "description": "风险分析",
+      "model": "mixapi/qwen3.6-27b",
+      "description": "风险分析（ECS 决策）",
       "maxTokens": 16384,
       "prompt_append": "",
       "fallback_models": [
-        "deepseek/deepseek-chat"
+        "mixapi/gemma4-26b-fp8"
+      ]
+    },
+    "atlas": {
+      "model": "mixapi/qwen3.6-27b",
+      "description": "任务拆解（ECS 推理）",
+      "maxTokens": 16384,
+      "prompt_append": "",
+      "fallback_models": [
+        "mixapi/gemma4-26b-fp8"
+      ]
+    },
+    "explore": {
+      "model": "mixapi/qwen3.6-27b",
+      "description": "代码搜索理解（ECS 高速）",
+      "maxTokens": 16384,
+      "prompt_append": "",
+      "fallback_models": [
+        "mixapi/gemma4-26b-fp8"
       ]
     },
     "librarian": {
-      "model": "deepseek/deepseek-v4-flash",
-      "description": "文档搜索",
+      "model": "mixapi/qwen3.6-27b",
+      "description": "文档处理（ECS 高质量）",
+      "maxTokens": 16384,
+      "prompt_append": "",
+      "fallback_models": [
+        "mixapi/gemma4-26b-fp8"
+      ]
+    },
+    "multimodal-looker": {
+      "model": "mixapi/qwen3.6-27b",
+      "description": "视觉任务（ECS 多模态）",
       "maxTokens": 8192,
       "prompt_append": "",
       "fallback_models": [
-        "deepseek/deepseek-chat"
+        "mixapi/gemma4-26b-fp8"
       ]
     }
   },
   "background_task": {
     "defaultConcurrency": 3
+  },
+  "categories": {
+    "visual-engineering": {
+      "model": "mixapi/qwen3.6-27b",
+      "description": "前端/UI/UX/设计",
+      "maxTokens": 8192,
+      "fallback_models": [
+        "mixapi/gemma4-26b-fp8"
+      ]
+    },
+    "artistry": {
+      "model": "mixapi/qwen3.6-27b",
+      "description": "创意写作",
+      "maxTokens": 8192,
+      "fallback_models": [
+        "mixapi/gemma4-26b-fp8"
+      ]
+    },
+    "ultrabrain": {
+      "model": "deepseek/deepseek-v4-flash",
+      "description": "超难任务（云端高阶推理兜底）",
+      "maxTokens": 32768,
+      "reasoningEffort": "high",
+      "fallback_models": [
+        "mixapi/qwen3.6-27b",
+        "mixapi/gemma4-26b-fp8"
+      ]
+    },
+    "deep": {
+      "model": "deepseek/deepseek-v4-flash",
+      "description": "深度研究（云端自主解决）",
+      "maxTokens": 16384,
+      "reasoningEffort": "high",
+      "fallback_models": [
+        "mixapi/qwen3.6-27b",
+        "mixapi/gemma4-26b-fp8"
+      ]
+    },
+    "coder": {
+      "model": "mixapi/qwen3.6-27b",
+      "description": "代码执行（ECS 高质量）",
+      "maxTokens": 16384,
+      "fallback_models": [
+        "mixapi/gemma4-26b-fp8",
+        "deepseek/deepseek-v4-flash"
+      ]
+    },
+    "quick": {
+      "model": "mixapi/gemma4-26b-fp8",
+      "description": "快速轻量任务（ECS 轻量）",
+      "maxTokens": 4096,
+      "fallback_models": [
+        "mixapi/qwen3.6-27b"
+      ]
+    },
+    "writing": {
+      "model": "mixapi/qwen3.6-27b",
+      "description": "文档写作",
+      "maxTokens": 16384,
+      "fallback_models": [
+        "mixapi/gemma4-26b-fp8"
+      ]
+    },
+    "unspecified-low": {
+      "model": "mixapi/gemma4-26b-fp8",
+      "description": "低复杂度通用任务（ECS 轻量）",
+      "maxTokens": 8192,
+      "fallback_models": [
+        "mixapi/qwen3.6-27b"
+      ]
+    },
+    "unspecified-high": {
+      "model": "mixapi/qwen3.6-27b",
+      "description": "高复杂度通用任务（ECS 高质量）",
+      "maxTokens": 16384,
+      "fallback_models": [
+        "mixapi/gemma4-26b-fp8",
+        "deepseek/deepseek-v4-flash"
+      ]
+    }
   },
   "default_agent": "sisyphus",
   "hashline_edit": true
