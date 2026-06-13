@@ -69,6 +69,7 @@
   },
   "plugin": [
     "@tarquinen/opencode-dcp@latest",
+    "opencode-dcp-dynamic-limits",
     "oh-my-openagent@latest",
     "opencode-agent-context",
     "opencode-autoresearch@latest",

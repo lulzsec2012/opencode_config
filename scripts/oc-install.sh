@@ -175,13 +175,18 @@ fi
 
 # ---------- 7. conversation-analysis ----------
 echo ""
-echo "[7/7] Installing opencode-conversation-analysis..."
+echo "[7/8] Installing opencode-conversation-analysis..."
 if skill_dir "opencode-conversation-analysis" >/dev/null; then
   echo "  opencode-conversation-analysis 已安装，检查更新..."
   npx --yes skills add connorads/dotfiles@opencode-conversation-analysis -y -g 2>&1 | clean_npx || echo "  跳过"
 else
   npx --yes skills add connorads/dotfiles@opencode-conversation-analysis -y -g || echo "  ⚠️ 跳过"
 fi
+
+# ---------- 8. dcp-dynamic-limits ----------
+echo ""
+echo "[8/8] Installing opencode-dcp-dynamic-limits..."
+npm_check_upgrade "opencode-dcp-dynamic-limits"
 
 # ---------- extra tools ----------
 echo ""
