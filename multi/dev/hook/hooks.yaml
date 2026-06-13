@@ -1,0 +1,9 @@
+hooks:
+  - event: file.changed
+    conditions:
+      - matchesCodeFiles
+    actions:
+      # 从 stdin JSON payload 提取变更文件，传递给 biome 检查
+      # 注意: 不存在 $OPENCODE_FILE_CHANGED 环境变量！
+      # 文件路径通过 stdin JSON payload 的 .files[] 字段传递
+      - bash: "cat | jq -r '.files[]' | xargs -r biome format --write"
