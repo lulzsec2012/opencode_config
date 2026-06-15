@@ -57,7 +57,7 @@ ver_gt() {
 
 # ---------- 1. opencode CLI ----------
 echo ""
-echo "[1/7] Installing opencode CLI..."
+echo "[1/11] Installing opencode CLI..."
 npm_install_opencode() {
   npm_install_user "opencode-ai"
 }
@@ -99,7 +99,7 @@ fi
 
 # ---------- 2. bun ----------
 echo ""
-echo "[2/7] Installing bun..."
+echo "[2/11] Installing bun..."
 _has_bun=false
 if command -v bun &>/dev/null; then
   _has_bun=true
@@ -126,15 +126,25 @@ else
   echo "  bun installed: $(bun --version)"
 fi
 
-# ---------- 3. oh-my-opencode ----------
+# ---------- 3. oh-my-openagent ----------
 echo ""
-echo "[3/7] Installing oh-my-opencode plugin..."
-npm_check_upgrade "oh-my-opencode"
+echo "[3/11] Installing oh-my-openagent plugin..."
+if npm ls -g --depth=0 oh-my-openagent 2>&1 | grep -q 'oh-my-openagent@'; then
+  echo "  oh-my-openagent 已安装"
+elif npm ls -g --depth=0 oh-my-opencode 2>&1 | grep -q 'oh-my-opencode@'; then
+  echo "  oh-my-opencode 已安装（oh-my-openagent 别名）"
+else
+  echo "  尝试安装 oh-my-openagent..."
+  npm install -g oh-my-openagent 2>&1 | tail -3 || {
+    echo "  oh-my-openagent 安装失败，回退到 oh-my-opencode..."
+    npm install -g oh-my-opencode 2>&1 | tail -3
+  }
+fi
 echo "  配置指南: https://raw.githubusercontent.com/code-yeongyu/oh-my-opencode/refs/heads/master/docs/guide/installation.md"
 
 # ---------- 4. openspec ----------
 echo ""
-echo "[4/7] Installing openspec..."
+echo "[4/11] Installing openspec..."
 npm_check_upgrade "@fission-ai/openspec" "openspec"
 echo "  在项目目录执行 'openspec init' 初始化"
 
@@ -153,7 +163,7 @@ skill_dir() {
 
 # ---------- 5. superpowers ----------
 echo ""
-echo "[5/7] Installing superpowers skills..."
+echo "[5/11] Installing superpowers skills..."
 if skill_dir "superpowers" >/dev/null; then
   echo "  superpowers 已安装，检查更新..."
   npx --yes skills add obra/superpowers 2>&1 | clean_npx
@@ -164,7 +174,7 @@ fi
 
 # ---------- 6. planning-with-files ----------
 echo ""
-echo "[6/7] Installing planning-with-files..."
+echo "[6/11] Installing planning-with-files..."
 if skill_dir "planning-with-files" >/dev/null; then
   echo "  planning-with-files 已安装，检查更新..."
   npx --yes skills add OthmanAdi/planning-with-files 2>&1 | clean_npx
@@ -175,7 +185,7 @@ fi
 
 # ---------- 7. conversation-analysis ----------
 echo ""
-echo "[7/8] Installing opencode-conversation-analysis..."
+echo "[7/11] Installing opencode-conversation-analysis..."
 if skill_dir "opencode-conversation-analysis" >/dev/null; then
   echo "  opencode-conversation-analysis 已安装，检查更新..."
   npx --yes skills add connorads/dotfiles@opencode-conversation-analysis -y -g 2>&1 | clean_npx || echo "  跳过"
@@ -185,8 +195,21 @@ fi
 
 # ---------- 8. dcp-dynamic-limits ----------
 echo ""
-echo "[8/8] Installing opencode-dcp-dynamic-limits..."
+echo "[8/11] Installing opencode-dcp-dynamic-limits..."
 npm_check_upgrade "opencode-dcp-dynamic-limits"
+
+# ---------- 9. opencode-headroom ----------
+echo ""
+echo "[9/11] Installing opencode-headroom..."
+npm_check_upgrade "opencode-headroom"
+echo "  headroom 已安装，在 opencode.json 的 plugin 中添加 opencode-headroom 启用"
+
+# ---------- 10. opencode plugins ----------
+echo ""
+echo "[10/11] Installing opencode plugins..."
+for _pkg in opencode-agent-context opencode-codegraph opencode-localmemory opencode-skill-creator opencode-yaml-hooks; do
+  npm_check_upgrade "$_pkg"
+done
 
 # ---------- extra tools ----------
 echo ""
@@ -287,7 +310,7 @@ fi
 
 # ---------- PATH 注入 .bashrc ----------
 echo ""
-echo "[8/8] Ensuring PATH is set in ~/.bashrc..."
+echo "[11/11] Ensuring PATH is set in ~/.bashrc..."
 _patch_bashrc_path() {
   local path_entry="$1"
   local marker="$2"
