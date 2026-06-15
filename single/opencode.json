@@ -15,12 +15,14 @@
     }
   },
   "model": "deepseek/deepseek-v4-flash",
+  "small_model": "deepseek/deepseek-chat",
   "plugin": [
-    "@tarquinen/opencode-dcp@latest",
     "oh-my-openagent@latest",
+    "opencode-agent-context",
     "opencode-autoresearch@latest",
     "opencode-codegraph",
     "opencode-localmemory",
+    "opencode-skill-creator",
     "opencode-yaml-hooks"
   ],
   "provider": {
@@ -50,32 +52,5 @@
         }
       }
     }
-  },
-  "instructions": [
-    "../instructions/behavior.md"
-  ],
-  "model": "deepseek/deepseek-v4-flash",
-  "small_model": "deepseek/deepseek-chat",
-  "mcp": {
-    "codegraph": {
-      "type": "local",
-      "command": [
-        "codegraph",
-        "serve",
-        "--mcp"
-      ],
-      "enabled": true
-    }
-  },
-  "plugin": [
-    "@tarquinen/opencode-dcp@latest",
-    "opencode-dcp-dynamic-limits",
-    "oh-my-openagent@latest",
-    "opencode-agent-context",
-    "opencode-autoresearch@latest",
-    "opencode-codegraph",
-    "opencode-localmemory",
-    "opencode-skill-creator",
-    "opencode-yaml-hooks"
-  ]
+  }
 }
