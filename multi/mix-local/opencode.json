@@ -14,7 +14,7 @@
       "enabled": true
     }
   },
-  "model": "deepseek/deepseek-v4-flash",
+  "model": "mixapi/qwen3.6-27b",
   "plugin": [
     "@tarquinen/opencode-dcp@latest",
     "oh-my-openagent@latest",
@@ -27,14 +27,14 @@
   "provider": {
     "deepseek": {
       "npm": "@ai-sdk/openai-compatible",
-      "name": "DeepSeek 云端核心 [mix-local]",
+      "name": "DeepSeek 云端兜底 [mix-local]",
       "options": {
         "baseURL": "https://api.deepseek.com/v1",
         "apiKey": "{env:DEEPSEEK_API_KEY}"
       },
       "models": {
         "deepseek-v4-flash": {
-          "name": "DeepSeek V4 Flash（云端核心）",
+          "name": "DeepSeek V4 Flash（云端高性能兜底）",
           "tools": true,
           "limit": {
             "context": 262144,
@@ -43,39 +43,34 @@
         }
       }
     },
-    "ollama": {
+    "mixapi": {
       "npm": "@ai-sdk/openai-compatible",
-      "name": "Ollama 本地",
+      "name": "MixAPI (本地 vLLM 集群) [mix-local]",
       "options": {
-        "baseURL": "http://127.0.0.1:11434/v1"
+        "baseURL": "{env:MIXAPI_BASE_URL}",
+        "apiKey": "{env:MIX_API_KEY}",
+        "timeout": 600000,
+        "chunkTimeout": 300000
       },
       "models": {
-        "qwen3-coder-next:latest": {
-          "name": "Qwen3 Coder Next 主力模型",
+        "qwen3.6-27b": {
+          "name": "Qwen3.6 27B (主力, TP4, MTP=5, 262K, prefix-caching)",
           "tools": true,
           "limit": {
             "context": 262144,
             "output": 32768
           }
         },
-        "qwen3.6:27b": {
-          "name": "Qwen3.6 27B 高阶推理",
+        "gemma4-26b-fp8": {
+          "name": "Gemma4 26B FP8 (快速, TP2, 65K, prefix-caching)",
           "tools": true,
           "limit": {
-            "context": 262144,
+            "context": 65536,
             "output": 32768
-          }
-        },
-        "qwen2.5-coder:14b": {
-          "name": "Qwen2.5 Coder 14B 轻量",
-          "tools": true,
-          "limit": {
-            "context": 32768,
-            "output": 8192
           }
         }
       }
     }
   },
-  "small_model": "ollama/qwen2.5-coder:14b"
+  "small_model": "mixapi/gemma4-26b-fp8"
 }

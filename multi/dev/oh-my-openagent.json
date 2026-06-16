@@ -1,203 +1,187 @@
 {
   "$schema": "https://raw.githubusercontent.com/code-yeongyu/oh-my-openagent/refs/heads/dev/assets/oh-my-opencode.schema.json",
+  "default_agent": "sisyphus",
+  "hashline_edit": true,
+  "background_task": {
+    "defaultConcurrency": 3
+  },
+  "sisyphus_agent": {
+    "disabled": false,
+    "default_builder_enabled": true,
+    "planner_enabled": true,
+    "replace_plan": true
+  },
+  "disabled_hooks": [
+    "atlas-orchestrator"
+  ],
   "agents": {
     "sisyphus": {
-      "model": "deepseek/deepseek-v4-flash",
-      "description": "主协调者（云端决策核心）",
-      "prompt_append": "You are an AI assistant. You must always respond in Simplified Chinese (中文). 你必须始终用中文回复用户。请用中文进行推理，思考过程必须使用中文。Please reason step by step in Chinese language. 中文推理，中文输出。",
+      "model": "mixapi/qwen3.6-27b",
+      "description": "主协调者 — MixAPI qwen3.6 TP4 MTP=5 (262K, SWE-bench 77.2%)",
       "maxTokens": 32768,
+      "prompt_append": "You are an AI assistant. You must always respond in Simplified Chinese (中文). 你必须始终用中文回复用户。请用中文进行推理，思考过程必须使用中文。Please reason step by step in Chinese language. 中文推理，中文输出。",
       "fallback_models": [
         "deepseek/deepseek-v4-flash"
       ]
     },
     "prometheus": {
-      "model": "deepseek/deepseek-v4-pro",
-      "description": "需求分析 / 规划（云端高阶推理）",
-      "prompt_append": "You are an AI assistant. You must always respond in Simplified Chinese (中文). 你必须始终用中文回复用户。请用中文进行推理，思考过程必须使用中文。Please reason step by step in Chinese language. 中文推理，中文输出。",
+      "model": "deepseek/deepseek-v4-flash",
+      "description": "规划 — 云端高阶推理兜底",
       "maxTokens": 16384,
       "reasoningEffort": "high",
-      "fallback_models": [
-        "deepseek/deepseek-v4-flash"
-      ]
+      "prompt_append": "You are an AI assistant. You must always respond in Simplified Chinese (中文). 你必须始终用中文回复用户。请用中文进行推理，思考过程必须使用中文。Please reason step by step in Chinese language. 中文推理，中文输出。"
     },
     "hephaestus": {
-      "model": "deepseek/deepseek-v4-flash",
-      "description": "代码执行（云端保证代码质量）",
+      "model": "mixapi/qwen3.6-27b",
+      "description": "代码执行核心 — MixAPI qwen3.6 TP4 MTP=5 (262K)",
       "maxTokens": 32768,
       "temperature": 0.2,
-      "prompt_append": "You are an AI assistant. You must always respond in Simplified Chinese (中文). 你必须始终用中文回复用户。请用中文进行推理，思考过程必须使用中文。Please reason step by step in Chinese language. 中文推理，中文输出。",
+      "prompt_append": "You are an AI assistant. You must always respond in Simplified Chinese (中文). 你必须始终用中文回复用户。即使思考过程可以用英文，最终回复必须是中文。",
       "fallback_models": [
         "deepseek/deepseek-v4-flash"
       ]
     },
     "oracle": {
-      "model": "deepseek/deepseek-v4-pro",
-      "description": "只读推理专家（云端高阶兜底）",
-      "prompt_append": "You are an AI assistant. You must always respond in Simplified Chinese (中文). 你必须始终用中文回复用户。请用中文进行推理，思考过程必须使用中文。Please reason step by step in Chinese language. 中文推理，中文输出。",
+      "model": "deepseek/deepseek-v4-flash",
+      "description": "只读推理专家 — 云端高阶兜底",
       "maxTokens": 32768,
       "reasoningEffort": "high",
-      "fallback_models": [
-        "deepseek/deepseek-v4-flash"
-      ]
+      "prompt_append": "You are an AI assistant. You must always respond in Simplified Chinese (中文). 你必须始终用中文回复用户。请用中文进行推理，思考过程必须使用中文。Please reason step by step in Chinese language. 中文推理，中文输出。"
     },
     "momus": {
-      "model": "deepseek/deepseek-v4-pro",
-      "description": "代码审查（云端质量裁判）",
+      "model": "mixapi/qwen3.6-27b",
+      "description": "质量裁判 — MixAPI 本地审查 (262K)",
       "maxTokens": 16384,
       "temperature": 0.1,
-      "prompt_append": "You are an AI assistant. You must always respond in Simplified Chinese (中文). 你必须始终用中文回复用户。请用中文进行推理，思考过程必须使用中文。Please reason step by step in Chinese language. 中文推理，中文输出。",
+      "prompt_append": "You are an AI assistant. You must always respond in Simplified Chinese (中文). 你必须始终用中文回复用户。即使思考过程可以用英文，最终回复必须是中文。",
       "fallback_models": [
         "deepseek/deepseek-v4-flash"
       ]
     },
     "metis": {
-      "model": "deepseek/deepseek-v4-pro",
-      "description": "风险分析（云端决策）",
-      "prompt_append": "You are an AI assistant. You must always respond in Simplified Chinese (中文). 你必须始终用中文回复用户。请用中文进行推理，思考过程必须使用中文。Please reason step by step in Chinese language. 中文推理，中文输出。",
-      "maxTokens": 8192,
+      "model": "mixapi/qwen3.6-27b",
+      "description": "风险评估 — MixAPI 本地长上下文分析 (262K)",
+      "maxTokens": 16384,
+      "prompt_append": "You are an AI assistant. You must always respond in Simplified Chinese (中文). 你必须始终用中文回复用户。即使思考过程可以用英文，最终回复必须是中文。",
       "fallback_models": [
         "deepseek/deepseek-v4-flash"
       ]
     },
     "atlas": {
-      "model": "deepseek/deepseek-v4-flash",
-      "description": "任务拆解（轻量云）",
+      "model": "mixapi/gemma4-26b-fp8",
+      "description": "任务拆解 — MixAPI gemma4 FP8 快速 (65K)",
       "maxTokens": 8192,
-      "prompt_append": "You are an AI assistant. You must always respond in Simplified Chinese (中文). 你必须始终用中文回复用户。请用中文进行推理，思考过程必须使用中文。Please reason step by step in Chinese language. 中文推理，中文输出。",
+      "prompt_append": "You are an AI assistant. You must always respond in Simplified Chinese (中文). 你必须始终用中文回复用户。即使思考过程可以用英文，最终回复必须是中文。",
       "fallback_models": [
+        "mixapi/qwen3.6-27b",
         "deepseek/deepseek-v4-flash"
       ]
     },
     "explore": {
-      "model": "deepseek/deepseek-v4-flash",
-      "description": "代码库理解（本地高速搜索）",
+      "model": "mixapi/gemma4-26b-fp8",
+      "description": "代码理解 — MixAPI gemma4 FP8 快速 (65K)",
       "maxTokens": 16384,
       "fallback_models": [
-        "deepseek/deepseek-v4-flash"
-      ]
-    },
-    "sisyphus-junior": {
-      "model": "deepseek/deepseek-v4-flash",
-      "description": "轻量执行任务",
-      "maxTokens": 16384,
-      "fallback_models": [
+        "mixapi/qwen3.6-27b",
         "deepseek/deepseek-v4-flash"
       ]
     },
     "librarian": {
-      "model": "deepseek/deepseek-v4-flash",
-      "description": "文档总结（本地低成本）",
+      "model": "mixapi/gemma4-26b-fp8",
+      "description": "文档处理 — MixAPI gemma4 FP8 快速 (65K)",
       "maxTokens": 16384,
       "fallback_models": [
+        "mixapi/qwen3.6-27b",
+        "deepseek/deepseek-v4-flash"
+      ]
+    },
+    "sisyphus-junior": {
+      "model": "mixapi/gemma4-26b-fp8",
+      "description": "轻量执行任务 — MixAPI gemma4 FP8 快速",
+      "maxTokens": 16384,
+      "fallback_models": [
+        "mixapi/qwen3.6-27b",
         "deepseek/deepseek-v4-flash"
       ]
     },
     "multimodal-looker": {
       "model": "deepseek/deepseek-v4-flash",
-      "description": "视觉任务",
-      "maxTokens": 8192,
-      "prompt_append": "You are an AI assistant. You must always respond in Simplified Chinese (中文). 你必须始终用中文回复用户。请用中文进行推理，思考过程必须使用中文。Please reason step by step in Chinese language. 中文推理，中文输出。",
-      "fallback_models": [
-        "deepseek/deepseek-v4-flash"
-      ]
+      "description": "视觉分析 — 云端 (本地 MixAPI 不支持多模态)",
+      "maxTokens": 8192
     }
-  },
-  "background_task": {
-    "defaultConcurrency": 3
   },
   "categories": {
     "visual-engineering": {
       "model": "deepseek/deepseek-v4-flash",
-      "description": "前端/UI/UX/设计",
-      "maxTokens": 8192,
-      "fallback_models": [
-        "deepseek/deepseek-v4-flash"
-      ]
+      "description": "前端/UI/UX/设计 — 云端多模态兜底",
+      "maxTokens": 8192
     },
     "artistry": {
-      "model": "deepseek/deepseek-v4-flash",
-      "description": "创意写作（本地省成本）",
+      "model": "mixapi/qwen3.6-27b",
+      "description": "创意写作 — MixAPI 本地",
       "maxTokens": 8192,
       "fallback_models": [
         "deepseek/deepseek-v4-flash"
       ]
     },
     "ultrabrain": {
-      "model": "deepseek/deepseek-v4-pro",
-      "description": "复杂推理（云端高阶）",
+      "model": "deepseek/deepseek-v4-flash",
+      "description": "超难任务 — 云端高阶推理兜底",
       "maxTokens": 32768,
-      "reasoningEffort": "high",
+      "reasoningEffort": "high"
+    },
+    "deep": {
+      "model": "mixapi/qwen3.6-27b",
+      "description": "深度研究与自主问题解决 — MixAPI 本地",
+      "maxTokens": 16384,
       "fallback_models": [
         "deepseek/deepseek-v4-flash"
       ]
     },
     "coder": {
-      "model": "deepseek/deepseek-v4-flash",
-      "description": "代码执行（云端高质量）",
-      "maxTokens": 32768,
-      "fallback_models": [
-        "deepseek/deepseek-v4-flash"
-      ]
-    },
-    "deep": {
-      "model": "deepseek/deepseek-v4-pro",
-      "description": "深度研究（云端自主解决）",
+      "model": "mixapi/qwen3.6-27b",
+      "description": "代码执行 — MixAPI qwen3.6 TP4 MTP=5 (262K)",
       "maxTokens": 16384,
-      "reasoningEffort": "high",
       "fallback_models": [
         "deepseek/deepseek-v4-flash"
       ]
     },
     "quick": {
-      "model": "deepseek/deepseek-v4-flash",
-      "description": "快速轻量任务",
+      "model": "mixapi/gemma4-26b-fp8",
+      "description": "快速轻量任务 — MixAPI gemma4 FP8 (TTFT~64ms)",
       "maxTokens": 4096,
       "fallback_models": [
+        "mixapi/qwen3.6-27b",
         "deepseek/deepseek-v4-flash"
       ]
     },
     "writing": {
       "model": "deepseek/deepseek-v4-flash",
-      "description": "文档写作（本地省成本，有云端退路）",
-      "maxTokens": 8192,
-      "fallback_models": [
-        "deepseek/deepseek-v4-flash"
-      ]
+      "description": "文档写作 — 云端质量更优",
+      "maxTokens": 8192
     },
     "analysis-lite": {
-      "model": "deepseek/deepseek-v4-flash",
-      "description": "轻量分析",
+      "model": "mixapi/gemma4-26b-fp8",
+      "description": "轻量分析 — MixAPI gemma4 FP8 快速",
       "maxTokens": 4096,
       "fallback_models": [
+        "mixapi/qwen3.6-27b",
         "deepseek/deepseek-v4-flash"
       ]
     },
     "unspecified-low": {
-      "model": "deepseek/deepseek-v4-flash",
-      "description": "低成本任务",
+      "model": "mixapi/gemma4-26b-fp8",
+      "description": "低优先级通用任务 — MixAPI gemma4 FP8 快速",
       "maxTokens": 4096,
       "fallback_models": [
+        "mixapi/qwen3.6-27b",
         "deepseek/deepseek-v4-flash"
       ]
     },
     "unspecified-high": {
       "model": "deepseek/deepseek-v4-flash",
-      "description": "默认高质量路径（云端）",
-      "maxTokens": 16384,
-      "fallback_models": [
-        "deepseek/deepseek-v4-flash"
-      ]
+      "description": "高优先级通用任务 — 云端兜底",
+      "maxTokens": 16384
     }
-  },
-  "default_agent": "sisyphus",
-  "disabled_hooks": [
-    "atlas-orchestrator"
-  ],
-  "hashline_edit": true,
-  "sisyphus_agent": {
-    "disabled": false,
-    "default_builder_enabled": true,
-    "planner_enabled": true,
-    "replace_plan": true
   }
 }
