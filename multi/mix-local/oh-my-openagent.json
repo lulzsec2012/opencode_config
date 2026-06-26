@@ -42,9 +42,9 @@
         "deepseek/deepseek-v4-flash"
       ]
     },
-    "momus": {
-      "model": "mixapi/qwen3.6-27b",
-      "description": "质量裁判 — MixAPI 本地审查 (262K)",
+"momus": {
+			"model": "deepseek/deepseek-v4-pro",
+			"description": "质量裁判 — 云端 Pro 审查",
       "maxTokens": 16384,
       "temperature": 0.1,
       "prompt_append": "You are an AI assistant. You must always respond in Simplified Chinese (中文). 你必须始终用中文回复用户。即使思考过程可以用英文，最终回复必须是中文。",

@@ -21,6 +21,8 @@
   },
   "model": "deepseek/deepseek-v4-flash",
   "plugin": [
+    "@tarquinen/opencode-dcp@latest",
+    "opencode-dcp-dynamic-limits",
     "opencode-headroom",
     "oh-my-openagent@latest",
     "opencode-agent-context",

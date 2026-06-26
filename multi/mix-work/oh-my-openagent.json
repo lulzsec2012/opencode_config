@@ -33,9 +33,9 @@
       "reasoningEffort": "high",
       "prompt_append": "You are an AI assistant. You must always respond in Simplified Chinese (中文). 你必须始终用中文回复用户。请用中文进行推理，思考过程必须使用中文。Please reason step by step in Chinese language. 中文推理，中文输出。"
     },
-    "momus": {
-      "model": "deepseek/deepseek-v4-flash",
-      "description": "质量裁判（云端审查）",
+"momus": {
+			"model": "deepseek/deepseek-v4-pro",
+			"description": "质量裁判（云端审查）",
       "maxTokens": 16384,
       "temperature": 0.1,
       "prompt_append": "You are an AI assistant. You must always respond in Simplified Chinese (中文). 你必须始终用中文回复用户。即使思考过程可以用英文，最终回复必须是中文。"
