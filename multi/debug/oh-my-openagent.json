@@ -1,0 +1,166 @@
+{
+  "$schema": "https://raw.githubusercontent.com/code-yeongyu/oh-my-openagent/refs/heads/dev/assets/oh-my-opencode.schema.json",
+  "default_agent": "sisyphus",
+  "hashline_edit": true,
+  "background_task": {
+    "defaultConcurrency": 3
+  },
+  "sisyphus_agent": {
+    "disabled": false,
+    "default_builder_enabled": true,
+    "planner_enabled": true,
+    "replace_plan": true
+  },
+  "disabled_hooks": [
+    "atlas-orchestrator"
+  ],
+  "agents": {
+    "sisyphus": {
+      "model": "deepseek/deepseek-v4-pro",
+      "description": "主协调者 — cloud pro（debug 专用高推理）",
+      "maxTokens": 32768
+    },
+    "prometheus": {
+      "model": "deepseek/deepseek-v4-pro",
+      "description": "规划 — cloud pro（debug 专用高推理）",
+      "maxTokens": 16384,
+      "reasoningEffort": "high"
+    },
+    "hephaestus": {
+      "model": "deepseek/deepseek-v4-flash",
+      "description": "代码执行核心 — cloud flash（debug 专用）",
+      "maxTokens": 32768,
+      "temperature": 0.2,
+      "fallback_models": [
+        "mixapi/qwen3.6-27b"
+      ]
+    },
+    "oracle": {
+      "model": "deepseek/deepseek-v4-pro",
+      "description": "只读推理专家 — cloud pro（debug 专用高推理）",
+      "maxTokens": 32768,
+      "reasoningEffort": "high"
+    },
+    "momus": {
+      "model": "deepseek/deepseek-v4-pro",
+      "description": "质量裁判 — cloud pro（debug 专用）",
+      "maxTokens": 16384,
+      "temperature": 0.1
+    },
+    "metis": {
+      "model": "deepseek/deepseek-v4-pro",
+      "description": "风险评估 — cloud pro（debug 专用）",
+      "maxTokens": 8192
+    },
+    "atlas": {
+      "model": "mixapi/gemma4-26b-fp8",
+      "description": "任务拆解 — MixAPI gemma4 FP8 快速 (65K)",
+      "maxTokens": 8192,
+      "fallback_models": [
+        "mixapi/qwen3.6-27b",
+        "deepseek/deepseek-v4-flash"
+      ]
+    },
+    "explore": {
+      "model": "mixapi/gemma4-26b-fp8",
+      "description": "代码理解 — MixAPI gemma4 FP8 快速 (65K)",
+      "maxTokens": 16384,
+      "fallback_models": [
+        "mixapi/qwen3.6-27b",
+        "deepseek/deepseek-v4-flash"
+      ]
+    },
+    "librarian": {
+      "model": "mixapi/gemma4-26b-fp8",
+      "description": "文档处理 — MixAPI gemma4 FP8 快速 (65K)",
+      "maxTokens": 16384,
+      "fallback_models": [
+        "mixapi/qwen3.6-27b",
+        "deepseek/deepseek-v4-flash"
+      ]
+    },
+    "sisyphus-junior": {
+      "model": "deepseek/deepseek-v4-flash",
+      "description": "轻量执行 — cloud flash",
+      "maxTokens": 16384,
+      "fallback_models": [
+        "mixapi/qwen3.6-27b"
+      ]
+    },
+    "multimodal-looker": {
+      "model": "deepseek/deepseek-v4-flash",
+      "description": "视觉分析 — cloud (本地不支持多模态)",
+      "maxTokens": 8192
+    }
+  },
+  "categories": {
+    "visual-engineering": {
+      "model": "deepseek/deepseek-v4-flash",
+      "description": "前端/UI/UX/设计 — cloud 多模态兜底",
+      "maxTokens": 8192
+    },
+    "artistry": {
+      "model": "deepseek/deepseek-v4-flash",
+      "description": "创意写作 — cloud",
+      "maxTokens": 8192
+    },
+    "ultrabrain": {
+      "model": "deepseek/deepseek-v4-pro",
+      "description": "超难任务 — cloud pro（debug 专用）",
+      "maxTokens": 32768,
+      "reasoningEffort": "high"
+    },
+    "deep": {
+      "model": "deepseek/deepseek-v4-pro",
+      "description": "深度研究 — cloud pro（debug 专用）",
+      "maxTokens": 16384,
+      "reasoningEffort": "high"
+    },
+    "coder": {
+      "model": "deepseek/deepseek-v4-flash",
+      "description": "代码执行 — cloud flash",
+      "maxTokens": 16384,
+      "fallback_models": [
+        "mixapi/qwen3.6-27b"
+      ]
+    },
+    "quick": {
+      "model": "mixapi/gemma4-26b-fp8",
+      "description": "快速轻量 — MixAPI gemma4 FP8 (TTFT~64ms)",
+      "maxTokens": 4096,
+      "fallback_models": [
+        "mixapi/qwen3.6-27b",
+        "deepseek/deepseek-v4-flash"
+      ]
+    },
+    "writing": {
+      "model": "deepseek/deepseek-v4-flash",
+      "description": "文档写作 — cloud 质量更优",
+      "maxTokens": 8192
+    },
+    "analysis-lite": {
+      "model": "mixapi/gemma4-26b-fp8",
+      "description": "轻量分析 — MixAPI gemma4 FP8 快速",
+      "maxTokens": 4096,
+      "fallback_models": [
+        "mixapi/qwen3.6-27b",
+        "deepseek/deepseek-v4-flash"
+      ]
+    },
+    "unspecified-low": {
+      "model": "mixapi/gemma4-26b-fp8",
+      "description": "低优先级通用 — MixAPI gemma4 FP8 快速",
+      "maxTokens": 4096,
+      "fallback_models": [
+        "mixapi/qwen3.6-27b",
+        "deepseek/deepseek-v4-flash"
+      ]
+    },
+    "unspecified-high": {
+      "model": "deepseek/deepseek-v4-flash",
+      "description": "高优先级通用 — cloud 兜底",
+      "maxTokens": 16384
+    }
+  }
+
+}

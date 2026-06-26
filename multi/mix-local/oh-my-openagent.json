@@ -33,11 +33,14 @@
       ]
     },
     "oracle": {
-      "model": "deepseek/deepseek-v4-flash",
-      "description": "只读推理专家 — 云端高阶兜底",
+      "model": "mixapi/qwen3.6-27b",
+      "description": "只读推理专家 — MixAPI qwen3.6 本地 (~100 tok/s)",
       "maxTokens": 32768,
       "reasoningEffort": "high",
-      "prompt_append": "You are an AI assistant. You must always respond in Simplified Chinese (中文). 你必须始终用中文回复用户。请用中文进行推理，思考过程必须使用中文。Please reason step by step in Chinese language. 中文推理，中文输出。"
+      "fallback_models": [
+        "deepseek/deepseek-v4-pro",
+        "deepseek/deepseek-v4-flash"
+      ]
     },
     "momus": {
       "model": "mixapi/qwen3.6-27b",

@@ -34,7 +34,7 @@
   "provider": {
     "deepseek": {
       "npm": "@ai-sdk/openai-compatible",
-      "name": "DeepSeek 云端主力 [dev]",
+      "name": "DeepSeek 云端主力 [debug]",
       "options": {
         "baseURL": "https://api.deepseek.com/v1",
         "apiKey": "{env:DEEPSEEK_API_KEY}",
@@ -62,7 +62,7 @@
     },
     "mixapi": {
       "npm": "@ai-sdk/openai-compatible",
-      "name": "MixAPI 本地保底 [dev]",
+      "name": "MixAPI 本地保底 [debug]",
       "options": {
         "baseURL": "{env:MIXAPI_BASE_URL}",
         "apiKey": "{env:MIXAPI_API_KEY}",

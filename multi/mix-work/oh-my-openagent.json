@@ -27,7 +27,7 @@
       "prompt_append": "You are an AI assistant. You must always respond in Simplified Chinese (中文). 你必须始终用中文回复用户。即使思考过程可以用英文，最终回复必须是中文。"
     },
     "oracle": {
-      "model": "deepseek/deepseek-v4-flash",
+      "model": "deepseek/deepseek-v4-pro",
       "description": "只读推理专家（云端高阶兜底）",
       "maxTokens": 32768,
       "reasoningEffort": "high",
@@ -50,18 +50,17 @@
       ]
     },
     "atlas": {
-      "model": "mixapi/gemma4-26b-awq-int4",
-      "description": "任务拆解 — MixAPI 快速轻量 (115K)",
+      "model": "mixapi/gemma4-26b-fp8",
+      "description": "任务拆解 — MixAPI gemma4 FP8 快速",
       "maxTokens": 8192,
-      "prompt_append": "You are an AI assistant. You must always respond in Simplified Chinese (中文). 你必须始终用中文回复用户。即使思考过程可以用英文，最终回复必须是中文。",
       "fallback_models": [
         "deepseek/deepseek-v4-flash",
         "mixapi/qwen3.6-27b"
       ]
     },
     "explore": {
-      "model": "mixapi/gemma4-26b-awq-int4",
-      "description": "代码理解 — MixAPI 快速响应 (115K, TTFT~120ms)",
+      "model": "mixapi/gemma4-26b-fp8",
+      "description": "代码理解 — MixAPI gemma4 FP8 快速",
       "maxTokens": 16384,
       "fallback_models": [
         "deepseek/deepseek-v4-flash",
@@ -69,8 +68,8 @@
       ]
     },
     "librarian": {
-      "model": "mixapi/gemma4-26b-awq-int4",
-      "description": "文档处理 — MixAPI 快速响应 (115K, TTFT~120ms)",
+      "model": "mixapi/gemma4-26b-fp8",
+      "description": "文档处理 — MixAPI gemma4 FP8 快速",
       "maxTokens": 16384,
       "fallback_models": [
         "deepseek/deepseek-v4-flash",
@@ -116,8 +115,8 @@
       "maxTokens": 16384
     },
     "quick": {
-      "model": "mixapi/gemma4-26b-awq-int4",
-      "description": "快速轻量任务 — MixAPI 本地 (TTFT~120ms)",
+      "model": "mixapi/gemma4-26b-fp8",
+      "description": "快速轻量任务 — MixAPI gemma4 FP8 (TTFT~64ms)",
       "maxTokens": 4096,
       "fallback_models": [
         "deepseek/deepseek-v4-flash",
@@ -130,8 +129,8 @@
       "maxTokens": 8192
     },
     "unspecified-low": {
-      "model": "mixapi/gemma4-26b-awq-int4",
-      "description": "低优先级通用任务 — MixAPI 本地 (TTFT~120ms)",
+      "model": "mixapi/gemma4-26b-fp8",
+      "description": "低优先级通用任务 — MixAPI gemma4 FP8 快速",
       "maxTokens": 4096,
       "fallback_models": [
         "deepseek/deepseek-v4-flash",

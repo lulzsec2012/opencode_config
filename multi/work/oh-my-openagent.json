@@ -56,15 +56,22 @@
       "maxTokens": 8192
     },
     "atlas": {
-      "model": "deepseek/deepseek-v4-flash",
-      "description": "任务拆解（云端）",
+      "model": "mixapi/gemma4-26b-fp8",
+      "description": "任务拆解 — MixAPI gemma4 FP8 (~260 tok/s)",
       "maxTokens": 8192,
-      "prompt_append": "You are an AI assistant. You must always respond in Simplified Chinese (中文). 你必须始终用中文回复用户。即使思考过程可以用英文，最终回复必须是中文。"
+      "fallback_models": [
+        "mixapi/qwen3.6-27b",
+        "deepseek/deepseek-v4-flash"
+      ]
     },
     "explore": {
-      "model": "deepseek/deepseek-v4-flash",
-      "description": "代码库理解（云端高速）",
-      "maxTokens": 16384
+      "model": "mixapi/gemma4-26b-fp8",
+      "description": "代码库理解 — MixAPI gemma4 FP8 (~260 tok/s)",
+      "maxTokens": 16384,
+      "fallback_models": [
+        "mixapi/qwen3.6-27b",
+        "deepseek/deepseek-v4-flash"
+      ]
     },
     "sisyphus-junior": {
       "model": "deepseek/deepseek-v4-flash",
@@ -72,9 +79,13 @@
       "maxTokens": 16384
     },
     "librarian": {
-      "model": "deepseek/deepseek-v4-flash",
-      "description": "文档总结（云端）",
-      "maxTokens": 16384
+      "model": "mixapi/gemma4-26b-fp8",
+      "description": "文档处理 — MixAPI gemma4 FP8 (~260 tok/s)",
+      "maxTokens": 16384,
+      "fallback_models": [
+        "mixapi/qwen3.6-27b",
+        "deepseek/deepseek-v4-flash"
+      ]
     },
     "multimodal-looker": {
       "model": "deepseek/deepseek-v4-flash",

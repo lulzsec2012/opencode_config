@@ -34,13 +34,13 @@
       ]
     },
     "oracle": {
-      "model": "deepseek/deepseek-v4-flash",
-      "description": "只读推理专家（云端高阶兜底）",
+      "model": "mixapi/qwen3.6-27b",
+      "description": "只读推理专家 — MixAPI qwen3.6 本地 (~100 tok/s)",
       "maxTokens": 32768,
       "reasoningEffort": "high",
       "prompt_append": "",
       "fallback_models": [
-        "mixapi/qwen3.6-27b",
+        "deepseek/deepseek-v4-pro",
         "mixapi/gemma4-26b-fp8"
       ]
     },
@@ -122,12 +122,12 @@
       ]
     },
     "ultrabrain": {
-      "model": "deepseek/deepseek-v4-flash",
-      "description": "超难任务（云端高阶推理兜底）",
+      "model": "mixapi/qwen3.6-27b",
+      "description": "超难任务 — MixAPI qwen3.6 本地推理 (~100 tok/s)",
       "maxTokens": 32768,
       "reasoningEffort": "high",
       "fallback_models": [
-        "mixapi/qwen3.6-27b",
+        "deepseek/deepseek-v4-pro",
         "mixapi/gemma4-26b-fp8"
       ]
     },

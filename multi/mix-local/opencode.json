@@ -78,7 +78,7 @@
           }
         },
         "gemma4-26b-fp8": {
-          "name": "Gemma4 26B FP8（本地高速, 262K, ~350 tok/s）",
+          "name": "Gemma4 26B FP8（本地高速, 262K, ~260 tok/s）",
           "tools": true,
           "limit": {
             "context": 262144,
