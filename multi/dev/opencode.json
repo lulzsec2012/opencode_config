@@ -12,29 +12,46 @@
         "--mcp"
       ],
       "enabled": true
+    },
+    "sequential-thinking": {
+      "type": "local",
+      "command": ["npx", "-y", "@modelcontextprotocol/server-sequential-thinking"],
+      "enabled": true
     }
   },
-  "model": "mixapi/qwen3.6-27b",
+  "model": "deepseek/deepseek-v4-flash",
   "plugin": [
     "opencode-headroom",
     "oh-my-openagent@latest",
     "opencode-agent-context",
+    "opencode-autoresearch@latest",
     "opencode-codegraph",
     "opencode-localmemory",
     "opencode-skill-creator",
-    "opencode-yaml-hooks"
+    "opencode-yaml-hooks",
+    "@dietrichgebert/ponytail"
   ],
   "provider": {
     "deepseek": {
       "npm": "@ai-sdk/openai-compatible",
-      "name": "DeepSeek 云端兜底 [dev]",
+      "name": "DeepSeek 云端主力 [dev]",
       "options": {
         "baseURL": "https://api.deepseek.com/v1",
-        "apiKey": "{env:DEEPSEEK_API_KEY}"
+        "apiKey": "{env:DEEPSEEK_API_KEY}",
+        "timeout": 600000,
+        "chunkTimeout": 300000
       },
       "models": {
         "deepseek-v4-flash": {
-          "name": "DeepSeek V4 Flash（云端高性能兜底）",
+          "name": "DeepSeek V4 Flash（云端工作主力）",
+          "tools": true,
+          "limit": {
+            "context": 262144,
+            "output": 65536
+          }
+        },
+        "deepseek-v4-pro": {
+          "name": "DeepSeek V4 Pro（云端高阶推理）",
           "tools": true,
           "limit": {
             "context": 262144,
@@ -45,16 +62,16 @@
     },
     "mixapi": {
       "npm": "@ai-sdk/openai-compatible",
-      "name": "MixAPI (本地 vLLM 集群) [dev]",
+      "name": "MixAPI 本地保底 [dev]",
       "options": {
         "baseURL": "{env:MIXAPI_BASE_URL}",
-        "apiKey": "{env:MIX_API_KEY}",
+        "apiKey": "{env:MIXAPI_API_KEY}",
         "timeout": 600000,
         "chunkTimeout": 300000
       },
       "models": {
         "qwen3.6-27b": {
-          "name": "Qwen3.6 27B (主力, TP4, MTP=5, 262K, prefix-caching)",
+          "name": "Qwen3.6 27B（本地长上下文保底, 262K）",
           "tools": true,
           "limit": {
             "context": 262144,
@@ -62,15 +79,15 @@
           }
         },
         "gemma4-26b-fp8": {
-          "name": "Gemma4 26B FP8 (快速, TP2, 65K, prefix-caching)",
+          "name": "Gemma4 26B FP8 (快速, TP2, 262K, MTP=4)",
           "tools": true,
           "limit": {
-            "context": 65536,
+            "context": 262144,
             "output": 32768
           }
         }
       }
     }
   },
-  "small_model": "mixapi/gemma4-26b-fp8"
+  "small_model": "mixapi/qwen3.6-27b"
 }

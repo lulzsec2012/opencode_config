@@ -11,19 +11,26 @@
         "serve",
         "--mcp"
       ],
+      "enabled": false
+    },
+    "sequential-thinking": {
+      "type": "local",
+      "command": ["npx", "-y", "@modelcontextprotocol/server-sequential-thinking"],
       "enabled": true
     }
   },
   "model": "deepseek/deepseek-v4-flash",
-  "small_model": "deepseek/deepseek-chat",
+  "small_model": "deepseek/deepseek-v4-flash",
   "plugin": [
     "oh-my-openagent@latest",
     "opencode-agent-context",
     "opencode-autoresearch@latest",
     "opencode-codegraph",
+    "opencode-headroom",
     "opencode-localmemory",
     "opencode-skill-creator",
-    "opencode-yaml-hooks"
+    "opencode-yaml-hooks",
+    "@dietrichgebert/ponytail"
   ],
   "provider": {
     "deepseek": {
@@ -31,19 +38,21 @@
       "name": "DeepSeek 云端",
       "options": {
         "baseURL": "https://api.deepseek.com/v1",
-        "apiKey": "{env:DEEPSEEK_API_KEY}"
+        "apiKey": "{env:DEEPSEEK_API_KEY}",
+        "timeout": 600000,
+        "chunkTimeout": 300000
       },
       "models": {
-        "deepseek-chat": {
-          "name": "DeepSeek Chat",
-          "tools": true
-        },
-        "deepseek-reasoner": {
-          "name": "DeepSeek Reasoner",
-          "tools": true
-        },
         "deepseek-v4-flash": {
-          "name": "DeepSeek V4 Flash",
+          "name": "DeepSeek V4 Flash（云端主力）",
+          "tools": true,
+          "limit": {
+            "context": 262144,
+            "output": 65536
+          }
+        },
+        "deepseek-v4-pro": {
+          "name": "DeepSeek V4 Pro（云端高阶推理）",
           "tools": true,
           "limit": {
             "context": 262144,

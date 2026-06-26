@@ -12,17 +12,24 @@
         "--mcp"
       ],
       "enabled": true
+    },
+    "sequential-thinking": {
+      "type": "local",
+      "command": ["npx", "-y", "@modelcontextprotocol/server-sequential-thinking"],
+      "enabled": true
     }
   },
   "model": "deepseek/deepseek-v4-flash",
   "plugin": [
-    "@tarquinen/opencode-dcp@latest",
+    "opencode-headroom",
     "oh-my-openagent@latest",
     "opencode-agent-context",
+    "opencode-autoresearch@latest",
     "opencode-codegraph",
     "opencode-localmemory",
     "opencode-skill-creator",
-    "opencode-yaml-hooks"
+    "opencode-yaml-hooks",
+    "@dietrichgebert/ponytail"
   ],
   "provider": {
     "deepseek": {
@@ -34,7 +41,15 @@
       },
       "models": {
         "deepseek-v4-flash": {
-          "name": "DeepSeek V4 Flash（云端工作主力）",
+          "name": "DeepSeek V4 Flash（云端主力）",
+          "tools": true,
+          "limit": {
+            "context": 262144,
+            "output": 65536
+          }
+        },
+        "deepseek-v4-pro": {
+          "name": "DeepSeek V4 Pro（云端高阶推理）",
           "tools": true,
           "limit": {
             "context": 262144,
@@ -48,7 +63,7 @@
       "name": "MixAPI 本地保底 [mix-work]",
       "options": {
         "baseURL": "{env:MIXAPI_BASE_URL}",
-        "apiKey": "{env:MIX_API_KEY}",
+        "apiKey": "{env:MIXAPI_API_KEY}",
         "timeout": 600000,
         "chunkTimeout": 300000
       },
@@ -61,11 +76,11 @@
             "output": 32768
           }
         },
-        "gemma4-26b-awq-int4": {
-          "name": "Gemma4 26B AWQ (快速, TP2, 115K, TTFT~120ms)",
+        "gemma4-26b-fp8": {
+          "name": "Gemma4 26B FP8 (本地快速, ~350 tok/s, 262K)",
           "tools": true,
           "limit": {
-            "context": 114688,
+            "context": 262144,
             "output": 32768
           }
         }

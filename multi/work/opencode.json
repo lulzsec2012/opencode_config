@@ -12,6 +12,11 @@
         "--mcp"
       ],
       "enabled": true
+    },
+    "sequential-thinking": {
+      "type": "local",
+      "command": ["npx", "-y", "@modelcontextprotocol/server-sequential-thinking"],
+      "enabled": true
     }
   },
   "model": "deepseek/deepseek-v4-flash",
@@ -19,10 +24,12 @@
     "@tarquinen/opencode-dcp@latest",
     "oh-my-openagent@latest",
     "opencode-agent-context",
+    "opencode-autoresearch@latest",
     "opencode-codegraph",
     "opencode-localmemory",
     "opencode-skill-creator",
-    "opencode-yaml-hooks"
+    "opencode-yaml-hooks",
+    "@dietrichgebert/ponytail"
   ],
   "provider": {
     "deepseek": {
@@ -30,11 +37,21 @@
       "name": "DeepSeek 云端主力 [work]",
       "options": {
         "baseURL": "https://api.deepseek.com/v1",
-        "apiKey": "{env:DEEPSEEK_API_KEY}"
+        "apiKey": "{env:DEEPSEEK_API_KEY}",
+        "timeout": 600000,
+        "chunkTimeout": 300000
       },
       "models": {
         "deepseek-v4-flash": {
           "name": "DeepSeek V4 Flash（云端工作主力）",
+          "tools": true,
+          "limit": {
+            "context": 262144,
+            "output": 65536
+          }
+        },
+        "deepseek-v4-pro": {
+          "name": "DeepSeek V4 Pro（云端高阶推理）",
           "tools": true,
           "limit": {
             "context": 262144,
@@ -48,7 +65,7 @@
       "name": "MixAPI 本地保底 [work]",
       "options": {
         "baseURL": "{env:MIXAPI_BASE_URL}",
-        "apiKey": "{env:MIX_API_KEY}",
+        "apiKey": "{env:MIXAPI_API_KEY}",
         "timeout": 600000,
         "chunkTimeout": 300000
       },

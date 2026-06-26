@@ -12,29 +12,45 @@
         "--mcp"
       ],
       "enabled": true
+    },
+    "sequential-thinking": {
+      "type": "local",
+      "command": ["npx", "-y", "@modelcontextprotocol/server-sequential-thinking"],
+      "enabled": true
     }
   },
-  "model": "mixapi/qwen3.6-27b",
+  "model": "deepseek/deepseek-v4-flash",
   "plugin": [
     "@tarquinen/opencode-dcp@latest",
     "oh-my-openagent@latest",
     "opencode-agent-context",
+    "opencode-autoresearch@latest",
     "opencode-codegraph",
+    "opencode-headroom",
     "opencode-localmemory",
     "opencode-skill-creator",
-    "opencode-yaml-hooks"
+    "opencode-yaml-hooks",
+    "@dietrichgebert/ponytail"
   ],
   "provider": {
     "deepseek": {
       "npm": "@ai-sdk/openai-compatible",
-      "name": "DeepSeek 云端兜底 [mix-local]",
+      "name": "DeepSeek 云端 (6 个高性能模块专用)",
       "options": {
         "baseURL": "https://api.deepseek.com/v1",
         "apiKey": "{env:DEEPSEEK_API_KEY}"
       },
       "models": {
         "deepseek-v4-flash": {
-          "name": "DeepSeek V4 Flash（云端高性能兜底）",
+          "name": "DeepSeek V4 Flash（云端保底）",
+          "tools": true,
+          "limit": {
+            "context": 262144,
+            "output": 65536
+          }
+        },
+        "deepseek-v4-pro": {
+          "name": "DeepSeek V4 Pro（云端高阶推理）",
           "tools": true,
           "limit": {
             "context": 262144,
@@ -45,16 +61,16 @@
     },
     "mixapi": {
       "npm": "@ai-sdk/openai-compatible",
-      "name": "MixAPI (本地 vLLM 集群) [mix-local]",
+      "name": "本地 vLLM 集群",
       "options": {
         "baseURL": "{env:MIXAPI_BASE_URL}",
-        "apiKey": "{env:MIX_API_KEY}",
+        "apiKey": "{env:MIXAPI_API_KEY}",
         "timeout": 600000,
         "chunkTimeout": 300000
       },
       "models": {
         "qwen3.6-27b": {
-          "name": "Qwen3.6 27B (主力, TP4, MTP=5, 262K, prefix-caching)",
+          "name": "Qwen3.6 27B（本地, 262K, ~105 tok/s）",
           "tools": true,
           "limit": {
             "context": 262144,
@@ -62,10 +78,10 @@
           }
         },
         "gemma4-26b-fp8": {
-          "name": "Gemma4 26B FP8 (快速, TP2, 65K, prefix-caching)",
+          "name": "Gemma4 26B FP8（本地高速, 262K, ~350 tok/s）",
           "tools": true,
           "limit": {
-            "context": 65536,
+            "context": 262144,
             "output": 32768
           }
         }
