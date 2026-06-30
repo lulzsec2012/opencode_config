@@ -36,6 +36,15 @@
                 "codebase-memory-mcp"
             ],
             "enabled": true
+        },
+        "mcp-math-calculator": {
+            "type": "local",
+            "command": [
+                "npx",
+                "-y",
+                "mcp-math-calculator"
+            ],
+            "enabled": true
         }
     },
     "model": "deepseek/deepseek-v4-flash",
