@@ -1,0 +1,24 @@
+{
+  "$schema": "https://raw.githubusercontent.com/Opencode-DCP/opencode-dynamic-context-pruning/master/dcp.schema.json",
+  // minContextLimit/maxContextLimit 由 dcp-dynamic-limits 插件自动管理
+  "enabled": true,
+  "autoUpdate": true,
+  "debug": false,
+  "pruneNotification": "minimal",
+  "compress": {
+    "mode": "range",
+    "permission": "allow",
+    "showCompression": false,
+    "summaryBuffer": true,
+    "nudgeFrequency": 10
+  },
+  "strategies": {
+    "deduplication": {
+      "enabled": true
+    },
+    "purgeErrors": {
+      "enabled": true,
+      "turns": 4
+    }
+  }
+}
