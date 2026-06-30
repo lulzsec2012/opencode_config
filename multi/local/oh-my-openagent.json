@@ -132,12 +132,12 @@
       ]
     },
     "deep": {
-      "model": "deepseek/deepseek-v4-flash",
-      "description": "深度研究（云端自主解决）",
+      "model": "mixapi/qwen3.6-27b",
+      "description": "深度研究 — ECS 本地质量兜底",
       "maxTokens": 16384,
       "reasoningEffort": "high",
       "fallback_models": [
-        "mixapi/qwen3.6-27b",
+        "deepseek/deepseek-v4-flash",
         "mixapi/gemma4-26b-fp8"
       ]
     },
@@ -164,6 +164,14 @@
       "maxTokens": 16384,
       "fallback_models": [
         "mixapi/gemma4-26b-fp8"
+      ]
+    },
+    "analysis-lite": {
+      "model": "mixapi/gemma4-26b-fp8",
+      "description": "轻量分析 — ECS gemma4 FP8 快速",
+      "maxTokens": 4096,
+      "fallback_models": [
+        "mixapi/qwen3.6-27b"
       ]
     },
     "unspecified-low": {
