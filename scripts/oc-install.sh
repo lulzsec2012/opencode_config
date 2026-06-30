@@ -57,7 +57,7 @@ ver_gt() {
 
 # ---------- 1. opencode CLI ----------
 echo ""
-echo "[1/11] Installing opencode CLI..."
+echo "[1/13] Installing opencode CLI..."
 npm_install_opencode() {
   npm_install_user "opencode-ai"
 }
@@ -99,7 +99,7 @@ fi
 
 # ---------- 2. bun ----------
 echo ""
-echo "[2/11] Installing bun..."
+echo "[2/13] Installing bun..."
 _has_bun=false
 if command -v bun &>/dev/null; then
   _has_bun=true
@@ -128,7 +128,7 @@ fi
 
 # ---------- 3. oh-my-openagent ----------
 echo ""
-echo "[3/11] Installing oh-my-openagent plugin..."
+echo "[3/13] Installing oh-my-openagent plugin..."
 if npm ls -g --depth=0 oh-my-openagent 2>&1 | grep -q 'oh-my-openagent@'; then
   echo "  oh-my-openagent 已安装"
 elif npm ls -g --depth=0 oh-my-opencode 2>&1 | grep -q 'oh-my-opencode@'; then
@@ -144,7 +144,7 @@ echo "  配置指南: https://raw.githubusercontent.com/code-yeongyu/oh-my-openc
 
 # ---------- 4. openspec ----------
 echo ""
-echo "[4/11] Installing openspec..."
+echo "[4/13] Installing openspec..."
 npm_check_upgrade "@fission-ai/openspec" "openspec"
 echo "  在项目目录执行 'openspec init' 初始化"
 
@@ -163,7 +163,7 @@ skill_dir() {
 
 # ---------- 5. superpowers ----------
 echo ""
-echo "[5/11] Installing superpowers skills..."
+echo "[5/13] Installing superpowers skills..."
 if skill_dir "superpowers" >/dev/null; then
   echo "  superpowers 已安装，检查更新..."
   npx --yes skills add obra/superpowers 2>&1 | clean_npx
@@ -174,7 +174,7 @@ fi
 
 # ---------- 6. planning-with-files ----------
 echo ""
-echo "[6/11] Installing planning-with-files..."
+echo "[6/13] Installing planning-with-files..."
 if skill_dir "planning-with-files" >/dev/null; then
   echo "  planning-with-files 已安装，检查更新..."
   npx --yes skills add OthmanAdi/planning-with-files 2>&1 | clean_npx
@@ -185,7 +185,7 @@ fi
 
 # ---------- 7. conversation-analysis ----------
 echo ""
-echo "[7/11] Installing opencode-conversation-analysis..."
+echo "[7/13] Installing opencode-conversation-analysis..."
 if skill_dir "opencode-conversation-analysis" >/dev/null; then
   echo "  opencode-conversation-analysis 已安装，检查更新..."
   npx --yes skills add connorads/dotfiles@opencode-conversation-analysis -y -g 2>&1 | clean_npx || echo "  跳过"
@@ -195,21 +195,73 @@ fi
 
 # ---------- 8. dcp-dynamic-limits ----------
 echo ""
-echo "[8/11] Installing opencode-dcp-dynamic-limits..."
+echo "[8/13] Installing opencode-dcp-dynamic-limits..."
 npm_check_upgrade "opencode-dcp-dynamic-limits"
 
 # ---------- 9. opencode-headroom ----------
 echo ""
-echo "[9/11] Installing opencode-headroom..."
+echo "[9/13] Installing opencode-headroom..."
 npm_check_upgrade "opencode-headroom"
 echo "  headroom 已安装，在 opencode.json 的 plugin 中添加 opencode-headroom 启用"
 
 # ---------- 10. opencode plugins ----------
 echo ""
-echo "[10/11] Installing opencode plugins..."
+echo "[10/13] Installing opencode plugins..."
 for _pkg in opencode-agent-context opencode-codegraph opencode-localmemory opencode-skill-creator opencode-yaml-hooks; do
   npm_check_upgrade "$_pkg"
 done
+
+# ---------- 11. Ghidra + ReVa ----------
+echo ""
+echo "[11/13] Installing Ghidra + ReVa (Reverse Engineering Assistant)..."
+_REVA_SCRIPT="$(cd "$(dirname "$0")/.." && pwd)/scripts/install-reva.sh"
+if [ -f "$_REVA_SCRIPT" ]; then
+  # 检测是否已安装
+  _reva_installed=false
+  if command -v mcp-reva &>/dev/null && [ -n "${GHIDRA_INSTALL_DIR:-}" ] && [ -f "$GHIDRA_INSTALL_DIR/ghidraRun" ]; then
+    _reva_installed=true
+    echo "  Ghidra + ReVa 已安装，跳过"
+  elif command -v mcp-reva &>/dev/null; then
+    # mcp-reva 在但 Ghidra 路径不对 — 尝试检测
+    for _d in "$HOME/.local/opt/ghidra_"*_PUBLIC; do
+      if [ -f "$_d/ghidraRun" ]; then
+        export GHIDRA_INSTALL_DIR="$_d"
+        _reva_installed=true
+        echo "  Ghidra 已安装（$_d），ReVa CLI $(mcp-reva --version 2>/dev/null) 已安装，跳过"
+        break
+      fi
+    done
+  fi
+
+  if ! $_reva_installed; then
+    echo "  运行 install-reva.sh..."
+    bash "$_REVA_SCRIPT" 2>&1 | while IFS= read -r _line; do echo "    $_line"; done
+    echo "  Ghidra + ReVa 安装完成"
+    export GHIDRA_INSTALL_DIR="$(ls -d "$HOME/.local/opt/ghidra_"*_PUBLIC 2>/dev/null | head -1)"
+  fi
+else
+  echo "  install-reva.sh 未找到（预期路径: $_REVA_SCRIPT），跳过"
+fi
+
+# ---------- 12. codebase-memory-mcp ----------
+echo ""
+echo "[12/13] Installing codebase-memory-mcp (Code Intelligence Knowledge Graph)..."
+if command -v codebase-memory-mcp &>/dev/null; then
+  echo "  codebase-memory-mcp $(codebase-memory-mcp --version 2>/dev/null || echo '')已安装，检查更新..."
+  codebase-memory-mcp update 2>&1 | while IFS= read -r _line; do echo "    $_line"; done
+else
+  echo "  通过官方安装脚本安装..."
+  curl -fsSL https://raw.githubusercontent.com/DeusData/codebase-memory-mcp/main/install.sh | bash 2>&1 | while IFS= read -r _line; do echo "    $_line"; done
+  if command -v codebase-memory-mcp &>/dev/null; then
+    echo "  codebase-memory-mcp 安装成功"
+    # 官方安装器会自动检测 OpenCode 并配置 MCP，
+    # 但由于我们使用 repo 管理配置，后续 setup.sh 会覆盖为 repo 版本
+    echo "  注意: 使用仓库配置管理，运行 setup.sh 后生效"
+  else
+    echo "  codebase-memory-mcp 安装失败，请手动安装:"
+    echo "    curl -fsSL https://raw.githubusercontent.com/DeusData/codebase-memory-mcp/main/install.sh | bash"
+  fi
+fi
 
 # ---------- extra tools ----------
 echo ""
@@ -310,7 +362,7 @@ fi
 
 # ---------- PATH 注入 .bashrc ----------
 echo ""
-echo "[11/11] Ensuring PATH is set in ~/.bashrc..."
+echo "[13/13] Ensuring PATH is set in ~/.bashrc..."
 _patch_bashrc_path() {
   local path_entry="$1"
   local marker="$2"

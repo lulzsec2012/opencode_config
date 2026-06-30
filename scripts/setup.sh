@@ -43,6 +43,38 @@ else
   OPENCODE_MULTI_PROFILES="${XDG_CONFIG_HOME:-$HOME/.config}/opencode-multi/profiles"
 fi
 
+# ---------- ReVa wrapper 部署 ----------
+REVA_SCRIPT_SRC="$REPO_DIR/scripts/mcp-reva-wrapper.sh"
+REVA_SCRIPT_NAME="mcp-reva-wrapper"
+
+deploy_reva_wrapper() {
+  # 1. 复制到 opencode 配置目录
+  mkdir -p "$OPENCODE_CFG/scripts"
+  do_link "$REVA_SCRIPT_SRC" "$OPENCODE_CFG/scripts/$REVA_SCRIPT_NAME"
+  ok "ReVa wrapper → $OPENCODE_CFG/scripts/$REVA_SCRIPT_NAME"
+
+  # 2. 复制到 opencode-multi 配置目录
+  mkdir -p "$OPENCODE_MULTI_PROFILES/../scripts"
+  do_link "$REVA_SCRIPT_SRC" "$OPENCODE_MULTI_PROFILES/../scripts/$REVA_SCRIPT_NAME"
+  ok "ReVa wrapper → $OPENCODE_MULTI_PROFILES/../scripts/$REVA_SCRIPT_NAME"
+
+  # 3. 链接到 ~/.local/bin/（已在 PATH 中，确保直接执行）
+  mkdir -p "$HOME/.local/bin"
+  if [ ! -L "$HOME/.local/bin/$REVA_SCRIPT_NAME" ] || [ "$(readlink "$HOME/.local/bin/$REVA_SCRIPT_NAME")" != "$REVA_SCRIPT_SRC" ]; then
+    do_link "$REVA_SCRIPT_SRC" "$HOME/.local/bin/$REVA_SCRIPT_NAME"
+    ok "ReVa wrapper → $HOME/.local/bin/$REVA_SCRIPT_NAME"
+  else
+    ok "$HOME/.local/bin/$REVA_SCRIPT_NAME 已指向 repo，跳过"
+  fi
+}
+
+undeploy_reva_wrapper() {
+  # 撤销链接（不删源文件）
+  [ -L "$OPENCODE_CFG/scripts/$REVA_SCRIPT_NAME" ] && rm -f "$OPENCODE_CFG/scripts/$REVA_SCRIPT_NAME"
+  [ -L "$OPENCODE_MULTI_PROFILES/../scripts/$REVA_SCRIPT_NAME" ] && rm -f "$OPENCODE_MULTI_PROFILES/../scripts/$REVA_SCRIPT_NAME"
+  [ -L "$HOME/.local/bin/$REVA_SCRIPT_NAME" ] && rm -f "$HOME/.local/bin/$REVA_SCRIPT_NAME"
+}
+
 # ---------- helpers ----------
 info()  { echo -e "  \033[36m->\033[0m $*"; }
 ok()    { echo -e "  \033[32mOK\033[0m $*"; }
@@ -230,6 +262,7 @@ check_jq
 
 deploy_single
 deploy_multi
+deploy_reva_wrapper
 
 echo ""
 action "完成"
