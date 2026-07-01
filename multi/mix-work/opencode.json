@@ -46,7 +46,9 @@
     "opencode-codegraph",
     "opencode-localmemory",
     "opencode-skill-creator",
-    "opencode-yaml-hooks"
+    "opencode-yaml-hooks",
+    "@dietrichgebert/ponytail",
+    "opencode-skills-collection"
   ],
   "provider": {
     "deepseek": {

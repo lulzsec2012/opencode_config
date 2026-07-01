@@ -1,6 +1,5 @@
 {
   "$schema": "https://raw.githubusercontent.com/Opencode-DCP/opencode-dynamic-context-pruning/master/dcp.schema.json",
-  // minContextLimit/maxContextLimit 由 dcp-dynamic-limits 插件自动管理
   "enabled": true,
   "autoUpdate": true,
   "debug": false,
@@ -10,7 +9,26 @@
     "permission": "allow",
     "showCompression": false,
     "summaryBuffer": true,
-    "nudgeFrequency": 10
+    "nudgeFrequency": 50,
+    "modelMinLimits": {
+      "deepseek-v4-flash": 222822,
+      "gemma4-26b-fp8": 222822
+    },
+    "modelMaxLimits": {
+      "deepseek-v4-flash": 222822,
+      "gemma4-26b-fp8": 222822
+    },
+    "minContextLimit": 222822,
+    "maxContextLimit": 222822,
+    "iterationNudgeThreshold": 50,
+    "nudgeForce": "soft",
+    "modelLimits": {
+      "deepseek-v4-flash": {
+        "min": 222822,
+        "max": 222822
+      }
+    },
+    "activeModel": "deepseek-v4-flash"
   },
   "strategies": {
     "deduplication": {
@@ -20,5 +38,6 @@
       "enabled": true,
       "turns": 4
     }
-  }
+  },
+  "pruneNotificationType": "toast"
 }

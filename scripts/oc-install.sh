@@ -16,6 +16,33 @@ case ":$PATH:" in
   *) export PATH="$HOME/.local/bin:$PATH" ;;
 esac
 
+# JSON plugin 添加工具：向 opencode.json 的 plugin 数组中添加条目（自动去重）
+plugin_add() {
+  local json_file="$1"
+  local plugin_name="$2"
+  if [ ! -f "$json_file" ]; then
+    echo "  ⚠️  $json_file 不存在，跳过"
+    return 1
+  fi
+  # 使用 Python3 安全地修改 JSON
+  python3 -c "
+import json, sys
+path = '$json_file'
+name = '$plugin_name'
+with open(path) as f:
+    cfg = json.load(f)
+plugins = cfg.get('plugin', [])
+if name not in plugins:
+    plugins.append(name)
+    cfg['plugin'] = plugins
+    with open(path, 'w') as f:
+        json.dump(cfg, f, indent=4)
+    print(f'  ✅ 已添加 {name}' if name not in plugins else f'  🔁 {name} 已存在')
+else:
+    print(f'  🔁 {name} 已存在')
+" 2>&1 | tail -1
+}
+
 # ---------- helpers ----------
 
 # npm 包版本检测：未安装则安装，已安装则对比 registry 版本决定升级/跳过
@@ -57,7 +84,7 @@ ver_gt() {
 
 # ---------- 1. opencode CLI ----------
 echo ""
-echo "[1/13] Installing opencode CLI..."
+echo "[1/14] Installing opencode CLI..."
 npm_install_opencode() {
   npm_install_user "opencode-ai"
 }
@@ -99,7 +126,7 @@ fi
 
 # ---------- 2. bun ----------
 echo ""
-echo "[2/13] Installing bun..."
+echo "[2/14] Installing bun..."
 _has_bun=false
 if command -v bun &>/dev/null; then
   _has_bun=true
@@ -128,7 +155,7 @@ fi
 
 # ---------- 3. oh-my-openagent ----------
 echo ""
-echo "[3/13] Installing oh-my-openagent plugin..."
+echo "[3/14] Installing oh-my-openagent plugin..."
 if npm ls -g --depth=0 oh-my-openagent 2>&1 | grep -q 'oh-my-openagent@'; then
   echo "  oh-my-openagent 已安装"
 elif npm ls -g --depth=0 oh-my-opencode 2>&1 | grep -q 'oh-my-opencode@'; then
@@ -144,7 +171,7 @@ echo "  配置指南: https://raw.githubusercontent.com/code-yeongyu/oh-my-openc
 
 # ---------- 4. openspec ----------
 echo ""
-echo "[4/13] Installing openspec..."
+echo "[4/14] Installing openspec..."
 npm_check_upgrade "@fission-ai/openspec" "openspec"
 echo "  在项目目录执行 'openspec init' 初始化"
 
@@ -163,7 +190,7 @@ skill_dir() {
 
 # ---------- 5. superpowers ----------
 echo ""
-echo "[5/13] Installing superpowers skills..."
+echo "[5/14] Installing superpowers skills..."
 if skill_dir "superpowers" >/dev/null; then
   echo "  superpowers 已安装，检查更新..."
   npx --yes skills add obra/superpowers 2>&1 | clean_npx
@@ -174,7 +201,7 @@ fi
 
 # ---------- 6. planning-with-files ----------
 echo ""
-echo "[6/13] Installing planning-with-files..."
+echo "[6/14] Installing planning-with-files..."
 if skill_dir "planning-with-files" >/dev/null; then
   echo "  planning-with-files 已安装，检查更新..."
   npx --yes skills add OthmanAdi/planning-with-files 2>&1 | clean_npx
@@ -185,7 +212,7 @@ fi
 
 # ---------- 7. conversation-analysis ----------
 echo ""
-echo "[7/13] Installing opencode-conversation-analysis..."
+echo "[7/14] Installing opencode-conversation-analysis..."
 if skill_dir "opencode-conversation-analysis" >/dev/null; then
   echo "  opencode-conversation-analysis 已安装，检查更新..."
   npx --yes skills add connorads/dotfiles@opencode-conversation-analysis -y -g 2>&1 | clean_npx || echo "  跳过"
@@ -195,25 +222,57 @@ fi
 
 # ---------- 8. dcp-dynamic-limits ----------
 echo ""
-echo "[8/13] Installing opencode-dcp-dynamic-limits..."
+echo "[8/14] Installing opencode-dcp-dynamic-limits..."
 npm_check_upgrade "opencode-dcp-dynamic-limits"
 
 # ---------- 9. opencode-headroom ----------
 echo ""
-echo "[9/13] Installing opencode-headroom..."
+echo "[9/14] Installing opencode-headroom..."
 npm_check_upgrade "opencode-headroom"
 echo "  headroom 已安装，在 opencode.json 的 plugin 中添加 opencode-headroom 启用"
 
 # ---------- 10. opencode plugins ----------
 echo ""
-echo "[10/13] Installing opencode plugins..."
-for _pkg in opencode-agent-context opencode-codegraph opencode-localmemory opencode-skill-creator opencode-yaml-hooks; do
+echo "[10/14] Installing opencode plugins..."
+for _pkg in opencode-agent-context opencode-codegraph opencode-localmemory opencode-skill-creator opencode-yaml-hooks opencode-skills-collection; do
   npm_check_upgrade "$_pkg"
 done
 
-# ---------- 11. Ghidra + ReVa ----------
+# ---------- 11. ponytail ----------
 echo ""
-echo "[11/13] Installing Ghidra + ReVa (Reverse Engineering Assistant)..."
+echo "[11/14] Installing ponytail plugin..."
+echo "  ponytail: Lazy senior dev mode for AI agents."
+echo "  GitHub: https://github.com/DietrichGebert/ponytail"
+npm_check_upgrade "@dietrichgebert/ponytail" "ponytail"
+# 自动添加到 opencode-multi 配置文件的 plugin 数组中
+_OC_MULTI="${XDG_CONFIG_HOME:-$HOME/.config}/opencode-multi/profiles"
+for _profile in mix-work mix-local local; do
+  _cfg="$_OC_MULTI/$_profile/opencode.json"
+  if [ -f "$_cfg" ]; then
+    plugin_add "$_cfg" "@dietrichgebert/ponytail"
+  fi
+done
+
+# ---------- 11b. karpathy-skills ----------
+echo ""
+echo "[11b/14] Installing @swarmclawai/andrej-karpathy-skills..."
+echo "  Karpathy-inspired coding-agent guidelines for all profiles."
+echo "  GitHub: https://github.com/swarmclawai/andrej-karpathy-skills"
+npm_check_upgrade "@swarmclawai/andrej-karpathy-skills" "karpathy-skills"
+# 安装 skill 到各个 profile
+_skill_src="$(npm root -g)/@swarmclawai/andrej-karpathy-skills/adapters/opencode/.opencode/skills/karpathy-guidelines"
+for _profile in mix-work mix-local local; do
+  _skill_dst="$_OC_MULTI/$_profile/skills/karpathy-guidelines"
+  if [ -d "$_skill_src" ] && [ -d "$_OC_MULTI/$_profile" ]; then
+    mkdir -p "$_skill_dst"
+    cp "$_skill_src/SKILL.md" "$_skill_dst/SKILL.md"
+    echo "  ✅ $_profile: karpathy-guidelines installed"
+  fi
+done
+
+# ---------- 12. Ghidra + ReVa ----------
+echo ""
+echo "[12/14] Installing Ghidra + ReVa (Reverse Engineering Assistant)..."
 _REVA_SCRIPT="$(cd "$(dirname "$0")/.." && pwd)/scripts/install-reva.sh"
 if [ -f "$_REVA_SCRIPT" ]; then
   # 检测是否已安装
@@ -243,9 +302,9 @@ else
   echo "  install-reva.sh 未找到（预期路径: $_REVA_SCRIPT），跳过"
 fi
 
-# ---------- 12. codebase-memory-mcp ----------
+# ---------- 13. codebase-memory-mcp ----------
 echo ""
-echo "[12/13] Installing codebase-memory-mcp (Code Intelligence Knowledge Graph)..."
+echo "[13/14] Installing codebase-memory-mcp (Code Intelligence Knowledge Graph)..."
 if command -v codebase-memory-mcp &>/dev/null; then
   echo "  codebase-memory-mcp $(codebase-memory-mcp --version 2>/dev/null || echo '')已安装，检查更新..."
   codebase-memory-mcp update 2>&1 | while IFS= read -r _line; do echo "    $_line"; done
@@ -362,7 +421,7 @@ fi
 
 # ---------- PATH 注入 .bashrc ----------
 echo ""
-echo "[13/13] Ensuring PATH is set in ~/.bashrc..."
+echo "[14/14] Ensuring PATH is set in ~/.bashrc..."
 _patch_bashrc_path() {
   local path_entry="$1"
   local marker="$2"
