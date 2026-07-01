@@ -270,6 +270,23 @@ for _profile in mix-work mix-local local; do
   fi
 done
 
+# ---------- 11c. grill-me ----------
+echo ""
+echo "[11c/14] Installing grill-me skill..."
+echo "  Relentless design interview skill for stress-testing plans."
+echo "  npm: @amit-t/skill-grill-me"
+npm_check_upgrade "@amit-t/skill-grill-me" "grill-me"
+# 安装 skill 到各个 profile
+_skill_src="$(npm root -g)/@amit-t/skill-grill-me/skill"
+for _profile in mix-work mix-local local; do
+  _skill_dst="$_OC_MULTI/$_profile/skills/grill-me"
+  if [ -d "$_skill_src" ] && [ -d "$_OC_MULTI/$_profile" ]; then
+    mkdir -p "$_skill_dst"
+    cp "$_skill_src/SKILL.md" "$_skill_dst/SKILL.md"
+    echo "  ✅ $_profile: grill-me installed"
+  fi
+done
+
 # ---------- 12. Ghidra + ReVa ----------
 echo ""
 echo "[12/14] Installing Ghidra + ReVa (Reverse Engineering Assistant)..."
