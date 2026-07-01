@@ -45,7 +45,8 @@
     "opencode-codegraph",
     "opencode-localmemory",
     "opencode-skill-creator",
-    "opencode-yaml-hooks"
+    "opencode-yaml-hooks",
+    "caveman-opencode-plugin"
   ],
   "provider": {
     "deepseek": {

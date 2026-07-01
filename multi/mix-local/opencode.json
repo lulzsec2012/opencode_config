@@ -48,7 +48,8 @@
     "opencode-skill-creator",
     "opencode-yaml-hooks",
     "opencode-skills-collection",
-    "@dietrichgebert/ponytail"
+    "@dietrichgebert/ponytail",
+    "caveman-opencode-plugin"
   ],
   "provider": {
     "deepseek": {

@@ -287,6 +287,38 @@ for _profile in mix-work mix-local local; do
   fi
 done
 
+# ---------- 11d. caveman ----------
+echo ""
+echo "[11d/14] Installing caveman-opencode-plugin..."
+echo "  Caveman communication mode for opencode."
+echo "  npm: caveman-opencode-plugin"
+npm_check_upgrade "caveman-opencode-plugin" "caveman"
+# 添加到所有 opencode-multi 配置
+for _profile in mix-work mix-local work local debug; do
+  _cfg="$_OC_MULTI/$_profile/opencode.json"
+  if [ -f "$_cfg" ]; then
+    plugin_add "$_cfg" "caveman-opencode-plugin"
+  fi
+  # 创建 caveman.json 配置（如果不存在）
+  _ccfg="$_OC_MULTI/$_profile/caveman.json"
+  if [ ! -f "$_ccfg" ]; then
+    cat > "$_ccfg" <<'CEOF'
+{
+  "enabled": true,
+  "defaultMode": "full",
+  "features": {
+    "caveman": true,
+    "commit": true,
+    "review": true
+  }
+}
+CEOF
+    echo "  ✅ $_profile: caveman.json created"
+  else
+    echo "  🔁 $_profile: caveman.json already exists"
+  fi
+done
+
 # ---------- 12. Ghidra + ReVa ----------
 echo ""
 echo "[12/14] Installing Ghidra + ReVa (Reverse Engineering Assistant)..."

@@ -46,7 +46,8 @@
     "opencode-localmemory",
     "opencode-skill-creator",
     "opencode-yaml-hooks",
-    "@dietrichgebert/ponytail"
+    "@dietrichgebert/ponytail",
+    "caveman-opencode-plugin"
   ],
   "provider": {
     "mixapi": {
