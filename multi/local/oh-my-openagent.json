@@ -7,8 +7,7 @@
       "maxTokens": 32768,
       "prompt_append": "You are an AI assistant. You must always respond in Simplified Chinese (中文). 你必须始终用中文回复用户。即使思考过程可以用英文，最终回复必须是中文。",
       "fallback_models": [
-        "mixapi/gemma4-26b-fp8",
-        "deepseek/deepseek-v4-flash"
+        "mixapi/gemma4-26b-fp8"
       ]
     },
     "prometheus": {
@@ -18,7 +17,6 @@
       "reasoningEffort": "high",
       "prompt_append": "You are an AI assistant. You must always respond in Simplified Chinese (中文). 你必须始终用中文回复用户。即使思考过程可以用英文，最终回复必须是中文。",
       "fallback_models": [
-        "deepseek/deepseek-v4-flash",
         "mixapi/gemma4-26b-fp8"
       ]
     },
@@ -29,8 +27,7 @@
       "temperature": 0.2,
       "prompt_append": "You are an AI assistant. You must always respond in Simplified Chinese (中文). 你必须始终用中文回复用户。即使思考过程可以用英文，最终回复必须是中文。",
       "fallback_models": [
-        "mixapi/gemma4-26b-fp8",
-        "deepseek/deepseek-v4-flash"
+        "mixapi/gemma4-26b-fp8"
       ]
     },
     "oracle": {
@@ -40,7 +37,6 @@
       "reasoningEffort": "high",
       "prompt_append": "",
       "fallback_models": [
-        "deepseek/deepseek-v4-pro",
         "mixapi/gemma4-26b-fp8"
       ]
     },
@@ -51,13 +47,12 @@
       "temperature": 0.1,
       "prompt_append": "",
       "fallback_models": [
-        "mixapi/gemma4-26b-fp8",
-        "deepseek/deepseek-v4-flash"
+        "mixapi/gemma4-26b-fp8"
       ]
     },
     "metis": {
       "model": "mixapi/qwen3.6-27b",
-      "description": "风险分析（ECS 决策）",
+      "description": "风险评估（ECS 决策）",
       "maxTokens": 16384,
       "prompt_append": "",
       "fallback_models": [
@@ -95,10 +90,7 @@
       "model": "mixapi/qwen3.6-27b",
       "description": "视觉任务（ECS 多模态）",
       "maxTokens": 8192,
-      "prompt_append": "",
-      "fallback_models": [
-        "mixapi/gemma4-26b-fp8"
-      ]
+      "prompt_append": ""
     }
   },
   "background_task": {
@@ -127,7 +119,6 @@
       "maxTokens": 32768,
       "reasoningEffort": "high",
       "fallback_models": [
-        "deepseek/deepseek-v4-pro",
         "mixapi/gemma4-26b-fp8"
       ]
     },
@@ -137,7 +128,6 @@
       "maxTokens": 16384,
       "reasoningEffort": "high",
       "fallback_models": [
-        "deepseek/deepseek-v4-flash",
         "mixapi/gemma4-26b-fp8"
       ]
     },
@@ -146,8 +136,7 @@
       "description": "代码执行（ECS 高质量）",
       "maxTokens": 16384,
       "fallback_models": [
-        "mixapi/gemma4-26b-fp8",
-        "deepseek/deepseek-v4-flash"
+        "mixapi/gemma4-26b-fp8"
       ]
     },
     "quick": {
@@ -187,8 +176,7 @@
       "description": "高复杂度通用任务（ECS 高质量）",
       "maxTokens": 16384,
       "fallback_models": [
-        "mixapi/gemma4-26b-fp8",
-        "deepseek/deepseek-v4-flash"
+        "mixapi/gemma4-26b-fp8"
       ]
     }
   },

@@ -139,6 +139,7 @@
       "description": "代码执行 — DeepSeek V4 Flash 云端",
       "maxTokens": 16384,
       "fallback_models": [
+        "deepseek/deepseek-v4-flash",
         "mixapi/qwen3.6-27b"
       ]
     },

@@ -32,6 +32,7 @@
       "maxTokens": 32768,
       "temperature": 0.2,
       "fallback_models": [
+        "deepseek/deepseek-v4-flash",
         "mixapi/qwen3.6-27b"
       ]
     },
@@ -84,6 +85,7 @@
       "description": "轻量执行 — cloud flash",
       "maxTokens": 16384,
       "fallback_models": [
+        "deepseek/deepseek-v4-flash",
         "mixapi/qwen3.6-27b"
       ]
     },
@@ -121,6 +123,7 @@
       "description": "代码执行 — cloud flash",
       "maxTokens": 16384,
       "fallback_models": [
+        "deepseek/deepseek-v4-flash",
         "mixapi/qwen3.6-27b"
       ]
     },
