@@ -72,19 +72,11 @@
             "models": {
                 "deepseek-v4-flash": {
                     "name": "DeepSeek V4 Flash\uFF08\u4E91\u7AEF\u4E3B\u529B\uFF09",
-                    "tools": true,
-                    "limit": {
-                        "context": 262144,
-                        "output": 65536
-                    }
+                    "tools": true
                 },
                 "deepseek-v4-pro": {
                     "name": "DeepSeek V4 Pro\uFF08\u4E91\u7AEF\u9AD8\u9636\u63A8\u7406\uFF09",
-                    "tools": true,
-                    "limit": {
-                        "context": 262144,
-                        "output": 65536
-                    }
+                    "tools": true
                 }
             }
         }

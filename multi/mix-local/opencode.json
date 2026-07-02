@@ -62,19 +62,11 @@
       "models": {
         "deepseek-v4-flash": {
           "name": "DeepSeek V4 Flash（云端保底）",
-          "tools": true,
-          "limit": {
-            "context": 262144,
-            "output": 65536
-          }
+          "tools": true
         },
         "deepseek-v4-pro": {
           "name": "DeepSeek V4 Pro（云端高阶推理）",
-          "tools": true,
-          "limit": {
-            "context": 262144,
-            "output": 65536
-          }
+          "tools": true
         }
       }
     },
