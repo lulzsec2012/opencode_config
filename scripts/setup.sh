@@ -204,6 +204,18 @@ deploy_single() {
     do_link "$src" "$dst"
     ok "$f  → $dst"
   done
+
+  # 部署 plugins/ 目录
+  if [ -d "$SINGLE_SRC/plugins" ]; then
+    if is_repo_link "$OPENCODE_CFG/plugins"; then
+      ok "plugins 已指向 repo，跳过"
+    else
+      [ -e "$OPENCODE_CFG/plugins" ] && cp -r "$OPENCODE_CFG/plugins" "$BACKUP_DIR/single/plugins" && info "本机 plugins 已备份"
+      rm -rf "$OPENCODE_CFG/plugins"
+      do_link "$SINGLE_SRC/plugins" "$OPENCODE_CFG/plugins"
+      ok "plugins → $OPENCODE_CFG/plugins"
+    fi
+  fi
 }
 
 # ---------- deploy multi profiles ----------
@@ -248,6 +260,22 @@ deploy_multi() {
     [ -d "$dst" ] && rm -rf "$dst"
     do_link "$profile_dir" "$dst"
     ok "$name → $dst"
+  done
+
+  # 将所有 profile 的 plugins/ 链接到 ~/.local/share/rtk-plugins/
+  local RTK_PLUGIN_DIR="$HOME/.local/share/rtk-plugins"
+  mkdir -p "$RTK_PLUGIN_DIR"
+  for profile_dir in "$MULTI_SRC"/*/; do
+    [ -d "$profile_dir/plugins" ] || continue
+    local name; name=$(basename "$profile_dir")
+    local plugin_link="$RTK_PLUGIN_DIR/$name"
+    if [ -L "$plugin_link" ] && [ "$(readlink "$plugin_link")" = "$profile_dir/plugins" ]; then
+      ok "$name plugins 已指向 repo，跳过"
+    else
+      [ -e "$plugin_link" ] && rm -rf "$plugin_link"
+      do_link "$profile_dir/plugins" "$plugin_link"
+      ok "$name plugins → $plugin_link"
+    fi
   done
 }
 

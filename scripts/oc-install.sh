@@ -319,6 +319,37 @@ CEOF
   fi
 done
 
+# ---------- 11e. speckit-agent-skills ----------
+echo ""
+echo "[11e/14] Installing speckit-agent-skills..."
+echo "  Spec Kit (Spec-Driven Development) workflow skills."
+echo "  GitHub: https://github.com/github/speckit-agent-skills"
+_SPECKIT_TMP="/tmp/speckit-agent-skills"
+if [ ! -d "$_SPECKIT_TMP" ]; then
+  echo "  Downloading speckit-agent-skills from GitHub..."
+  curl -sL "https://api.github.com/repos/github/speckit-agent-skills/tarball/main" -o /tmp/speckit-skills.tar.gz
+  mkdir -p "$_SPECKIT_TMP"
+  tar xzf /tmp/speckit-skills.tar.gz -C "$_SPECKIT_TMP" --strip-components=1 2>/dev/null
+  rm -f /tmp/speckit-skills.tar.gz
+fi
+_SKILLS_SRC="$_SPECKIT_TMP/skills"
+if [ -d "$_SKILLS_SRC" ]; then
+  for _profile in mix-work mix-local work local debug; do
+    echo "  Installing to $_profile..."
+    for _skill in speckit-analyze speckit-baseline speckit-checklist speckit-clarify speckit-constitution speckit-implement speckit-plan speckit-specify speckit-tasks speckit-taskstoissues; do
+      _src="$_SKILLS_SRC/$_skill"
+      _dst="$_OC_MULTI/$_profile/skills/$_skill"
+      if [ -d "$_src" ]; then
+        mkdir -p "$_dst"
+        cp -a "$_src/"* "$_dst/" 2>/dev/null
+      fi
+    done
+    echo "    ✅ $_profile: speckit skills installed"
+  done
+else
+  echo "  ⚠️  Failed to download speckit-agent-skills"
+fi
+
 # ---------- 12. Ghidra + ReVa ----------
 echo ""
 echo "[12/14] Installing Ghidra + ReVa (Reverse Engineering Assistant)..."
@@ -426,13 +457,29 @@ fi
 echo ""
 echo "--- RTK (Rust Token Killer) ---"
 echo "  RTK 是一款 CLI 代理，可将常见开发命令的 LLM token 消耗降低 60-90%"
+echo "  项目: https://github.com/rtk-ai/rtk"
 
+# 检查 rtk 版本是否正确（需要 >= 0.23.0 且来自 rtk-ai/rtk）
+rtk_ok=false
 if command -v rtk &>/dev/null; then
-  echo "  rtk $(rtk --version 2>/dev/null) 已安装"
-else
-  echo "  通过官方脚本安装 rtk..."
+  rtk_ver="$(rtk --version 2>/dev/null)"
+  if echo "$rtk_ver" | grep -qE '^rtk [0-9]+\.[0-9]+'; then
+    major="$(echo "$rtk_ver" | sed 's/rtk //' | cut -d. -f1)"
+    minor="$(echo "$rtk_ver" | sed 's/rtk //' | cut -d. -f2)"
+    if [ "$major" -ge 1 ] || { [ "$major" -eq 0 ] && [ "$minor" -ge 23 ]; }; then
+      echo "  rtk $rtk_ver 已安装（版本正确）"
+      rtk_ok=true
+    fi
+  fi
+  if [ "$rtk_ok" = false ]; then
+    echo "  ⚠️ 发现错误版本的 rtk ($rtk_ver)，删除后重新安装..."
+    rm -f "$(which rtk)" "$HOME/.local/bin/rtk" "$HOME/.cargo/bin/rtk" 2>/dev/null || true
+  fi
+fi
+
+if [ "$rtk_ok" = false ]; then
+  echo "  通过官方脚本安装 rtk（v0.43.0）..."
   if curl -fsSL https://raw.githubusercontent.com/rtk-ai/rtk/refs/heads/master/install.sh | sh; then
-    # install.sh 安装到 ~/.local/bin
     echo "  rtk 安装成功"
   else
     echo "  ⚠️ rtk 安装失败，请稍后手动执行安装命令" >&2
@@ -444,6 +491,12 @@ export PATH="$HOME/.local/bin:$PATH"
 
 if command -v rtk &>/dev/null; then
   echo "  配置 RTK OpenCode 插件..."
+  PLUGIN_SRC="${SCRIPT_DIR}/../multi/mix-work/plugins/rtk.ts"
+  for cfg_dir in "${SCRIPT_DIR}/../single" "${SCRIPT_DIR}/../multi/debug" "${SCRIPT_DIR}/../multi/local" "${SCRIPT_DIR}/../multi/mix-local" "${SCRIPT_DIR}/../multi/mix-work" "${SCRIPT_DIR}/../multi/work"; do
+    mkdir -p "${cfg_dir}/plugins"
+    cp "$PLUGIN_SRC" "${cfg_dir}/plugins/rtk.ts"
+    echo "    → 已同步 rtk.ts 到 $(basename $cfg_dir)/plugins/"
+  done
   if rtk init -g --opencode; then
     echo "  RTK OpenCode 插件配置完成"
   else
