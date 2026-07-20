@@ -1,0 +1,1315 @@
+#
+# A fatal error has been detected by the Java Runtime Environment:
+#
+#  SIGSEGV (0xb) at pc=0x00005f2802babb84, pid=1860630, tid=1860630
+#
+# JRE version: OpenJDK Runtime Environment (21.0.11+10) (build 21.0.11+10-1-24.04.2-Ubuntu)
+# Java VM: OpenJDK 64-Bit Server VM (21.0.11+10-1-24.04.2-Ubuntu, mixed mode, tiered, compressed oops, compressed class ptrs, g1 gc, linux-amd64)
+# Problematic frame:
+# C  [python+0x2a7b84]  BaseException_str+0x4
+#
+# Core dump will be written. Default location: /tmp/core.1860630
+#
+# If you would like to submit a bug report, please visit:
+#   https://bugs.launchpad.net/ubuntu/+source/openjdk-21
+# The crash happened outside the Java Virtual Machine in native code.
+# See problematic frame for where to report the bug.
+#
+
+---------------  S U M M A R Y ------------
+
+Command Line: -Dpyghidra.sys.prefix=/home/lulizhi/.local/share/uv/tools/reverse-engineering-assistant -Dpyghidra.sys.executable=/home/lulizhi/.local/share/uv/tools/reverse-engineering-assistant/bin/python -Djava.system.class.loader=ghidra.GhidraClassLoader -Dfile.encoding=UTF8 -Duser.country=US -Duser.language=en -Duser.variant= -Dsun.java2d.opengl=false -Dsun.java2d.pmoffscreen=false -Dsun.java2d.xrender=true -Dsun.java2d.uiScale=1 -Dawt.useSystemAAFontSettings=on -Djdk.tls.client.protocols=TLSv1.2,TLSv1.3 -Dcpu.core.limit= -Dcpu.core.override= -Dfont.size.override= -Dpython.console.encoding=UTF-8 -Xshare:off -Djavax.xml.accessExternalDTD= -Djavax.xml.accessExternalSchema= -Djavax.xml.accessExternalStylesheet= --enable-native-access=ALL-UNNAMED 
+
+Host: Intel(R) Xeon(R) Gold 6330 CPU @ 2.00GHz, 112 cores, 377G, Ubuntu 24.04.3 LTS
+Time: Tue Jul 14 18:55:38 2026 CST elapsed time: 0.693281 seconds (0d 0h 0m 0s)
+
+---------------  T H R E A D  ---------------
+
+Current thread (0x00005f28044997c0):  JavaThread "main"             [_thread_in_native, id=1860630, stack(0x00007ffc7a446000,0x00007ffc7a546000) (1024K)]
+
+Stack: [0x00007ffc7a446000,0x00007ffc7a546000],  sp=0x00007ffc7a543918,  free space=1014k
+Native frames: (J=compiled Java code, j=interpreted, Vv=VM code, C=native code)
+C  [python+0x2a7b84]  BaseException_str+0x4
+
+siginfo: si_signo: 11 (SIGSEGV), si_code: 1 (SEGV_MAPERR), si_addr: 0x0000000000000010
+
+Registers:
+RAX=0x00005f280444de90, RBX=0x00005f2802e4bd88, RCX=0x00005f2802ae9a60, RDX=0x00005f2802babb80
+RSP=0x00007ffc7a543918, RBP=0x00005f2802e4bd88, RSI=0x000000000000270d, RDI=0x0000000000000000
+R8 =0x000000000000003f, R9 =0x00005f2803946bc0, R10=0x0000783a0a2ed1f0, R11=0x00000000fffffffe
+R12=0x0000000000000001, R13=0x00005f2802e4bd88, R14=0x00005f2802e4bd88, R15=0x0000783a07466820
+RIP=0x00005f2802babb84, EFLAGS=0x0000000000010202, CSGSFS=0x002b000000000033, ERR=0x0000000000000004
+  TRAPNO=0x000000000000000e
+
+XMM[0]=0x0000783a07011af0 0x00005f2802e1e248
+XMM[1]=0x0000000000000000 0x0000783a07011af0
+XMM[2]=0x0000000000000030 0x0007000800000001
+XMM[3]=0x0000000000000000 0x0000000000000000
+XMM[4]=0x0000000000000000 0x00005f28044997c0
+XMM[5]=0x0000000000000000 0x0000783a07466820
+XMM[6]=0x0000000000000000 0x00005f28044997c0
+XMM[7]=0x0000000000000000 0x0000783a07011b00
+XMM[8]=0x0000000000000000 0xefd3b12f9b5b6777
+XMM[9]=0x0000000000000000 0x562e9850538c1d44
+XMM[10]=0x0000000000000000 0x00000000fd5d84f4
+XMM[11]=0x0000000000000000 0xe062459633ee62da
+XMM[12]=0x0000000000000000 0x00000000538c1d44
+XMM[13]=0x0000000000000000 0x00005f2802e4ce00
+XMM[14]=0x0000000000000000 0x00005f2802e4cdf0
+XMM[15]=0x0000000000000000 0x00005f2802e4cde0
+  MXCSR=0x00001fa2
+
+
+Register to memory mapping:
+
+RAX=0x00005f280444de90 points into unknown readable memory: 0x0000000000000007 | 07 00 00 00 00 00 00 00
+RBX=0x00005f2802e4bd88: _PyRuntime+0x00000000000451a8 in /home/lulizhi/.local/share/uv/tools/reverse-engineering-assistant/bin/python at 0x00005f2802904000
+RCX=0x00005f2802ae9a60: <offset 0x00000000001e5a60> in /home/lulizhi/.local/share/uv/tools/reverse-engineering-assistant/bin/python at 0x00005f2802904000
+RDX=0x00005f2802babb80: <offset 0x00000000002a7b80> in /home/lulizhi/.local/share/uv/tools/reverse-engineering-assistant/bin/python at 0x00005f2802904000
+RSP=0x00007ffc7a543918 is pointing into the stack for thread: 0x00005f28044997c0
+RBP=0x00005f2802e4bd88: _PyRuntime+0x00000000000451a8 in /home/lulizhi/.local/share/uv/tools/reverse-engineering-assistant/bin/python at 0x00005f2802904000
+RSI=0x000000000000270d is an unknown value
+RDI=0x0 is null
+R8 =0x000000000000003f is an unknown value
+R9 =0x00005f2803946bc0 points into unknown readable memory: 0x006100400073ffff | ff ff 73 00 40 00 61 00
+R10=0x0000783a0a2ed1f0 points into unknown readable memory: 0x00005f280444aa80 | 80 aa 44 04 28 5f 00 00
+R11=0x00000000fffffffe is an unallocated location in the heap
+R12=0x0000000000000001 is an unknown value
+R13=0x00005f2802e4bd88: _PyRuntime+0x00000000000451a8 in /home/lulizhi/.local/share/uv/tools/reverse-engineering-assistant/bin/python at 0x00005f2802904000
+R14=0x00005f2802e4bd88: _PyRuntime+0x00000000000451a8 in /home/lulizhi/.local/share/uv/tools/reverse-engineering-assistant/bin/python at 0x00005f2802904000
+R15=0x0000783a07466820 points into unknown readable memory: 0x0000000000000003 | 03 00 00 00 00 00 00 00
+
+Top of Stack: (sp=0x00007ffc7a543918)
+0x00007ffc7a543918:   00005f2802ae9701 00007ffc7a543a38   ....(_..8:Tz....
+0x00007ffc7a543928:   0000783a074a6a40 0000000000000000   @jJ.:x..........
+0x00007ffc7a543938:   0000783a09fda740 0000783a09c41dc0   @...:x......:x..
+0x00007ffc7a543948:   c62b2f638c9ae700 0000783a07ac3380   ....c/+..3..:x..
+0x00007ffc7a543958:   00005f2802de8540 00005f2802e4bd88   @...(_......(_..
+0x00007ffc7a543968:   0000000000000001 00005f2802e4bd88   ............(_..
+0x00007ffc7a543978:   00005f280444ac90 0000783a0a2ed288   ..D.(_......:x..
+0x00007ffc7a543988:   00005f2802a9a44e 0000000000000013   N...(_..........
+0x00007ffc7a543998:   0000000000000135 00005f2802de8540   5.......@...(_..
+0x00007ffc7a5439a8:   00005f2802aac2d0 00005f2802dc7660   ....(_..`v..(_..
+0x00007ffc7a5439b8:   0000001900000003 0000783a0a2ed280   ............:x..
+0x00007ffc7a5439c8:   0000000000000000 0000783a0a2ed270   ........p...:x..
+0x00007ffc7a5439d8:   0000783a0a2ed1f0 00007ffc7a543ad0   ....:x...:Tz....
+0x00007ffc7a5439e8:   00005f280444ac88 0000783a0a2ed400   ..D.(_......:x..
+0x00007ffc7a5439f8:   0000783a09ac6480 0000783a0a2ed278   .d..:x..x...:x..
+0x00007ffc7a543a08:   0000783a09aba380 00007ffc7a543b70   ....:x..p;Tz....
+0x00007ffc7a543a18:   00005f2802cdc4e0 0000000103a03060   ....(_..`0......
+0x00007ffc7a543a28:   0000783a09a9cd60 0000783a09a95230   `...:x..0R..:x..
+0x00007ffc7a543a38:   0000783a07011a40 0000000000000000   @...:x..........
+0x00007ffc7a543a48:   00005f2802afe82d 00005f28039fddd0   -...(_......(_..
+0x00007ffc7a543a58:   00005f2802de8540 0000783a07402de0   @...(_...-@.:x..
+0x00007ffc7a543a68:   0000000500000000 0000783a09bdda70   ........p...:x..
+0x00007ffc7a543a78:   0000783a09c35940 0000783a09c82830   @Y..:x..0(..:x..
+0x00007ffc7a543a88:   c62b2f638c9ae700 00005f2802e0f3d0   ....c/+.....(_..
+0x00007ffc7a543a98:   ffffffffffffff68 0000000000000000   h...............
+0x00007ffc7a543aa8:   c62b2f638c9ae700 0000783a09c82830   ....c/+.0(..:x..
+0x00007ffc7a543ab8:   0000783a0a2ed020 00005f2803a04430    ...:x..0D..(_..
+0x00007ffc7a543ac8:   00005f2802e4bd88 00005f2802df0650   ....(_..P...(_..
+0x00007ffc7a543ad8:   0000000000000000 0000000000000000   ................
+0x00007ffc7a543ae8:   00005f2802aa61b3 00005f2803a04430   .a..(_..0D..(_..
+0x00007ffc7a543af8:   00005f2802a8f96c 0000783a09a68180   l...(_......:x..
+0x00007ffc7a543b08:   00005f2802cdcb82 0003000000000000   ....(_..........
+
+Instructions: (pc=0x00005f2802babb84)
+0x00005f2802baba84:   7c 24 30 be 30 00 00 00 0f 29 44 24 10 0f 29 14
+0x00005f2802baba94:   24 e8 06 ab ef ff 48 85 c0 74 19 66 0f 6f 14 24
+0x00005f2802babaa4:   66 0f 6f 44 24 10 c7 00 05 00 00 00 0f 11 50 08
+0x00005f2802babab4:   0f 11 40 20 48 83 c4 28 c3 0f 1f 00 41 54 49 89
+0x00005f2802babac4:   d4 55 48 89 f5 53 48 89 fb 48 8b 7f 10 48 85 ff
+0x00005f2802babad4:   75 54 48 8b 7b 18 48 85 ff 74 09 4c 89 e6 ff d5
+0x00005f2802babae4:   85 c0 75 26 48 8b 7b 20 48 85 ff 75 49 48 8b 7b
+0x00005f2802babaf4:   28 48 85 ff 75 19 48 8b 7b 38 48 85 ff 75 32 48
+0x00005f2802babb04:   8b 7b 30 48 85 ff 75 12 31 c0 5b 5d 41 5c c3 4c
+0x00005f2802babb14:   89 e6 ff d5 85 c0 74 de eb f0 5b 4c 89 e6 48 89
+0x00005f2802babb24:   e8 5d 41 5c ff e0 48 89 d6 ff d5 85 c0 74 a3 eb
+0x00005f2802babb34:   d9 e9 5a 2c e3 ff e9 67 2c e3 ff 90 48 8b 46 08
+0x00005f2802babb44:   f6 80 ab 00 00 00 10 0f 84 67 2c e3 ff 48 83 7e
+0x00005f2802babb54:   10 00 7f 05 e9 43 da f3 ff 50 48 8b 47 08 48 8d
+0x00005f2802babb64:   35 e7 1f 08 00 48 8b 3d a8 53 25 00 48 8b 50 18
+0x00005f2802babb74:   31 c0 e8 45 a2 f2 ff 31 c0 5a c3 90 48 8b 7f 18
+0x00005f2802babb84:   48 8b 47 10 48 85 c0 74 0e 48 ff c8 75 15 48 8b
+0x00005f2802babb94:   7f 18 e9 05 da f3 ff 48 8d 3d 75 a7 06 00 e9 c9
+0x00005f2802babba4:   eb ed ff e9 33 2c e3 ff 0f 1f 40 00 41 57 41 56
+0x00005f2802babbb4:   41 55 41 54 55 53 48 83 ec 28 8b 87 90 00 00 00
+0x00005f2802babbc4:   64 48 8b 1c 25 28 00 00 00 48 89 5c 24 18 48 89
+0x00005f2802babbd4:   fb 8d 50 01 89 97 90 00 00 00 3d 70 17 00 00 0f
+0x00005f2802babbe4:   84 07 2c e3 ff 83 7b 60 00 0f 85 0a 2c e3 ff 48
+0x00005f2802babbf4:   89 df 44 8b 63 10 e8 71 a0 ef ff 48 85 c0 75 5b
+0x00005f2802babc04:   83 7b 60 00 44 89 63 10 0f 85 13 01 00 00 be 01
+0x00005f2802babc14:   00 00 00 48 89 df e8 b1 30 ef ff 48 89 c5 48 85
+0x00005f2802babc24:   c0 75 56 44 89 63 10 31 c0 8b 8b 90 00 00 00 8d
+0x00005f2802babc34:   51 ff 89 93 90 00 00 00 48 8b 54 24 18 64 48 2b
+0x00005f2802babc44:   14 25 28 00 00 00 0f 85 cf 00 00 00 48 83 c4 28
+0x00005f2802babc54:   5b 5d 41 5c 41 5d 41 5e 41 5f c3 be 03 00 00 00
+0x00005f2802babc64:   48 89 df e8 64 30 ef ff 48 89 c2 48 8d 05 02 b8
+0x00005f2802babc74:   25 00 48 85 d2 75 b2 eb 87 48 8b 78 08 48 8d 54
+
+
+Stack slot to memory mapping:
+
+stack at sp + 0 slots: 0x00005f2802ae9701: PyObject_Str+0x0000000000000161 in /home/lulizhi/.local/share/uv/tools/reverse-engineering-assistant/bin/python at 0x00005f2802904000
+stack at sp + 1 slots: 0x00007ffc7a543a38 is pointing into the stack for thread: 0x00005f28044997c0
+stack at sp + 2 slots: 0x0000783a074a6a40 points into unknown readable memory: 0x0000000000000001 | 01 00 00 00 00 00 00 00
+stack at sp + 3 slots: 0x0 is null
+stack at sp + 4 slots: 0x0000783a09fda740 points into unknown readable memory: 0x0000783a09fda740 | 40 a7 fd 09 3a 78 00 00
+stack at sp + 5 slots: 0x0000783a09c41dc0 points into unknown readable memory: 0x000000000000330b | 0b 33 00 00 00 00 00 00
+stack at sp + 6 slots: 0xc62b2f638c9ae700 is an unknown value
+stack at sp + 7 slots: 0x0000783a07ac3380 points into unknown readable memory: 0x000000000000002d | 2d 00 00 00 00 00 00 00
+
+
+---------------  P R O C E S S  ---------------
+
+Threads class SMR info:
+_java_thread_list=0x0000783998017600, length=21, elements={
+0x00005f28044997c0, 0x00005f28047ff080, 0x00005f2804800660, 0x00005f2804811fa0,
+0x00005f2804813560, 0x00005f2804814b50, 0x00005f28048166d0, 0x00005f2804817dd0,
+0x0000783984055790, 0x00005f28048dbf90, 0x00005f280490b660, 0x000078397803d000,
+0x000078397803e720, 0x000078396c002cf0, 0x000078396c077740, 0x000078396c090cb0,
+0x00007839841a81e0, 0x0000783968100dc0, 0x0000783968102110, 0x0000783944001420,
+0x0000783994001120
+}
+
+Java Threads: ( => current thread )
+=>0x00005f28044997c0 JavaThread "main"                              [_thread_in_native, id=1860630, stack(0x00007ffc7a446000,0x00007ffc7a546000) (1024K)]
+  0x00005f28047ff080 JavaThread "Reference Handler"          daemon [_thread_blocked, id=1860759, stack(0x00007839b09cb000,0x00007839b0acb000) (1024K)]
+  0x00005f2804800660 JavaThread "Finalizer"                  daemon [_thread_blocked, id=1860760, stack(0x00007839b08cb000,0x00007839b09cb000) (1024K)]
+  0x00005f2804811fa0 JavaThread "Signal Dispatcher"          daemon [_thread_blocked, id=1860761, stack(0x00007839b07cb000,0x00007839b08cb000) (1024K)]
+  0x00005f2804813560 JavaThread "Service Thread"             daemon [_thread_blocked, id=1860762, stack(0x00007839b06cb000,0x00007839b07cb000) (1024K)]
+  0x00005f2804814b50 JavaThread "Monitor Deflation Thread"   daemon [_thread_blocked, id=1860763, stack(0x00007839b05cb000,0x00007839b06cb000) (1024K)]
+  0x00005f28048166d0 JavaThread "C2 CompilerThread0"         daemon [_thread_blocked, id=1860764, stack(0x00007839b04cb000,0x00007839b05cb000) (1024K)]
+  0x00005f2804817dd0 JavaThread "C1 CompilerThread0"         daemon [_thread_blocked, id=1860765, stack(0x00007839b03cb000,0x00007839b04cb000) (1024K)]
+  0x0000783984055790 JavaThread "C1 CompilerThread1"         daemon [_thread_blocked, id=1860766, stack(0x00007839b01fa000,0x00007839b02fa000) (1024K)]
+  0x00005f28048dbf90 JavaThread "Common-Cleaner"             daemon [_thread_blocked, id=1860767, stack(0x00007839b00fa000,0x00007839b01fa000) (1024K)]
+  0x00005f280490b660 JavaThread "Notification Thread"        daemon [_thread_blocked, id=1860768, stack(0x0000783977f00000,0x0000783978000000) (1024K)]
+  0x000078397803d000 JavaThread "C1 CompilerThread2"         daemon [_thread_blocked, id=1860769, stack(0x0000783977e00000,0x0000783977f00000) (1024K)]
+  0x000078397803e720 JavaThread "C1 CompilerThread3"         daemon [_thread_blocked, id=1860770, stack(0x0000783977d00000,0x0000783977e00000) (1024K)]
+  0x000078396c002cf0 JavaThread "C2 CompilerThread1"         daemon [_thread_blocked, id=1860772, stack(0x0000783977b00000,0x0000783977c00000) (1024K)]
+  0x000078396c077740 JavaThread "C2 CompilerThread2"         daemon [_thread_blocked, id=1860776, stack(0x00007839778ff000,0x00007839779ff000) (1024K)]
+  0x000078396c090cb0 JavaThread "C2 CompilerThread3"         daemon [_thread_blocked, id=1860777, stack(0x00007839777ff000,0x00007839778ff000) (1024K)]
+  0x00007839841a81e0 JavaThread "C2 CompilerThread4"         daemon [_thread_in_native, id=1860778, stack(0x00007839776ff000,0x00007839777ff000) (1024K)]
+  0x0000783968100dc0 JavaThread "C1 CompilerThread4"         daemon [_thread_blocked, id=1860779, stack(0x00007839775ff000,0x00007839776ff000) (1024K)]
+  0x0000783968102110 JavaThread "C1 CompilerThread5"         daemon [_thread_blocked, id=1860780, stack(0x00007839774ff000,0x00007839775ff000) (1024K)]
+  0x0000783944001420 JavaThread "C2 CompilerThread5"         daemon [_thread_blocked, id=1860781, stack(0x00007839773ff000,0x00007839774ff000) (1024K)]
+  0x0000783994001120 JavaThread "SIGTERM handler"            daemon [_thread_blocked, id=1860783, stack(0x0000783976ff8000,0x00007839770f8000) (1024K)]
+Total: 21
+
+Other Threads:
+  0x00005f280447ddd0 VMThread "VM Thread"                           [id=1860758, stack(0x00007839b0acc000,0x00007839b0bcc000) (1024K)]
+  0x00005f28043dc070 WatcherThread "VM Periodic Task Thread"        [id=1860757, stack(0x00007839b0bcd000,0x00007839b0ccd000) (1024K)]
+  0x00005f2803f495b0 WorkerThread "GC Thread#0"                     [id=1860752, stack(0x00007839c3b20000,0x00007839c3c20000) (1024K)]
+  0x0000783998001190 WorkerThread "GC Thread#1"                     [id=1860773, stack(0x0000783977a00000,0x0000783977b00000) (1024K)]
+  0x0000783998015350 WorkerThread "GC Thread#2"                     [id=1860774, stack(0x00007839772fb000,0x00007839773fb000) (1024K)]
+  0x0000783998015ec0 WorkerThread "GC Thread#3"                     [id=1860775, stack(0x00007839771fa000,0x00007839772fa000) (1024K)]
+  0x0000783998022d60 WorkerThread "GC Thread#4"                     [id=1860782, stack(0x00007839770f9000,0x00007839771f9000) (1024K)]
+  0x00005f2804483330 ConcurrentGCThread "G1 Main Marker"            [id=1860753, stack(0x00007839c3a1f000,0x00007839c3b1f000) (1024K)]
+  0x00005f28044ea1d0 WorkerThread "G1 Conc#0"                       [id=1860754, stack(0x00007839c391e000,0x00007839c3a1e000) (1024K)]
+  0x00005f2804695ef0 ConcurrentGCThread "G1 Refine#0"               [id=1860755, stack(0x00007839b0dcf000,0x00007839b0ecf000) (1024K)]
+  0x00005f2804696c70 ConcurrentGCThread "G1 Service"                [id=1860756, stack(0x00007839b0cce000,0x00007839b0dce000) (1024K)]
+Total: 11
+
+Threads with active compile tasks:
+C2 CompilerThread4  712  845       4       jdk.internal.jimage.ImageReader$SharedImageReader$$Lambda/0x00000008000bd5e8::visit (13 bytes)
+Total: 1
+
+VM state: not at safepoint (normal execution)
+
+VM Mutex/Monitor currently owned by a thread: None
+
+Heap address: 0x0000000082000000, size: 30688 MB, Compressed Oops mode: Zero based, Oop shift amount: 3
+
+CDS archive(s) not mapped
+Compressed class space mapped at: 0x0000000800000000-0x0000000840000000, reserved size: 1073741824
+Narrow klass base: 0x0000000800000000, Narrow klass shift: 0, Narrow klass range: 0x40000000
+
+GC Precious Log:
+ CardTable entry size: 512
+ Card Set container configuration: InlinePtr #cards 3 size 8 Array Of Cards #cards 128 size 272 Howl #buckets 8 coarsen threshold 29491 Howl Bitmap #cards 4096 size 528 coarsen threshold 3686 Card regions per heap region 1 cards per card region 32768
+ CPUs: 112 total, 112 available
+ Memory: 377G
+ Large Page Support: Disabled
+ NUMA Support: Disabled
+ Compressed Oops: Enabled (Zero based)
+ Heap Region Size: 16M
+ Heap Min Capacity: 16M
+ Heap Initial Capacity: 2G
+ Heap Max Capacity: 30688M
+ Pre-touch: Disabled
+ Parallel Workers: 73
+ Concurrent Workers: 18
+ Concurrent Refinement Workers: 73
+ Periodic GC: Disabled
+
+Heap:
+ garbage-first heap   total 65536K, used 5332K [0x0000000082000000, 0x0000000800000000)
+  region size 16384K, 1 young (16384K), 0 survivors (0K)
+ Metaspace       used 9581K, committed 9728K, reserved 1114112K
+  class space    used 822K, committed 896K, reserved 1048576K
+
+Heap Regions: E=young(eden), S=young(survivor), O=old, HS=humongous(starts), HC=humongous(continues), CS=collection set, F=free, TAMS=top-at-mark-start, PB=parsable bottom
+|   0|0x0000000082000000, 0x0000000082535338, 0x0000000083000000| 32%| O|  |TAMS 0x0000000082000000| PB 0x0000000082000000| Untracked 
+|   1|0x0000000083000000, 0x0000000083000000, 0x0000000084000000|  0%| F|  |TAMS 0x0000000083000000| PB 0x0000000083000000| Untracked 
+|   2|0x0000000084000000, 0x0000000084000000, 0x0000000085000000|  0%| F|  |TAMS 0x0000000084000000| PB 0x0000000084000000| Untracked 
+|   3|0x0000000085000000, 0x00000000851121e0, 0x0000000086000000|  6%| E|  |TAMS 0x0000000085000000| PB 0x0000000085000000| Complete 
+
+Card table byte_map: [0x00007839e2017000,0x00007839e5c07000] _byte_map_base: 0x00007839e1c07000
+
+Marking Bits: (CMBitMap*) 0x00005f28044d9dd0
+ Bits: [0x00007839c4097000, 0x00007839e2017000)
+
+Polling page: 0x0000783a095f9000
+
+Metaspace:
+
+Usage:
+  Non-class:      8.55 MB used.
+      Class:    822.70 KB used.
+       Both:      9.36 MB used.
+
+Virtual space:
+  Non-class space:       64.00 MB reserved,       8.62 MB ( 13%) committed,  1 nodes.
+      Class space:        1.00 GB reserved,     896.00 KB ( <1%) committed,  1 nodes.
+             Both:        1.06 GB reserved,       9.50 MB ( <1%) committed. 
+
+Chunk freelists:
+   Non-Class:  7.00 MB
+       Class:  15.08 MB
+        Both:  22.08 MB
+
+MaxMetaspaceSize: unlimited
+CompressedClassSpaceSize: 1.00 GB
+Initial GC threshold: 21.00 MB
+Current GC threshold: 21.00 MB
+CDS: off
+ - commit_granule_bytes: 65536.
+ - commit_granule_words: 8192.
+ - virtual_space_node_default_size: 8388608.
+ - enlarge_chunks_in_place: 1.
+ - use_allocation_guard: 0.
+
+
+Internal statistics:
+
+num_allocs_failed_limit: 0.
+num_arena_births: 48.
+num_arena_deaths: 0.
+num_vsnodes_births: 2.
+num_vsnodes_deaths: 0.
+num_space_committed: 152.
+num_space_uncommitted: 0.
+num_chunks_returned_to_freelist: 0.
+num_chunks_taken_from_freelist: 92.
+num_chunk_merges: 0.
+num_chunk_splits: 49.
+num_chunks_enlarged: 22.
+num_inconsistent_stats: 0.
+
+CodeHeap 'non-profiled nmethods': size=118592Kb used=496Kb max_used=496Kb free=118095Kb
+ bounds [0x00007839f6030000, 0x00007839f62a0000, 0x00007839fd400000]
+CodeHeap 'profiled nmethods': size=118588Kb used=1371Kb max_used=1528Kb free=117216Kb
+ bounds [0x00007839ee400000, 0x00007839ee670000, 0x00007839f57cf000]
+CodeHeap 'non-nmethods': size=8580Kb used=4191Kb max_used=4257Kb free=4388Kb
+ bounds [0x00007839f57cf000, 0x00007839f5c0f000, 0x00007839f6030000]
+CodeCache: size=245760Kb, used=6058Kb, max_used=6281Kb, free=239699Kb
+ total_blobs=1323, nmethods=910, adapters=314, full_count=0
+Compilation: enabled, stopped_count=0, restarted_count=0
+
+Compilation events (20 events):
+Event: 0.565 Thread 0x000078397803e720  996   !   3       java.net.URI::encode (143 bytes)
+Event: 0.565 Thread 0x0000783968100dc0  997       3       java.lang.StringLatin1::inflate (34 bytes)
+Event: 0.565 Thread 0x0000783968100dc0 nmethod 997 0x00007839ee41b210 code [0x00007839ee41b3c0, 0x00007839ee41b5b8]
+Event: 0.566 Thread 0x0000783968102110 nmethod 995 0x00007839ee411f10 code [0x00007839ee412320, 0x00007839ee413e78]
+Event: 0.566 Thread 0x0000783968100dc0  998       3       java.lang.PublicMethods$Key::equals (50 bytes)
+Event: 0.567 Thread 0x0000783968100dc0 nmethod 998 0x00007839ee467c10 code [0x00007839ee467de0, 0x00007839ee468228]
+Event: 0.567 Thread 0x000078397803d000 nmethod 992 0x00007839ee432210 code [0x00007839ee432700, 0x00007839ee4349e8]
+Event: 0.567 Thread 0x000078397803e720 nmethod 996 0x00007839ee402490 code [0x00007839ee402800, 0x00007839ee403a20]
+Event: 0.568 Thread 0x000078396c090cb0 nmethod 990 0x00007839f6091990 code [0x00007839f6091ba0, 0x00007839f6092080]
+Event: 0.575 Thread 0x00005f28048166d0 nmethod 980 0x00007839f6092490 code [0x00007839f6092640, 0x00007839f6092bf0]
+Event: 0.580 Thread 0x0000783944001420 nmethod 870 0x00007839f6092f10 code [0x00007839f60935a0, 0x00007839f609b050]
+Event: 0.646 Thread 0x000078396c002cf0  999       4       java.lang.reflect.Method::copy (84 bytes)
+Event: 0.646 Thread 0x0000783968100dc0 1000       3       jdk.internal.reflect.Reflection::filter (165 bytes)
+Event: 0.647 Thread 0x0000783968100dc0 nmethod 1000 0x00007839ee50e690 code [0x00007839ee50e920, 0x00007839ee50f6f8]
+Event: 0.653 Thread 0x000078396c002cf0 nmethod 999 0x00007839f607e990 code [0x00007839f607eb20, 0x00007839f607ee58]
+Event: 0.670 Thread 0x0000783944001420 1001       4       java.util.concurrent.ConcurrentHashMap::tabAt (22 bytes)
+Event: 0.671 Thread 0x0000783944001420 nmethod 1001 0x00007839f606be10 code [0x00007839f606bf80, 0x00007839f606bff8]
+Event: 0.672 Thread 0x000078397803d000 1002       3       java.lang.invoke.MemberName::isStatic (8 bytes)
+Event: 0.672 Thread 0x000078397803d000 nmethod 1002 0x00007839ee406a10 code [0x00007839ee406ba0, 0x00007839ee406d58]
+Event: 0.686 Thread 0x0000783968102110 1003       3       org.jpype.manager.TypeManager$Destroyer::add (101 bytes)
+
+GC Heap History (14 events):
+Event: 0.170 GC heap before
+{Heap before GC invocations=0 (full 0):
+ garbage-first heap   total 2097152K, used 16384K [0x0000000082000000, 0x0000000800000000)
+  region size 16384K, 2 young (32768K), 0 survivors (0K)
+ Metaspace       used 8170K, committed 8320K, reserved 1114112K
+  class space    used 702K, committed 768K, reserved 1048576K
+}
+Event: 0.183 GC heap after
+{Heap after GC invocations=1 (full 1):
+ garbage-first heap   total 114688K, used 1000K [0x0000000082000000, 0x0000000800000000)
+  region size 16384K, 0 young (0K), 0 survivors (0K)
+ Metaspace       used 8170K, committed 8320K, reserved 1114112K
+  class space    used 702K, committed 768K, reserved 1048576K
+}
+Event: 0.302 GC heap before
+{Heap before GC invocations=1 (full 1):
+ garbage-first heap   total 114688K, used 17384K [0x0000000082000000, 0x0000000800000000)
+  region size 16384K, 1 young (16384K), 0 survivors (0K)
+ Metaspace       used 9259K, committed 9408K, reserved 1114112K
+  class space    used 793K, committed 896K, reserved 1048576K
+}
+Event: 0.308 GC heap after
+{Heap after GC invocations=2 (full 1):
+ garbage-first heap   total 114688K, used 3336K [0x0000000082000000, 0x0000000800000000)
+  region size 16384K, 1 young (16384K), 1 survivors (16384K)
+ Metaspace       used 9259K, committed 9408K, reserved 1114112K
+  class space    used 793K, committed 896K, reserved 1048576K
+}
+Event: 0.333 GC heap before
+{Heap before GC invocations=2 (full 1):
+ garbage-first heap   total 114688K, used 19720K [0x0000000082000000, 0x0000000800000000)
+  region size 16384K, 2 young (32768K), 1 survivors (16384K)
+ Metaspace       used 9276K, committed 9472K, reserved 1114112K
+  class space    used 793K, committed 896K, reserved 1048576K
+}
+Event: 0.340 GC heap after
+{Heap after GC invocations=3 (full 1):
+ garbage-first heap   total 114688K, used 3269K [0x0000000082000000, 0x0000000800000000)
+  region size 16384K, 1 young (16384K), 1 survivors (16384K)
+ Metaspace       used 9276K, committed 9472K, reserved 1114112K
+  class space    used 793K, committed 896K, reserved 1048576K
+}
+Event: 0.362 GC heap before
+{Heap before GC invocations=3 (full 1):
+ garbage-first heap   total 114688K, used 19653K [0x0000000082000000, 0x0000000800000000)
+  region size 16384K, 2 young (32768K), 1 survivors (16384K)
+ Metaspace       used 9338K, committed 9536K, reserved 1114112K
+  class space    used 793K, committed 896K, reserved 1048576K
+}
+Event: 0.371 GC heap after
+{Heap after GC invocations=4 (full 1):
+ garbage-first heap   total 114688K, used 4968K [0x0000000082000000, 0x0000000800000000)
+  region size 16384K, 1 young (16384K), 1 survivors (16384K)
+ Metaspace       used 9338K, committed 9536K, reserved 1114112K
+  class space    used 793K, committed 896K, reserved 1048576K
+}
+Event: 0.418 GC heap before
+{Heap before GC invocations=4 (full 1):
+ garbage-first heap   total 114688K, used 4968K [0x0000000082000000, 0x0000000800000000)
+  region size 16384K, 2 young (32768K), 1 survivors (16384K)
+ Metaspace       used 9352K, committed 9536K, reserved 1114112K
+  class space    used 793K, committed 896K, reserved 1048576K
+}
+Event: 0.468 GC heap after
+{Heap after GC invocations=5 (full 2):
+ garbage-first heap   total 65536K, used 5245K [0x0000000082000000, 0x0000000800000000)
+  region size 16384K, 0 young (0K), 0 survivors (0K)
+ Metaspace       used 9352K, committed 9536K, reserved 1114112K
+  class space    used 793K, committed 896K, reserved 1048576K
+}
+Event: 0.512 GC heap before
+{Heap before GC invocations=5 (full 2):
+ garbage-first heap   total 65536K, used 5245K [0x0000000082000000, 0x0000000800000000)
+  region size 16384K, 1 young (16384K), 0 survivors (0K)
+ Metaspace       used 9388K, committed 9536K, reserved 1114112K
+  class space    used 797K, committed 896K, reserved 1048576K
+}
+Event: 0.552 GC heap after
+{Heap after GC invocations=6 (full 3):
+ garbage-first heap   total 65536K, used 5285K [0x0000000082000000, 0x0000000800000000)
+  region size 16384K, 0 young (0K), 0 survivors (0K)
+ Metaspace       used 9388K, committed 9536K, reserved 1114112K
+  class space    used 797K, committed 896K, reserved 1048576K
+}
+Event: 0.605 GC heap before
+{Heap before GC invocations=6 (full 3):
+ garbage-first heap   total 65536K, used 5285K [0x0000000082000000, 0x0000000800000000)
+  region size 16384K, 1 young (16384K), 0 survivors (0K)
+ Metaspace       used 9413K, committed 9600K, reserved 1114112K
+  class space    used 797K, committed 896K, reserved 1048576K
+}
+Event: 0.643 GC heap after
+{Heap after GC invocations=7 (full 4):
+ garbage-first heap   total 65536K, used 5332K [0x0000000082000000, 0x0000000800000000)
+  region size 16384K, 0 young (0K), 0 survivors (0K)
+ Metaspace       used 9413K, committed 9600K, reserved 1114112K
+  class space    used 797K, committed 896K, reserved 1048576K
+}
+
+Dll operation events (6 events):
+Event: 0.003 Loaded shared library /usr/lib/jvm/java-21-openjdk-amd64/lib/libjava.so
+Event: 0.047 Loaded shared library /usr/lib/jvm/java-21-openjdk-amd64/lib/libjsvml.so
+Event: 0.071 Loaded shared library /usr/lib/jvm/java-21-openjdk-amd64/lib/libnio.so
+Event: 0.077 Loaded shared library /usr/lib/jvm/java-21-openjdk-amd64/lib/libzip.so
+Event: 0.113 Loaded shared library /home/lulizhi/.local/share/uv/tools/reverse-engineering-assistant/lib/python3.13/site-packages/_jpype.cpython-313-x86_64-linux-gnu.so
+Event: 0.138 Loaded shared library /usr/lib/jvm/java-21-openjdk-amd64/lib/libjimage.so
+
+Deoptimization events (20 events):
+Event: 0.554 Thread 0x00005f28044997c0 Uncommon trap: trap_request=0xffffffbe fr.pc=0x00007839f607e1bc relative=0x00000000000001fc
+Event: 0.554 Thread 0x00005f28044997c0 Uncommon trap: reason=profile_predicate action=maybe_recompile pc=0x00007839f607e1bc method=java.lang.StringLatin1.indexOf([BI[BII)I @ 18 c2
+Event: 0.554 Thread 0x00005f28044997c0 DEOPT PACKING pc=0x00007839f607e1bc sp=0x00007ffc7a542870
+Event: 0.554 Thread 0x00005f28044997c0 DEOPT UNPACKING pc=0x00007839f5826619 sp=0x00007ffc7a5427f0 mode 2
+Event: 0.554 Thread 0x00005f28044997c0 Uncommon trap: trap_request=0xffffffbe fr.pc=0x00007839f607e1bc relative=0x00000000000001fc
+Event: 0.554 Thread 0x00005f28044997c0 Uncommon trap: reason=profile_predicate action=maybe_recompile pc=0x00007839f607e1bc method=java.lang.StringLatin1.indexOf([BI[BII)I @ 18 c2
+Event: 0.554 Thread 0x00005f28044997c0 DEOPT PACKING pc=0x00007839f607e1bc sp=0x00007ffc7a542870
+Event: 0.554 Thread 0x00005f28044997c0 DEOPT UNPACKING pc=0x00007839f5826619 sp=0x00007ffc7a5427f0 mode 2
+Event: 0.558 Thread 0x00005f28044997c0 Uncommon trap: trap_request=0xffffffe4 fr.pc=0x00007839f606c470 relative=0x00000000000001d0
+Event: 0.558 Thread 0x00005f28044997c0 Uncommon trap: reason=range_check action=make_not_entrant pc=0x00007839f606c470 method=java.lang.StringLatin1.indexOf([BI[BII)I @ 2 c2
+Event: 0.558 Thread 0x00005f28044997c0 DEOPT PACKING pc=0x00007839f606c470 sp=0x00007ffc7a542870
+Event: 0.558 Thread 0x00005f28044997c0 DEOPT UNPACKING pc=0x00007839f5826619 sp=0x00007ffc7a5427f0 mode 2
+Event: 0.559 Thread 0x00005f28044997c0 Uncommon trap: trap_request=0xffffffbe fr.pc=0x00007839f607d39c relative=0x000000000000035c
+Event: 0.559 Thread 0x00005f28044997c0 Uncommon trap: reason=profile_predicate action=maybe_recompile pc=0x00007839f607d39c method=java.lang.StringLatin1.indexOf([BI[BII)I @ 30 c2
+Event: 0.559 Thread 0x00005f28044997c0 DEOPT PACKING pc=0x00007839f607d39c sp=0x00007ffc7a542870
+Event: 0.559 Thread 0x00005f28044997c0 DEOPT UNPACKING pc=0x00007839f5826619 sp=0x00007ffc7a542800 mode 2
+Event: 0.561 Thread 0x00005f28044997c0 Uncommon trap: trap_request=0xffffffbe fr.pc=0x00007839f607d39c relative=0x000000000000035c
+Event: 0.561 Thread 0x00005f28044997c0 Uncommon trap: reason=profile_predicate action=maybe_recompile pc=0x00007839f607d39c method=java.lang.StringLatin1.indexOf([BI[BII)I @ 30 c2
+Event: 0.561 Thread 0x00005f28044997c0 DEOPT PACKING pc=0x00007839f607d39c sp=0x00007ffc7a542870
+Event: 0.561 Thread 0x00005f28044997c0 DEOPT UNPACKING pc=0x00007839f5826619 sp=0x00007ffc7a542800 mode 2
+
+Classes loaded (20 events):
+Event: 0.671 Loading class sun/util/logging/PlatformLogger$ConfigurableBridge$LoggerConfiguration
+Event: 0.671 Loading class sun/util/logging/PlatformLogger$ConfigurableBridge$LoggerConfiguration done
+Event: 0.671 Loading class jdk/internal/logger/SimpleConsoleLogger done
+Event: 0.671 Loading class jdk/internal/logger/SurrogateLogger done
+Event: 0.672 Loading class sun/util/logging/PlatformLogger
+Event: 0.672 Loading class sun/util/logging/PlatformLogger done
+Event: 0.672 Loading class sun/util/logging/PlatformLogger$Level
+Event: 0.672 Loading class sun/util/logging/PlatformLogger$Level done
+Event: 0.672 Loading class java/util/IdentityHashMap$KeyIterator
+Event: 0.672 Loading class java/util/IdentityHashMap$IdentityHashMapIterator
+Event: 0.672 Loading class java/util/IdentityHashMap$IdentityHashMapIterator done
+Event: 0.672 Loading class java/util/IdentityHashMap$KeyIterator done
+Event: 0.673 Loading class jdk/internal/event/ThreadSleepEvent
+Event: 0.673 Loading class jdk/internal/event/Event
+Event: 0.673 Loading class jdk/internal/event/Event done
+Event: 0.673 Loading class jdk/internal/event/ThreadSleepEvent done
+Event: 0.686 Loading class java/util/WeakHashMap$KeyIterator
+Event: 0.686 Loading class java/util/WeakHashMap$HashIterator
+Event: 0.686 Loading class java/util/WeakHashMap$HashIterator done
+Event: 0.686 Loading class java/util/WeakHashMap$KeyIterator done
+
+Classes unloaded (0 events):
+No events
+
+Classes redefined (0 events):
+No events
+
+Internal exceptions (11 events):
+Event: 0.118 Thread 0x00005f28044997c0 Exception <a 'java/lang/NoSuchMethodError'{0x0000000101131690}: 'int java.lang.invoke.DirectMethodHandle$Holder.invokeStaticInit(java.lang.Object, java.lang.Object)'> (0x0000000101131690) 
+thrown [./src/hotspot/share/interpreter/linkResolver.cpp, line 772]
+Event: 0.119 Thread 0x00005f28044997c0 Exception <a 'java/lang/NoSuchMethodError'{0x0000000101137c08}: 'java.lang.Object java.lang.invoke.DirectMethodHandle$Holder.invokeStaticInit(java.lang.Object, int)'> (0x0000000101137c08) 
+thrown [./src/hotspot/share/interpreter/linkResolver.cpp, line 772]
+Event: 0.121 Thread 0x00005f28044997c0 Exception <a 'java/lang/NoSuchMethodError'{0x00000001011428c8}: 'int java.lang.invoke.DirectMethodHandle$Holder.invokeSpecial(java.lang.Object, java.lang.Object, java.lang.Object)'> (0x00000001011428c8) 
+thrown [./src/hotspot/share/interpreter/linkResolver.cpp, line 772]
+Event: 0.124 Thread 0x00005f28044997c0 Exception <a 'java/lang/NoSuchMethodError'{0x0000000101152fd0}: 'java.lang.Object java.lang.invoke.DirectMethodHandle$Holder.invokeStatic(java.lang.Object, java.lang.Object, int)'> (0x0000000101152fd0) 
+thrown [./src/hotspot/share/interpreter/linkResolver.cpp, line 772]
+Event: 0.125 Thread 0x00005f28044997c0 Exception <a 'java/lang/NoSuchMethodError'{0x000000010115e6c8}: 'void java.lang.invoke.DelegatingMethodHandle$Holder.delegate(java.lang.Object, java.lang.Object, int, java.lang.Object)'> (0x000000010115e6c8) 
+thrown [./src/hotspot/share/interpreter/linkResolver.cpp, line 772]
+Event: 0.147 Thread 0x00005f28044997c0 Exception <a 'java/lang/NoSuchMethodError'{0x0000000101f6cc60}: 'java.lang.Object java.lang.invoke.DirectMethodHandle$Holder.invokeInterface(java.lang.Object, java.lang.Object)'> (0x0000000101f6cc60) 
+thrown [./src/hotspot/share/interpreter/linkResolver.cpp, line 772]
+Event: 0.147 Thread 0x00005f28044997c0 Exception <a 'java/lang/IncompatibleClassChangeError'{0x0000000101f6ff88}: Found class java.lang.Object, but interface was expected> (0x0000000101f6ff88) 
+thrown [./src/hotspot/share/interpreter/linkResolver.cpp, line 840]
+Event: 0.219 Thread 0x00005f28044997c0 Exception <a 'java/lang/NoSuchMethodError'{0x0000000088063fc8}: method resolution failed> (0x0000000088063fc8) 
+thrown [./src/hotspot/share/prims/methodHandles.cpp, line 1136]
+Event: 0.221 Thread 0x00005f28044997c0 Exception <a 'java/lang/NoSuchMethodError'{0x000000008806d960}: 'java.lang.Object java.lang.invoke.Invokers$Holder.invokeExact_MT(java.lang.Object, java.lang.Object, java.lang.Object, java.lang.Object, java.lang.Object)'> (0x000000008806d960) 
+thrown [./src/hotspot/share/interpreter/linkResolver.cpp, line 772]
+Event: 0.686 Thread 0x00005f28044997c0 Exception <a 'org/jpype/PyExceptionProxy'{0x0000000085089458}> (0x0000000085089458) 
+thrown [./src/hotspot/share/prims/jni.cpp, line 520]
+Event: 0.686 Thread 0x00005f28044997c0 Exception <a 'org/jpype/PyExceptionProxy'{0x0000000085089458}> (0x0000000085089458) 
+thrown [./src/hotspot/share/prims/jni.cpp, line 520]
+
+ZGC Phase Switch (0 events):
+No events
+
+VM Operations (20 events):
+Event: 0.170 Executing safepoint VM operation: G1CollectFull (System.gc())
+Event: 0.183 Executing safepoint VM operation: G1CollectFull (System.gc()) done
+Event: 0.265 Executing non-safepoint VM operation: HandshakeAllThreads (Deoptimize)
+Event: 0.265 Executing non-safepoint VM operation: HandshakeAllThreads (Deoptimize) done
+Event: 0.268 Executing non-safepoint VM operation: HandshakeAllThreads (Deoptimize)
+Event: 0.268 Executing non-safepoint VM operation: HandshakeAllThreads (Deoptimize) done
+Event: 0.302 Executing safepoint VM operation: G1CollectForAllocation (G1 Evacuation Pause)
+Event: 0.308 Executing safepoint VM operation: G1CollectForAllocation (G1 Evacuation Pause) done
+Event: 0.333 Executing safepoint VM operation: G1CollectForAllocation (G1 Evacuation Pause)
+Event: 0.340 Executing safepoint VM operation: G1CollectForAllocation (G1 Evacuation Pause) done
+Event: 0.362 Executing safepoint VM operation: G1CollectForAllocation (G1 Evacuation Pause)
+Event: 0.371 Executing safepoint VM operation: G1CollectForAllocation (G1 Evacuation Pause) done
+Event: 0.418 Executing safepoint VM operation: G1CollectFull (System.gc())
+Event: 0.468 Executing safepoint VM operation: G1CollectFull (System.gc()) done
+Event: 0.512 Executing safepoint VM operation: G1CollectFull (System.gc())
+Event: 0.552 Executing safepoint VM operation: G1CollectFull (System.gc()) done
+Event: 0.605 Executing safepoint VM operation: G1CollectFull (System.gc())
+Event: 0.643 Executing safepoint VM operation: G1CollectFull (System.gc()) done
+Event: 0.679 Executing safepoint VM operation: ThreadDump
+Event: 0.679 Executing safepoint VM operation: ThreadDump done
+
+Memory protections (20 events):
+Event: 0.043 Protecting memory [0x00007839b06cb000,0x00007839b06cf000] with protection modes 0
+Event: 0.043 Protecting memory [0x00007839b05cb000,0x00007839b05cf000] with protection modes 0
+Event: 0.043 Protecting memory [0x00007839b04cb000,0x00007839b04cf000] with protection modes 0
+Event: 0.043 Protecting memory [0x00007839b03cb000,0x00007839b03cf000] with protection modes 0
+Event: 0.061 Protecting memory [0x00007839b01fa000,0x00007839b01fe000] with protection modes 0
+Event: 0.068 Protecting memory [0x00007839b00fa000,0x00007839b00fe000] with protection modes 0
+Event: 0.093 Protecting memory [0x0000783977f00000,0x0000783977f04000] with protection modes 0
+Event: 0.128 Protecting memory [0x00007839fd405000,0x00007839fd406000] with protection modes 1
+Event: 0.130 Protecting memory [0x0000783977e00000,0x0000783977e04000] with protection modes 0
+Event: 0.131 Protecting memory [0x0000783977d00000,0x0000783977d04000] with protection modes 0
+Event: 0.136 Protecting memory [0x0000783977c00000,0x0000783977c04000] with protection modes 0
+Event: 0.165 Protecting memory [0x0000783977b00000,0x0000783977b04000] with protection modes 0
+Event: 0.280 Protecting memory [0x00007839778ff000,0x0000783977903000] with protection modes 0
+Event: 0.282 Protecting memory [0x00007839777ff000,0x0000783977803000] with protection modes 0
+Event: 0.290 Protecting memory [0x00007839776ff000,0x0000783977703000] with protection modes 0
+Event: 0.292 Protecting memory [0x00007839775ff000,0x0000783977603000] with protection modes 0
+Event: 0.293 Protecting memory [0x00007839774ff000,0x0000783977503000] with protection modes 0
+Event: 0.294 Protecting memory [0x00007839773ff000,0x0000783977403000] with protection modes 0
+Event: 0.669 Protecting memory [0x0000783976ff8000,0x0000783976ffc000] with protection modes 0
+Event: 0.673 Protecting memory [0x0000783976ef8000,0x0000783976efc000] with protection modes 0
+
+Nmethod flushes (20 events):
+Event: 0.531 Thread 0x00005f280447ddd0 flushing  nmethod 0x00007839ee507010
+Event: 0.531 Thread 0x00005f280447ddd0 flushing  nmethod 0x00007839ee508190
+Event: 0.531 Thread 0x00005f280447ddd0 flushing  nmethod 0x00007839ee509e10
+Event: 0.531 Thread 0x00005f280447ddd0 flushing  nmethod 0x00007839ee50a710
+Event: 0.531 Thread 0x00005f280447ddd0 flushing  nmethod 0x00007839ee50be10
+Event: 0.531 Thread 0x00005f280447ddd0 flushing  nmethod 0x00007839ee50cb90
+Event: 0.531 Thread 0x00005f280447ddd0 flushing  nmethod 0x00007839ee50e690
+Event: 0.531 Thread 0x00005f280447ddd0 flushing  nmethod 0x00007839ee50eb10
+Event: 0.531 Thread 0x00005f280447ddd0 flushing  nmethod 0x00007839ee50ff10
+Event: 0.531 Thread 0x00005f280447ddd0 flushing  nmethod 0x00007839ee512010
+Event: 0.531 Thread 0x00005f280447ddd0 flushing  nmethod 0x00007839ee513b10
+Event: 0.531 Thread 0x00005f280447ddd0 flushing  nmethod 0x00007839ee513e90
+Event: 0.531 Thread 0x00005f280447ddd0 flushing  nmethod 0x00007839ee516110
+Event: 0.531 Thread 0x00005f280447ddd0 flushing  nmethod 0x00007839ee517e10
+Event: 0.531 Thread 0x00005f280447ddd0 flushing  nmethod 0x00007839ee522790
+Event: 0.531 Thread 0x00005f280447ddd0 flushing  nmethod 0x00007839ee530f90
+Event: 0.531 Thread 0x00005f280447ddd0 flushing  nmethod 0x00007839ee540010
+Event: 0.624 Thread 0x00005f280447ddd0 flushing  nmethod 0x00007839f607e610
+Event: 0.624 Thread 0x00005f280447ddd0 flushing  nmethod 0x00007839ee438390
+Event: 0.624 Thread 0x00005f280447ddd0 flushing  nmethod 0x00007839ee511290
+
+Events (20 events):
+Event: 0.043 Thread 0x00005f28044997c0 Thread added: 0x00005f28048166d0
+Event: 0.043 Thread 0x00005f28044997c0 Thread added: 0x00005f2804817dd0
+Event: 0.061 Thread 0x00005f2804817dd0 Thread added: 0x0000783984055790
+Event: 0.068 Thread 0x00005f28044997c0 Thread added: 0x00005f28048dbf90
+Event: 0.093 Thread 0x00005f28044997c0 Thread added: 0x00005f280490b660
+Event: 0.130 Thread 0x0000783984055790 Thread added: 0x000078397803d000
+Event: 0.131 Thread 0x0000783984055790 Thread added: 0x000078397803e720
+Event: 0.136 Thread 0x00005f28044997c0 Thread added: 0x00005f28049e36c0
+Event: 0.165 Thread 0x000078397803e720 Thread added: 0x000078396c002cf0
+Event: 0.280 Thread 0x000078397803e720 Thread added: 0x000078396c077740
+Event: 0.282 Thread 0x000078397803e720 Thread added: 0x000078396c090cb0
+Event: 0.290 Thread 0x00005f2804817dd0 Thread added: 0x00007839841a81e0
+Event: 0.292 Thread 0x000078397803d000 Thread added: 0x0000783968100dc0
+Event: 0.293 Thread 0x000078397803d000 Thread added: 0x0000783968102110
+Event: 0.294 Thread 0x0000783968102110 Thread added: 0x0000783944001420
+Event: 0.669 Thread 0x00005f2804811fa0 Thread added: 0x0000783994001120
+Event: 0.673 Thread 0x0000783994001120 Thread added: 0x00007839300036f0
+Event: 0.686 Thread 0x00005f28049e36c0 Thread exited: 0x00005f28049e36c0
+Event: 0.686 Thread 0x00007839300036f0 Thread exited: 0x00007839300036f0
+Event: 0.686 Thread 0x0000783994001120 Before exit entered
+
+
+Dynamic libraries:
+82000000-86000000 rw-p 00000000 00:00 0 
+86000000-800000000 ---p 00000000 00:00 0 
+800000000-800030000 rw-p 00000000 00:00 0 
+800030000-8000b0000 rw-p 00000000 00:00 0 
+8000b0000-8000d0000 rw-p 00000000 00:00 0 
+8000d0000-8000e0000 ---p 00000000 00:00 0 
+8000e0000-8000f0000 rw-p 00000000 00:00 0 
+8000f0000-840000000 ---p 00000000 00:00 0 
+5f2802904000-5f2802985000 r--p 00000000 08:10 67013293                   /workspace/miniconda3/bin/python3.13
+5f2802985000-5f2802c11000 r-xp 00081000 08:10 67013293                   /workspace/miniconda3/bin/python3.13
+5f2802c11000-5f2802d7e000 r--p 0030d000 08:10 67013293                   /workspace/miniconda3/bin/python3.13
+5f2802d7e000-5f2802dcc000 r--p 00479000 08:10 67013293                   /workspace/miniconda3/bin/python3.13
+5f2802dcc000-5f2802e4c000 rw-p 004c7000 08:10 67013293                   /workspace/miniconda3/bin/python3.13
+5f2802e4c000-5f2802ebf000 rw-p 00000000 00:00 0 
+5f2803925000-5f2804e00000 rw-p 00000000 00:00 0                          [heap]
+783930000000-783930021000 rw-p 00000000 00:00 0 
+783930021000-783934000000 ---p 00000000 00:00 0 
+783934000000-783934021000 rw-p 00000000 00:00 0 
+783934021000-783938000000 ---p 00000000 00:00 0 
+783938000000-783938cf5000 rw-p 00000000 00:00 0 
+783938cf5000-78393c000000 ---p 00000000 00:00 0 
+78393c000000-78393c02b000 rw-p 00000000 00:00 0 
+78393c02b000-783940000000 ---p 00000000 00:00 0 
+783940000000-7839400ac000 rw-p 00000000 00:00 0 
+7839400ac000-783944000000 ---p 00000000 00:00 0 
+783944000000-7839440c6000 rw-p 00000000 00:00 0 
+7839440c6000-783948000000 ---p 00000000 00:00 0 
+783948000000-783948f44000 rw-p 00000000 00:00 0 
+783948f44000-78394c000000 ---p 00000000 00:00 0 
+78394c000000-78394e4d1000 rw-p 00000000 00:00 0 
+78394e4d1000-783950000000 ---p 00000000 00:00 0 
+783950000000-783950021000 rw-p 00000000 00:00 0 
+783950021000-783954000000 ---p 00000000 00:00 0 
+783954000000-783955475000 rw-p 00000000 00:00 0 
+783955475000-783958000000 ---p 00000000 00:00 0 
+783958000000-783958021000 rw-p 00000000 00:00 0 
+783958021000-78395c000000 ---p 00000000 00:00 0 
+78395c000000-78395c021000 rw-p 00000000 00:00 0 
+78395c021000-783960000000 ---p 00000000 00:00 0 
+783960000000-783960021000 rw-p 00000000 00:00 0 
+783960021000-783964000000 ---p 00000000 00:00 0 
+783964000000-7839649f0000 rw-p 00000000 00:00 0 
+7839649f0000-783968000000 ---p 00000000 00:00 0 
+783968000000-783968166000 rw-p 00000000 00:00 0 
+783968166000-78396c000000 ---p 00000000 00:00 0 
+78396c000000-78396c176000 rw-p 00000000 00:00 0 
+78396c176000-783970000000 ---p 00000000 00:00 0 
+783970000000-783970021000 rw-p 00000000 00:00 0 
+783970021000-783974000000 ---p 00000000 00:00 0 
+783976ef8000-783976efc000 ---p 00000000 00:00 0 
+783976efc000-783976ff8000 rw-p 00000000 00:00 0 
+783976ff8000-783976ffc000 ---p 00000000 00:00 0 
+783976ffc000-7839770f8000 rw-p 00000000 00:00 0 
+7839770f8000-7839770f9000 ---p 00000000 00:00 0 
+7839770f9000-7839771f9000 rw-p 00000000 00:00 0 
+7839771f9000-7839771fa000 ---p 00000000 00:00 0 
+7839771fa000-7839772fa000 rw-p 00000000 00:00 0 
+7839772fa000-7839772fb000 ---p 00000000 00:00 0 
+7839772fb000-7839773fb000 rw-p 00000000 00:00 0 
+7839773ff000-783977403000 ---p 00000000 00:00 0 
+783977403000-7839774ff000 rw-p 00000000 00:00 0 
+7839774ff000-783977503000 ---p 00000000 00:00 0 
+783977503000-7839775ff000 rw-p 00000000 00:00 0 
+7839775ff000-783977603000 ---p 00000000 00:00 0 
+783977603000-7839776ff000 rw-p 00000000 00:00 0 
+7839776ff000-783977703000 ---p 00000000 00:00 0 
+783977703000-7839777ff000 rw-p 00000000 00:00 0 
+7839777ff000-783977803000 ---p 00000000 00:00 0 
+783977803000-7839778ff000 rw-p 00000000 00:00 0 
+7839778ff000-783977903000 ---p 00000000 00:00 0 
+783977903000-7839779ff000 rw-p 00000000 00:00 0 
+7839779ff000-783977a00000 ---p 00000000 00:00 0 
+783977a00000-783977b00000 rw-p 00000000 00:00 0 
+783977b00000-783977b04000 ---p 00000000 00:00 0 
+783977b04000-783977c00000 rw-p 00000000 00:00 0 
+783977c00000-783977c04000 ---p 00000000 00:00 0 
+783977c04000-783977d00000 rw-p 00000000 00:00 0 
+783977d00000-783977d04000 ---p 00000000 00:00 0 
+783977d04000-783977e00000 rw-p 00000000 00:00 0 
+783977e00000-783977e04000 ---p 00000000 00:00 0 
+783977e04000-783977f00000 rw-p 00000000 00:00 0 
+783977f00000-783977f04000 ---p 00000000 00:00 0 
+783977f04000-783978000000 rw-p 00000000 00:00 0 
+783978000000-78397824c000 rw-p 00000000 00:00 0 
+78397824c000-78397c000000 ---p 00000000 00:00 0 
+78397c000000-78397c021000 rw-p 00000000 00:00 0 
+78397c021000-783980000000 ---p 00000000 00:00 0 
+783980000000-7839806f3000 rw-p 00000000 00:00 0 
+7839806f3000-783984000000 ---p 00000000 00:00 0 
+783984000000-78398424c000 rw-p 00000000 00:00 0 
+78398424c000-783988000000 ---p 00000000 00:00 0 
+783988000000-783988021000 rw-p 00000000 00:00 0 
+783988021000-78398c000000 ---p 00000000 00:00 0 
+78398c000000-78398c021000 rw-p 00000000 00:00 0 
+78398c021000-783990000000 ---p 00000000 00:00 0 
+783990000000-783990021000 rw-p 00000000 00:00 0 
+783990021000-783994000000 ---p 00000000 00:00 0 
+783994000000-783994021000 rw-p 00000000 00:00 0 
+783994021000-783998000000 ---p 00000000 00:00 0 
+783998000000-78399832d000 rw-p 00000000 00:00 0 
+78399832d000-78399c000000 ---p 00000000 00:00 0 
+78399c000000-78399c021000 rw-p 00000000 00:00 0 
+78399c021000-7839a0000000 ---p 00000000 00:00 0 
+7839a0000000-7839a04f0000 rw-p 00000000 00:00 0 
+7839a04f0000-7839a0510000 rw-p 00000000 00:00 0 
+7839a0510000-7839a0530000 rw-p 00000000 00:00 0 
+7839a0530000-7839a0570000 rw-p 00000000 00:00 0 
+7839a0570000-7839a0630000 rw-p 00000000 00:00 0 
+7839a0630000-7839a0670000 rw-p 00000000 00:00 0 
+7839a0670000-7839a06f0000 rw-p 00000000 00:00 0 
+7839a06f0000-7839a08a0000 rw-p 00000000 00:00 0 
+7839a08a0000-7839a4000000 ---p 00000000 00:00 0 
+7839a4000000-7839a4021000 rw-p 00000000 00:00 0 
+7839a4021000-7839a8000000 ---p 00000000 00:00 0 
+7839a8000000-7839a8021000 rw-p 00000000 00:00 0 
+7839a8021000-7839ac000000 ---p 00000000 00:00 0 
+7839ac000000-7839ac021000 rw-p 00000000 00:00 0 
+7839ac021000-7839b0000000 ---p 00000000 00:00 0 
+7839b00fa000-7839b00fe000 ---p 00000000 00:00 0 
+7839b00fe000-7839b01fa000 rw-p 00000000 00:00 0 
+7839b01fa000-7839b01fe000 ---p 00000000 00:00 0 
+7839b01fe000-7839b02fa000 rw-p 00000000 00:00 0 
+7839b02fa000-7839b02ff000 r--p 00000000 00:b1 103451712                  /usr/lib/jvm/java-21-openjdk-amd64/lib/libjsvml.so
+7839b02ff000-7839b0340000 r-xp 00005000 00:b1 103451712                  /usr/lib/jvm/java-21-openjdk-amd64/lib/libjsvml.so
+7839b0340000-7839b03c9000 r--p 00046000 00:b1 103451712                  /usr/lib/jvm/java-21-openjdk-amd64/lib/libjsvml.so
+7839b03c9000-7839b03ca000 r--p 000ce000 00:b1 103451712                  /usr/lib/jvm/java-21-openjdk-amd64/lib/libjsvml.so
+7839b03ca000-7839b03cb000 rw-p 000cf000 00:b1 103451712                  /usr/lib/jvm/java-21-openjdk-amd64/lib/libjsvml.so
+7839b03cb000-7839b03cf000 ---p 00000000 00:00 0 
+7839b03cf000-7839b04cb000 rw-p 00000000 00:00 0 
+7839b04cb000-7839b04cf000 ---p 00000000 00:00 0 
+7839b04cf000-7839b05cb000 rw-p 00000000 00:00 0 
+7839b05cb000-7839b05cf000 ---p 00000000 00:00 0 
+7839b05cf000-7839b06cb000 rw-p 00000000 00:00 0 
+7839b06cb000-7839b06cf000 ---p 00000000 00:00 0 
+7839b06cf000-7839b07cb000 rw-p 00000000 00:00 0 
+7839b07cb000-7839b07cf000 ---p 00000000 00:00 0 
+7839b07cf000-7839b08cb000 rw-p 00000000 00:00 0 
+7839b08cb000-7839b08cf000 ---p 00000000 00:00 0 
+7839b08cf000-7839b09cb000 rw-p 00000000 00:00 0 
+7839b09cb000-7839b09cf000 ---p 00000000 00:00 0 
+7839b09cf000-7839b0acb000 rw-p 00000000 00:00 0 
+7839b0acb000-7839b0acc000 ---p 00000000 00:00 0 
+7839b0acc000-7839b0bcc000 rw-p 00000000 00:00 0 
+7839b0bcc000-7839b0bcd000 ---p 00000000 00:00 0 
+7839b0bcd000-7839b0ccd000 rw-p 00000000 00:00 0 
+7839b0ccd000-7839b0cce000 ---p 00000000 00:00 0 
+7839b0cce000-7839b0dce000 rw-p 00000000 00:00 0 
+7839b0dce000-7839b0dcf000 ---p 00000000 00:00 0 
+7839b0dcf000-7839b0ecf000 rw-p 00000000 00:00 0 
+7839b0ecf000-7839b4021000 rw-p 00000000 00:00 0 
+7839b4021000-7839b8000000 ---p 00000000 00:00 0 
+7839b8000000-7839b8021000 rw-p 00000000 00:00 0 
+7839b8021000-7839bc000000 ---p 00000000 00:00 0 
+7839bc000000-7839bc021000 rw-p 00000000 00:00 0 
+7839bc021000-7839c0000000 ---p 00000000 00:00 0 
+7839c004e000-7839c0050000 r--p 00000000 00:b1 103451727                  /usr/lib/jvm/java-21-openjdk-amd64/lib/libzip.so
+7839c0050000-7839c0055000 r-xp 00002000 00:b1 103451727                  /usr/lib/jvm/java-21-openjdk-amd64/lib/libzip.so
+7839c0055000-7839c0057000 r--p 00007000 00:b1 103451727                  /usr/lib/jvm/java-21-openjdk-amd64/lib/libzip.so
+7839c0057000-7839c0058000 r--p 00008000 00:b1 103451727                  /usr/lib/jvm/java-21-openjdk-amd64/lib/libzip.so
+7839c0058000-7839c0059000 rw-p 00009000 00:b1 103451727                  /usr/lib/jvm/java-21-openjdk-amd64/lib/libzip.so
+7839c0059000-7839c005c000 r--p 00000000 00:b1 103451719                  /usr/lib/jvm/java-21-openjdk-amd64/lib/libnet.so
+7839c005c000-7839c0064000 r-xp 00003000 00:b1 103451719                  /usr/lib/jvm/java-21-openjdk-amd64/lib/libnet.so
+7839c0064000-7839c0066000 r--p 0000b000 00:b1 103451719                  /usr/lib/jvm/java-21-openjdk-amd64/lib/libnet.so
+7839c0066000-7839c0067000 r--p 0000c000 00:b1 103451719                  /usr/lib/jvm/java-21-openjdk-amd64/lib/libnet.so
+7839c0067000-7839c0068000 rw-p 0000d000 00:b1 103451719                  /usr/lib/jvm/java-21-openjdk-amd64/lib/libnet.so
+7839c0068000-7839c3800000 rw-p 00000000 00:00 0 
+7839c3806000-7839c380d000 r--p 00000000 00:b1 103451720                  /usr/lib/jvm/java-21-openjdk-amd64/lib/libnio.so
+7839c380d000-7839c3816000 r-xp 00007000 00:b1 103451720                  /usr/lib/jvm/java-21-openjdk-amd64/lib/libnio.so
+7839c3816000-7839c381a000 r--p 00010000 00:b1 103451720                  /usr/lib/jvm/java-21-openjdk-amd64/lib/libnio.so
+7839c381a000-7839c381b000 r--p 00014000 00:b1 103451720                  /usr/lib/jvm/java-21-openjdk-amd64/lib/libnio.so
+7839c381b000-7839c381c000 rw-p 00015000 00:b1 103451720                  /usr/lib/jvm/java-21-openjdk-amd64/lib/libnio.so
+7839c381c000-7839c391d000 rw-p 00000000 00:00 0 
+7839c391d000-7839c391e000 ---p 00000000 00:00 0 
+7839c391e000-7839c3a1e000 rw-p 00000000 00:00 0 
+7839c3a1e000-7839c3a1f000 ---p 00000000 00:00 0 
+7839c3a1f000-7839c3b1f000 rw-p 00000000 00:00 0 
+7839c3b1f000-7839c3b20000 ---p 00000000 00:00 0 
+7839c3b20000-7839c3c20000 rw-p 00000000 00:00 0 
+7839c3c20000-7839c4197000 rw-p 00000000 00:00 0 
+7839c4197000-7839e2017000 ---p 00000000 00:00 0 
+7839e2017000-7839e2037000 rw-p 00000000 00:00 0 
+7839e2037000-7839e5c07000 ---p 00000000 00:00 0 
+7839e5c07000-7839e5c27000 rw-p 00000000 00:00 0 
+7839e5c27000-7839e97f7000 ---p 00000000 00:00 0 
+7839e97f7000-7839ee235000 rw-p 00000000 00:00 0 
+7839ee235000-7839ee318000 ---p 00000000 00:00 0 
+7839ee318000-7839ee31d000 rw-p 00000000 00:00 0 
+7839ee31d000-7839ee400000 ---p 00000000 00:00 0 
+7839ee400000-7839ee670000 rwxp 00000000 00:00 0 
+7839ee670000-7839f57cf000 ---p 00000000 00:00 0 
+7839f57cf000-7839f5c0f000 rwxp 00000000 00:00 0 
+7839f5c0f000-7839f6030000 ---p 00000000 00:00 0 
+7839f6030000-7839f62a0000 rwxp 00000000 00:00 0 
+7839f62a0000-7839fd400000 ---p 00000000 00:00 0 
+7839fd405000-7839fd406000 r--p 00000000 00:00 0 
+7839fd406000-7839fd407000 r--p 00000000 00:b1 97917417                   /usr/lib/locale/C.utf8/LC_NUMERIC
+7839fd407000-7839fd408000 r--p 00000000 00:b1 97917420                   /usr/lib/locale/C.utf8/LC_TIME
+7839fd408000-7839fd409000 r--p 00000000 00:b1 97917409                   /usr/lib/locale/C.utf8/LC_COLLATE
+7839fd409000-7839fd40a000 r--p 00000000 00:b1 97917415                   /usr/lib/locale/C.utf8/LC_MONETARY
+7839fd40a000-7839fd40b000 r--p 00000000 00:b1 97917414                   /usr/lib/locale/C.utf8/LC_MESSAGES/SYS_LC_MESSAGES
+7839fd40b000-7839fd414000 rw-p 00000000 00:00 0 
+7839fd414000-7839fd41c000 ---p 00000000 00:00 0 
+7839fd41c000-7839fd429000 r--p 00000000 00:b1 103451705                  /usr/lib/jvm/java-21-openjdk-amd64/lib/libjava.so
+7839fd429000-7839fd438000 r-xp 0000d000 00:b1 103451705                  /usr/lib/jvm/java-21-openjdk-amd64/lib/libjava.so
+7839fd438000-7839fd43d000 r--p 0001c000 00:b1 103451705                  /usr/lib/jvm/java-21-openjdk-amd64/lib/libjava.so
+7839fd43d000-7839fd43e000 r--p 00021000 00:b1 103451705                  /usr/lib/jvm/java-21-openjdk-amd64/lib/libjava.so
+7839fd43e000-7839fd43f000 rw-p 00022000 00:b1 103451705                  /usr/lib/jvm/java-21-openjdk-amd64/lib/libjava.so
+7839fd43f000-7839fd440000 rw-p 00000000 00:00 0 
+7839fd440000-7839fd448000 rw-s 00000000 00:b1 100964553                  /tmp/hsperfdata_lulizhi/1860630
+7839fd448000-783a05a99000 r--s 00000000 00:b1 103451728                  /usr/lib/jvm/java-21-openjdk-amd64/lib/modules
+783a05a99000-783a05d3b000 r--p 00000000 00:b1 103451734                  /usr/lib/jvm/java-21-openjdk-amd64/lib/server/libjvm.so
+783a05d3b000-783a06bb2000 r-xp 002a2000 00:b1 103451734                  /usr/lib/jvm/java-21-openjdk-amd64/lib/server/libjvm.so
+783a06bb2000-783a06e8d000 r--p 01119000 00:b1 103451734                  /usr/lib/jvm/java-21-openjdk-amd64/lib/server/libjvm.so
+783a06e8d000-783a06f61000 r--p 013f3000 00:b1 103451734                  /usr/lib/jvm/java-21-openjdk-amd64/lib/server/libjvm.so
+783a06f61000-783a06f91000 rw-p 014c7000 00:b1 103451734                  /usr/lib/jvm/java-21-openjdk-amd64/lib/server/libjvm.so
+783a06f91000-783a070f7000 rw-p 00000000 00:00 0 
+783a070f7000-783a070fa000 r--p 00000000 08:10 66949615                   /workspace/miniconda3/lib/libffi.so.8.1.4
+783a070fa000-783a07104000 r-xp 00003000 08:10 66949615                   /workspace/miniconda3/lib/libffi.so.8.1.4
+783a07104000-783a07106000 r--p 0000d000 08:10 66949615                   /workspace/miniconda3/lib/libffi.so.8.1.4
+783a07106000-783a07107000 r--p 0000e000 08:10 66949615                   /workspace/miniconda3/lib/libffi.so.8.1.4
+783a07107000-783a07108000 rw-p 0000f000 08:10 66949615                   /workspace/miniconda3/lib/libffi.so.8.1.4
+783a07108000-783a071b6000 r--p 00000000 08:10 66921582                   /workspace/miniconda3/lib/libstdc++.so.6.0.34
+783a071b6000-783a0725e000 r-xp 000ae000 08:10 66921582                   /workspace/miniconda3/lib/libstdc++.so.6.0.34
+783a0725e000-783a072e7000 r--p 00156000 08:10 66921582                   /workspace/miniconda3/lib/libstdc++.so.6.0.34
+783a072e7000-783a072f5000 r--p 001de000 08:10 66921582                   /workspace/miniconda3/lib/libstdc++.so.6.0.34
+783a072f5000-783a072f9000 rw-p 001ec000 08:10 66921582                   /workspace/miniconda3/lib/libstdc++.so.6.0.34
+783a072f9000-783a072fd000 rw-p 00000000 00:00 0 
+783a072fd000-783a07338000 r--p 00000000 00:b1 103551304                  /home/lulizhi/.local/share/uv/tools/reverse-engineering-assistant/lib/python3.13/site-packages/_jpype.cpython-313-x86_64-linux-gnu.so
+783a07338000-783a0738d000 r-xp 0003b000 00:b1 103551304                  /home/lulizhi/.local/share/uv/tools/reverse-engineering-assistant/lib/python3.13/site-packages/_jpype.cpython-313-x86_64-linux-gnu.so
+783a0738d000-783a073b5000 r--p 00090000 00:b1 103551304                  /home/lulizhi/.local/share/uv/tools/reverse-engineering-assistant/lib/python3.13/site-packages/_jpype.cpython-313-x86_64-linux-gnu.so
+783a073b5000-783a073b6000 ---p 000b8000 00:b1 103551304                  /home/lulizhi/.local/share/uv/tools/reverse-engineering-assistant/lib/python3.13/site-packages/_jpype.cpython-313-x86_64-linux-gnu.so
+783a073b6000-783a073ba000 r--p 000b8000 00:b1 103551304                  /home/lulizhi/.local/share/uv/tools/reverse-engineering-assistant/lib/python3.13/site-packages/_jpype.cpython-313-x86_64-linux-gnu.so
+783a073ba000-783a073be000 rw-p 000bc000 00:b1 103551304                  /home/lulizhi/.local/share/uv/tools/reverse-engineering-assistant/lib/python3.13/site-packages/_jpype.cpython-313-x86_64-linux-gnu.so
+783a073be000-783a076be000 rw-p 00000000 00:00 0 
+783a076be000-783a076eb000 r--p 00000000 00:b1 103551303                  /home/lulizhi/.local/share/uv/tools/reverse-engineering-assistant/lib/python3.13/site-packages/rpds/rpds.cpython-313-x86_64-linux-gnu.so
+783a076eb000-783a07769000 r-xp 0002c000 00:b1 103551303                  /home/lulizhi/.local/share/uv/tools/reverse-engineering-assistant/lib/python3.13/site-packages/rpds/rpds.cpython-313-x86_64-linux-gnu.so
+783a07769000-783a0776f000 r--p 000a9000 00:b1 103551303                  /home/lulizhi/.local/share/uv/tools/reverse-engineering-assistant/lib/python3.13/site-packages/rpds/rpds.cpython-313-x86_64-linux-gnu.so
+783a0776f000-783a07771000 rw-p 000ae000 00:b1 103551303                  /home/lulizhi/.local/share/uv/tools/reverse-engineering-assistant/lib/python3.13/site-packages/rpds/rpds.cpython-313-x86_64-linux-gnu.so
+783a07771000-783a0815c000 rw-p 00000000 00:00 0 
+783a0815c000-783a08164000 r--p 00000000 08:10 66946477                   /workspace/miniconda3/lib/libmpdec.so.4.0.0
+783a08164000-783a08183000 r-xp 00008000 08:10 66946477                   /workspace/miniconda3/lib/libmpdec.so.4.0.0
+783a08183000-783a0818a000 r--p 00027000 08:10 66946477                   /workspace/miniconda3/lib/libmpdec.so.4.0.0
+783a0818a000-783a0818b000 ---p 0002e000 08:10 66946477                   /workspace/miniconda3/lib/libmpdec.so.4.0.0
+783a0818b000-783a0818c000 r--p 0002e000 08:10 66946477                   /workspace/miniconda3/lib/libmpdec.so.4.0.0
+783a0818c000-783a0818d000 rw-p 0002f000 08:10 66946477                   /workspace/miniconda3/lib/libmpdec.so.4.0.0
+783a0818d000-783a08196000 r--p 00000000 08:10 66923523                   /workspace/miniconda3/lib/python3.13/lib-dynload/_decimal.cpython-313-x86_64-linux-gnu.so
+783a08196000-783a081ac000 r-xp 00009000 08:10 66923523                   /workspace/miniconda3/lib/python3.13/lib-dynload/_decimal.cpython-313-x86_64-linux-gnu.so
+783a081ac000-783a081b9000 r--p 0001f000 08:10 66923523                   /workspace/miniconda3/lib/python3.13/lib-dynload/_decimal.cpython-313-x86_64-linux-gnu.so
+783a081b9000-783a081ba000 r--p 0002b000 08:10 66923523                   /workspace/miniconda3/lib/python3.13/lib-dynload/_decimal.cpython-313-x86_64-linux-gnu.so
+783a081ba000-783a081bd000 rw-p 0002c000 08:10 66923523                   /workspace/miniconda3/lib/python3.13/lib-dynload/_decimal.cpython-313-x86_64-linux-gnu.so
+783a081bd000-783a081c1000 r--p 00000000 08:10 66915245                   /workspace/miniconda3/lib/libgcc_s.so.1
+783a081c1000-783a081d7000 r-xp 00004000 08:10 66915245                   /workspace/miniconda3/lib/libgcc_s.so.1
+783a081d7000-783a081db000 r--p 0001a000 08:10 66915245                   /workspace/miniconda3/lib/libgcc_s.so.1
+783a081db000-783a081dc000 r--p 0001d000 08:10 66915245                   /workspace/miniconda3/lib/libgcc_s.so.1
+783a081dc000-783a081dd000 rw-p 0001e000 08:10 66915245                   /workspace/miniconda3/lib/libgcc_s.so.1
+783a081dd000-783a08310000 r--p 00000000 00:b1 103551235                  /home/lulizhi/.local/share/uv/tools/reverse-engineering-assistant/lib/python3.13/site-packages/pydantic_core/_pydantic_core.cpython-313-x86_64-linux-gnu.so
+783a08310000-783a08634000 r-xp 00132000 00:b1 103551235                  /home/lulizhi/.local/share/uv/tools/reverse-engineering-assistant/lib/python3.13/site-packages/pydantic_core/_pydantic_core.cpython-313-x86_64-linux-gnu.so
+783a08634000-783a08661000 r--p 00455000 00:b1 103551235                  /home/lulizhi/.local/share/uv/tools/reverse-engineering-assistant/lib/python3.13/site-packages/pydantic_core/_pydantic_core.cpython-313-x86_64-linux-gnu.so
+783a08661000-783a08668000 rw-p 00481000 00:b1 103551235                  /home/lulizhi/.local/share/uv/tools/reverse-engineering-assistant/lib/python3.13/site-packages/pydantic_core/_pydantic_core.cpython-313-x86_64-linux-gnu.so
+783a08668000-783a08868000 rw-p 00000000 00:00 0 
+783a08868000-783a0886b000 r--p 00000000 08:10 66924017                   /workspace/miniconda3/lib/python3.13/lib-dynload/unicodedata.cpython-313-x86_64-linux-gnu.so
+783a0886b000-783a0886f000 r-xp 00003000 08:10 66924017                   /workspace/miniconda3/lib/python3.13/lib-dynload/unicodedata.cpython-313-x86_64-linux-gnu.so
+783a0886f000-783a08912000 r--p 00007000 08:10 66924017                   /workspace/miniconda3/lib/python3.13/lib-dynload/unicodedata.cpython-313-x86_64-linux-gnu.so
+783a08912000-783a08913000 r--p 000aa000 08:10 66924017                   /workspace/miniconda3/lib/python3.13/lib-dynload/unicodedata.cpython-313-x86_64-linux-gnu.so
+783a08913000-783a08914000 rw-p 000ab000 08:10 66924017                   /workspace/miniconda3/lib/python3.13/lib-dynload/unicodedata.cpython-313-x86_64-linux-gnu.so
+783a08914000-783a08a14000 rw-p 00000000 00:00 0 
+783a08a14000-783a08a17000 r--p 00000000 08:10 66923461                   /workspace/miniconda3/lib/python3.13/lib-dynload/_json.cpython-313-x86_64-linux-gnu.so
+783a08a17000-783a08a1d000 r-xp 00003000 08:10 66923461                   /workspace/miniconda3/lib/python3.13/lib-dynload/_json.cpython-313-x86_64-linux-gnu.so
+783a08a1d000-783a08a1f000 r--p 00009000 08:10 66923461                   /workspace/miniconda3/lib/python3.13/lib-dynload/_json.cpython-313-x86_64-linux-gnu.so
+783a08a1f000-783a08a20000 r--p 0000a000 08:10 66923461                   /workspace/miniconda3/lib/python3.13/lib-dynload/_json.cpython-313-x86_64-linux-gnu.so
+783a08a20000-783a08a21000 rw-p 0000b000 08:10 66923461                   /workspace/miniconda3/lib/python3.13/lib-dynload/_json.cpython-313-x86_64-linux-gnu.so
+783a08a21000-783a08a23000 r--p 00000000 08:10 66918541                   /workspace/miniconda3/lib/python3.13/lib-dynload/_random.cpython-313-x86_64-linux-gnu.so
+783a08a23000-783a08a25000 r-xp 00002000 08:10 66918541                   /workspace/miniconda3/lib/python3.13/lib-dynload/_random.cpython-313-x86_64-linux-gnu.so
+783a08a25000-783a08a26000 r--p 00004000 08:10 66918541                   /workspace/miniconda3/lib/python3.13/lib-dynload/_random.cpython-313-x86_64-linux-gnu.so
+783a08a26000-783a08a27000 r--p 00004000 08:10 66918541                   /workspace/miniconda3/lib/python3.13/lib-dynload/_random.cpython-313-x86_64-linux-gnu.so
+783a08a27000-783a08a28000 rw-p 00005000 08:10 66918541                   /workspace/miniconda3/lib/python3.13/lib-dynload/_random.cpython-313-x86_64-linux-gnu.so
+783a08a28000-783a08a2d000 r--p 00000000 08:10 66945368                   /workspace/miniconda3/lib/liblzma.so.5.8.2
+783a08a2d000-783a08a4b000 r-xp 00005000 08:10 66945368                   /workspace/miniconda3/lib/liblzma.so.5.8.2
+783a08a4b000-783a08a57000 r--p 00023000 08:10 66945368                   /workspace/miniconda3/lib/liblzma.so.5.8.2
+783a08a57000-783a08a58000 r--p 0002f000 08:10 66945368                   /workspace/miniconda3/lib/liblzma.so.5.8.2
+783a08a58000-783a08a59000 rw-p 00030000 08:10 66945368                   /workspace/miniconda3/lib/liblzma.so.5.8.2
+783a08a59000-783a08a5c000 r--p 00000000 08:10 66922936                   /workspace/miniconda3/lib/python3.13/lib-dynload/_lzma.cpython-313-x86_64-linux-gnu.so
+783a08a5c000-783a08a60000 r-xp 00003000 08:10 66922936                   /workspace/miniconda3/lib/python3.13/lib-dynload/_lzma.cpython-313-x86_64-linux-gnu.so
+783a08a60000-783a08a63000 r--p 00007000 08:10 66922936                   /workspace/miniconda3/lib/python3.13/lib-dynload/_lzma.cpython-313-x86_64-linux-gnu.so
+783a08a63000-783a08a64000 r--p 00009000 08:10 66922936                   /workspace/miniconda3/lib/python3.13/lib-dynload/_lzma.cpython-313-x86_64-linux-gnu.so
+783a08a64000-783a08a65000 rw-p 0000a000 08:10 66922936                   /workspace/miniconda3/lib/python3.13/lib-dynload/_lzma.cpython-313-x86_64-linux-gnu.so
+783a08a65000-783a08a67000 r--p 00000000 08:10 66951381                   /workspace/miniconda3/lib/libbz2.so.1.0.8
+783a08a67000-783a08a75000 r-xp 00002000 08:10 66951381                   /workspace/miniconda3/lib/libbz2.so.1.0.8
+783a08a75000-783a08a77000 r--p 00010000 08:10 66951381                   /workspace/miniconda3/lib/libbz2.so.1.0.8
+783a08a77000-783a08a78000 r--p 00011000 08:10 66951381                   /workspace/miniconda3/lib/libbz2.so.1.0.8
+783a08a78000-783a08a79000 rw-p 00012000 08:10 66951381                   /workspace/miniconda3/lib/libbz2.so.1.0.8
+783a08a79000-783a08a7b000 r--p 00000000 08:10 66921740                   /workspace/miniconda3/lib/python3.13/lib-dynload/_bz2.cpython-313-x86_64-linux-gnu.so
+783a08a7b000-783a08a7d000 r-xp 00002000 08:10 66921740                   /workspace/miniconda3/lib/python3.13/lib-dynload/_bz2.cpython-313-x86_64-linux-gnu.so
+783a08a7d000-783a08a7f000 r--p 00004000 08:10 66921740                   /workspace/miniconda3/lib/python3.13/lib-dynload/_bz2.cpython-313-x86_64-linux-gnu.so
+783a08a7f000-783a08a80000 r--p 00005000 08:10 66921740                   /workspace/miniconda3/lib/python3.13/lib-dynload/_bz2.cpython-313-x86_64-linux-gnu.so
+783a08a80000-783a08a81000 rw-p 00006000 08:10 66921740                   /workspace/miniconda3/lib/python3.13/lib-dynload/_bz2.cpython-313-x86_64-linux-gnu.so
+783a08a81000-783a08a84000 r--p 00000000 08:10 66922796                   /workspace/miniconda3/lib/python3.13/lib-dynload/zlib.cpython-313-x86_64-linux-gnu.so
+783a08a84000-783a08a88000 r-xp 00003000 08:10 66922796                   /workspace/miniconda3/lib/python3.13/lib-dynload/zlib.cpython-313-x86_64-linux-gnu.so
+783a08a88000-783a08a8b000 r--p 00007000 08:10 66922796                   /workspace/miniconda3/lib/python3.13/lib-dynload/zlib.cpython-313-x86_64-linux-gnu.so
+783a08a8b000-783a08a8c000 r--p 0000a000 08:10 66922796                   /workspace/miniconda3/lib/python3.13/lib-dynload/zlib.cpython-313-x86_64-linux-gnu.so
+783a08a8c000-783a08a8d000 rw-p 0000b000 08:10 66922796                   /workspace/miniconda3/lib/python3.13/lib-dynload/zlib.cpython-313-x86_64-linux-gnu.so
+783a08a8d000-783a08c8d000 rw-p 00000000 00:00 0 
+783a08c8d000-783a08c8f000 r--p 00000000 08:10 66924176                   /workspace/miniconda3/lib/python3.13/lib-dynload/_blake2.cpython-313-x86_64-linux-gnu.so
+783a08c8f000-783a08c96000 r-xp 00002000 08:10 66924176                   /workspace/miniconda3/lib/python3.13/lib-dynload/_blake2.cpython-313-x86_64-linux-gnu.so
+783a08c96000-783a08c98000 r--p 00009000 08:10 66924176                   /workspace/miniconda3/lib/python3.13/lib-dynload/_blake2.cpython-313-x86_64-linux-gnu.so
+783a08c98000-783a08c99000 r--p 0000a000 08:10 66924176                   /workspace/miniconda3/lib/python3.13/lib-dynload/_blake2.cpython-313-x86_64-linux-gnu.so
+783a08c99000-783a08c9a000 rw-p 0000b000 08:10 66924176                   /workspace/miniconda3/lib/python3.13/lib-dynload/_blake2.cpython-313-x86_64-linux-gnu.so
+783a08c9a000-783a08e9a000 rw-p 00000000 00:00 0 
+783a08e9a000-783a08e9b000 r--p 00000000 00:b1 97917418                   /usr/lib/locale/C.utf8/LC_PAPER
+783a08e9b000-783a08e9c000 r--p 00000000 00:b1 97917416                   /usr/lib/locale/C.utf8/LC_NAME
+783a08e9c000-783a08e9d000 r--p 00000000 00:b1 97917408                   /usr/lib/locale/C.utf8/LC_ADDRESS
+783a08e9d000-783a08e9e000 r--p 00000000 00:b1 97917419                   /usr/lib/locale/C.utf8/LC_TELEPHONE
+783a08e9e000-783a08e9f000 r--p 00000000 00:b1 97917412                   /usr/lib/locale/C.utf8/LC_MEASUREMENT
+783a08e9f000-783a08ea0000 r--p 00000000 00:b1 97917411                   /usr/lib/locale/C.utf8/LC_IDENTIFICATION
+783a08ea0000-783a08ea2000 r--p 00000000 00:b1 103451708                  /usr/lib/jvm/java-21-openjdk-amd64/lib/libjimage.so
+783a08ea2000-783a08ea5000 r-xp 00002000 00:b1 103451708                  /usr/lib/jvm/java-21-openjdk-amd64/lib/libjimage.so
+783a08ea5000-783a08ea6000 r--p 00005000 00:b1 103451708                  /usr/lib/jvm/java-21-openjdk-amd64/lib/libjimage.so
+783a08ea6000-783a08ea7000 r--p 00006000 00:b1 103451708                  /usr/lib/jvm/java-21-openjdk-amd64/lib/libjimage.so
+783a08ea7000-783a08ea8000 rw-p 00007000 00:b1 103451708                  /usr/lib/jvm/java-21-openjdk-amd64/lib/libjimage.so
+783a08ea8000-783a08eaf000 r--p 00000000 08:10 66923697                   /workspace/miniconda3/lib/python3.13/lib-dynload/_ctypes.cpython-313-x86_64-linux-gnu.so
+783a08eaf000-783a08ebf000 r-xp 00007000 08:10 66923697                   /workspace/miniconda3/lib/python3.13/lib-dynload/_ctypes.cpython-313-x86_64-linux-gnu.so
+783a08ebf000-783a08ec6000 r--p 00017000 08:10 66923697                   /workspace/miniconda3/lib/python3.13/lib-dynload/_ctypes.cpython-313-x86_64-linux-gnu.so
+783a08ec6000-783a08ec7000 r--p 0001e000 08:10 66923697                   /workspace/miniconda3/lib/python3.13/lib-dynload/_ctypes.cpython-313-x86_64-linux-gnu.so
+783a08ec7000-783a08ec9000 rw-p 0001f000 08:10 66923697                   /workspace/miniconda3/lib/python3.13/lib-dynload/_ctypes.cpython-313-x86_64-linux-gnu.so
+783a08ec9000-783a08ecb000 r--p 00000000 08:10 66923299                   /workspace/miniconda3/lib/python3.13/lib-dynload/_multiprocessing.cpython-313-x86_64-linux-gnu.so
+783a08ecb000-783a08ecc000 r-xp 00002000 08:10 66923299                   /workspace/miniconda3/lib/python3.13/lib-dynload/_multiprocessing.cpython-313-x86_64-linux-gnu.so
+783a08ecc000-783a08ecd000 r--p 00003000 08:10 66923299                   /workspace/miniconda3/lib/python3.13/lib-dynload/_multiprocessing.cpython-313-x86_64-linux-gnu.so
+783a08ecd000-783a08ece000 r--p 00003000 08:10 66923299                   /workspace/miniconda3/lib/python3.13/lib-dynload/_multiprocessing.cpython-313-x86_64-linux-gnu.so
+783a08ece000-783a08ecf000 rw-p 00004000 08:10 66923299                   /workspace/miniconda3/lib/python3.13/lib-dynload/_multiprocessing.cpython-313-x86_64-linux-gnu.so
+783a08ecf000-783a08ed1000 r--p 00000000 08:10 66918517                   /workspace/miniconda3/lib/python3.13/lib-dynload/_queue.cpython-313-x86_64-linux-gnu.so
+783a08ed1000-783a08ed2000 r-xp 00002000 08:10 66918517                   /workspace/miniconda3/lib/python3.13/lib-dynload/_queue.cpython-313-x86_64-linux-gnu.so
+783a08ed2000-783a08ed3000 r--p 00003000 08:10 66918517                   /workspace/miniconda3/lib/python3.13/lib-dynload/_queue.cpython-313-x86_64-linux-gnu.so
+783a08ed3000-783a08ed4000 r--p 00003000 08:10 66918517                   /workspace/miniconda3/lib/python3.13/lib-dynload/_queue.cpython-313-x86_64-linux-gnu.so
+783a08ed4000-783a08ed5000 rw-p 00004000 08:10 66918517                   /workspace/miniconda3/lib/python3.13/lib-dynload/_queue.cpython-313-x86_64-linux-gnu.so
+783a08ed5000-783a08eda000 r--p 00000000 08:10 66924103                   /workspace/miniconda3/lib/python3.13/lib-dynload/_pickle.cpython-313-x86_64-linux-gnu.so
+783a08eda000-783a08eec000 r-xp 00005000 08:10 66924103                   /workspace/miniconda3/lib/python3.13/lib-dynload/_pickle.cpython-313-x86_64-linux-gnu.so
+783a08eec000-783a08ef2000 r--p 00017000 08:10 66924103                   /workspace/miniconda3/lib/python3.13/lib-dynload/_pickle.cpython-313-x86_64-linux-gnu.so
+783a08ef2000-783a08ef3000 r--p 0001d000 08:10 66924103                   /workspace/miniconda3/lib/python3.13/lib-dynload/_pickle.cpython-313-x86_64-linux-gnu.so
+783a08ef3000-783a08ef4000 rw-p 0001e000 08:10 66924103                   /workspace/miniconda3/lib/python3.13/lib-dynload/_pickle.cpython-313-x86_64-linux-gnu.so
+783a08ef4000-783a08ef7000 r--p 00000000 08:10 66921513                   /workspace/miniconda3/lib/python3.13/lib-dynload/_zoneinfo.cpython-313-x86_64-linux-gnu.so
+783a08ef7000-783a08efc000 r-xp 00003000 08:10 66921513                   /workspace/miniconda3/lib/python3.13/lib-dynload/_zoneinfo.cpython-313-x86_64-linux-gnu.so
+783a08efc000-783a08efe000 r--p 00008000 08:10 66921513                   /workspace/miniconda3/lib/python3.13/lib-dynload/_zoneinfo.cpython-313-x86_64-linux-gnu.so
+783a08efe000-783a08eff000 r--p 00009000 08:10 66921513                   /workspace/miniconda3/lib/python3.13/lib-dynload/_zoneinfo.cpython-313-x86_64-linux-gnu.so
+783a08eff000-783a08f00000 rw-p 0000a000 08:10 66921513                   /workspace/miniconda3/lib/python3.13/lib-dynload/_zoneinfo.cpython-313-x86_64-linux-gnu.so
+783a08f00000-783a09000000 rw-p 00000000 00:00 0 
+783a09000000-783a090ed000 r--p 00000000 08:10 67010942                   /workspace/miniconda3/lib/libcrypto.so.3
+783a090ed000-783a09440000 r-xp 000ed000 08:10 67010942                   /workspace/miniconda3/lib/libcrypto.so.3
+783a09440000-783a09573000 r--p 00440000 08:10 67010942                   /workspace/miniconda3/lib/libcrypto.so.3
+783a09573000-783a095f3000 r--p 00572000 08:10 67010942                   /workspace/miniconda3/lib/libcrypto.so.3
+783a095f3000-783a095f6000 rw-p 005f2000 08:10 67010942                   /workspace/miniconda3/lib/libcrypto.so.3
+783a095f6000-783a095f9000 rw-p 00000000 00:00 0 
+783a095f9000-783a095fa000 ---p 00000000 00:00 0 
+783a095fa000-783a095fb000 r--p 00000000 00:00 0 
+783a095fb000-783a095fd000 r--p 00000000 08:10 66922851                   /workspace/miniconda3/lib/python3.13/lib-dynload/_bisect.cpython-313-x86_64-linux-gnu.so
+783a095fd000-783a095ff000 r-xp 00002000 08:10 66922851                   /workspace/miniconda3/lib/python3.13/lib-dynload/_bisect.cpython-313-x86_64-linux-gnu.so
+783a095ff000-783a09600000 r--p 00004000 08:10 66922851                   /workspace/miniconda3/lib/python3.13/lib-dynload/_bisect.cpython-313-x86_64-linux-gnu.so
+783a09600000-783a09601000 r--p 00005000 08:10 66922851                   /workspace/miniconda3/lib/python3.13/lib-dynload/_bisect.cpython-313-x86_64-linux-gnu.so
+783a09601000-783a09602000 rw-p 00006000 08:10 66922851                   /workspace/miniconda3/lib/python3.13/lib-dynload/_bisect.cpython-313-x86_64-linux-gnu.so
+783a09602000-783a09608000 r--p 00000000 08:10 66923812                   /workspace/miniconda3/lib/python3.13/lib-dynload/_datetime.cpython-313-x86_64-linux-gnu.so
+783a09608000-783a0961b000 r-xp 00006000 08:10 66923812                   /workspace/miniconda3/lib/python3.13/lib-dynload/_datetime.cpython-313-x86_64-linux-gnu.so
+783a0961b000-783a09621000 r--p 00019000 08:10 66923812                   /workspace/miniconda3/lib/python3.13/lib-dynload/_datetime.cpython-313-x86_64-linux-gnu.so
+783a09621000-783a09622000 r--p 0001f000 08:10 66923812                   /workspace/miniconda3/lib/python3.13/lib-dynload/_datetime.cpython-313-x86_64-linux-gnu.so
+783a09622000-783a09625000 rw-p 00020000 08:10 66923812                   /workspace/miniconda3/lib/python3.13/lib-dynload/_datetime.cpython-313-x86_64-linux-gnu.so
+783a09625000-783a09627000 r--p 00000000 08:10 66923621                   /workspace/miniconda3/lib/python3.13/lib-dynload/_opcode.cpython-313-x86_64-linux-gnu.so
+783a09627000-783a09629000 r-xp 00002000 08:10 66923621                   /workspace/miniconda3/lib/python3.13/lib-dynload/_opcode.cpython-313-x86_64-linux-gnu.so
+783a09629000-783a0962a000 r--p 00004000 08:10 66923621                   /workspace/miniconda3/lib/python3.13/lib-dynload/_opcode.cpython-313-x86_64-linux-gnu.so
+783a0962a000-783a0962b000 r--p 00005000 08:10 66923621                   /workspace/miniconda3/lib/python3.13/lib-dynload/_opcode.cpython-313-x86_64-linux-gnu.so
+783a0962b000-783a0962c000 rw-p 00006000 08:10 66923621                   /workspace/miniconda3/lib/python3.13/lib-dynload/_opcode.cpython-313-x86_64-linux-gnu.so
+783a0962c000-783a0962f000 r--p 00000000 08:10 66918213                   /workspace/miniconda3/lib/libz.so.1.3.1
+783a0962f000-783a0963e000 r-xp 00003000 08:10 66918213                   /workspace/miniconda3/lib/libz.so.1.3.1
+783a0963e000-783a09645000 r--p 00012000 08:10 66918213                   /workspace/miniconda3/lib/libz.so.1.3.1
+783a09645000-783a09646000 r--p 00018000 08:10 66918213                   /workspace/miniconda3/lib/libz.so.1.3.1
+783a09646000-783a09647000 rw-p 00019000 08:10 66918213                   /workspace/miniconda3/lib/libz.so.1.3.1
+783a09647000-783a09649000 r--p 00000000 08:10 66922960                   /workspace/miniconda3/lib/python3.13/lib-dynload/binascii.cpython-313-x86_64-linux-gnu.so
+783a09649000-783a0964c000 r-xp 00002000 08:10 66922960                   /workspace/miniconda3/lib/python3.13/lib-dynload/binascii.cpython-313-x86_64-linux-gnu.so
+783a0964c000-783a0964e000 r--p 00005000 08:10 66922960                   /workspace/miniconda3/lib/python3.13/lib-dynload/binascii.cpython-313-x86_64-linux-gnu.so
+783a0964e000-783a0964f000 r--p 00006000 08:10 66922960                   /workspace/miniconda3/lib/python3.13/lib-dynload/binascii.cpython-313-x86_64-linux-gnu.so
+783a0964f000-783a09650000 rw-p 00007000 08:10 66922960                   /workspace/miniconda3/lib/python3.13/lib-dynload/binascii.cpython-313-x86_64-linux-gnu.so
+783a09650000-783a09654000 r--p 00000000 08:10 66920709                   /workspace/miniconda3/lib/python3.13/lib-dynload/_struct.cpython-313-x86_64-linux-gnu.so
+783a09654000-783a09659000 r-xp 00004000 08:10 66920709                   /workspace/miniconda3/lib/python3.13/lib-dynload/_struct.cpython-313-x86_64-linux-gnu.so
+783a09659000-783a0965d000 r--p 00009000 08:10 66920709                   /workspace/miniconda3/lib/python3.13/lib-dynload/_struct.cpython-313-x86_64-linux-gnu.so
+783a0965d000-783a0965e000 r--p 0000c000 08:10 66920709                   /workspace/miniconda3/lib/python3.13/lib-dynload/_struct.cpython-313-x86_64-linux-gnu.so
+783a0965e000-783a0965f000 rw-p 0000d000 08:10 66920709                   /workspace/miniconda3/lib/python3.13/lib-dynload/_struct.cpython-313-x86_64-linux-gnu.so
+783a0965f000-783a09683000 r--p 00000000 08:10 66947250                   /workspace/miniconda3/lib/libssl.so.3
+783a09683000-783a0971d000 r-xp 00024000 08:10 66947250                   /workspace/miniconda3/lib/libssl.so.3
+783a0971d000-783a0974d000 r--p 000be000 08:10 66947250                   /workspace/miniconda3/lib/libssl.so.3
+783a0974d000-783a09757000 r--p 000ee000 08:10 66947250                   /workspace/miniconda3/lib/libssl.so.3
+783a09757000-783a0975b000 rw-p 000f8000 08:10 66947250                   /workspace/miniconda3/lib/libssl.so.3
+783a0975b000-783a0976f000 r--p 00000000 08:10 66920272                   /workspace/miniconda3/lib/python3.13/lib-dynload/_ssl.cpython-313-x86_64-linux-gnu.so
+783a0976f000-783a09779000 r-xp 00014000 08:10 66920272                   /workspace/miniconda3/lib/python3.13/lib-dynload/_ssl.cpython-313-x86_64-linux-gnu.so
+783a09779000-783a09787000 r--p 0001e000 08:10 66920272                   /workspace/miniconda3/lib/python3.13/lib-dynload/_ssl.cpython-313-x86_64-linux-gnu.so
+783a09787000-783a09788000 r--p 0002c000 08:10 66920272                   /workspace/miniconda3/lib/python3.13/lib-dynload/_ssl.cpython-313-x86_64-linux-gnu.so
+783a09788000-783a09790000 rw-p 0002d000 08:10 66920272                   /workspace/miniconda3/lib/python3.13/lib-dynload/_ssl.cpython-313-x86_64-linux-gnu.so
+783a09790000-783a09792000 r--p 00000000 08:10 66921625                   /workspace/miniconda3/lib/python3.13/lib-dynload/_posixsubprocess.cpython-313-x86_64-linux-gnu.so
+783a09792000-783a09795000 r-xp 00002000 08:10 66921625                   /workspace/miniconda3/lib/python3.13/lib-dynload/_posixsubprocess.cpython-313-x86_64-linux-gnu.so
+783a09795000-783a09796000 r--p 00005000 08:10 66921625                   /workspace/miniconda3/lib/python3.13/lib-dynload/_posixsubprocess.cpython-313-x86_64-linux-gnu.so
+783a09796000-783a09797000 r--p 00006000 08:10 66921625                   /workspace/miniconda3/lib/python3.13/lib-dynload/_posixsubprocess.cpython-313-x86_64-linux-gnu.so
+783a09797000-783a09798000 rw-p 00007000 08:10 66921625                   /workspace/miniconda3/lib/python3.13/lib-dynload/_posixsubprocess.cpython-313-x86_64-linux-gnu.so
+783a09798000-783a0979a000 r--p 00000000 08:10 66921958                   /workspace/miniconda3/lib/python3.13/lib-dynload/fcntl.cpython-313-x86_64-linux-gnu.so
+783a0979a000-783a0979c000 r-xp 00002000 08:10 66921958                   /workspace/miniconda3/lib/python3.13/lib-dynload/fcntl.cpython-313-x86_64-linux-gnu.so
+783a0979c000-783a0979e000 r--p 00004000 08:10 66921958                   /workspace/miniconda3/lib/python3.13/lib-dynload/fcntl.cpython-313-x86_64-linux-gnu.so
+783a0979e000-783a0979f000 r--p 00005000 08:10 66921958                   /workspace/miniconda3/lib/python3.13/lib-dynload/fcntl.cpython-313-x86_64-linux-gnu.so
+783a0979f000-783a097a0000 rw-p 00006000 08:10 66921958                   /workspace/miniconda3/lib/python3.13/lib-dynload/fcntl.cpython-313-x86_64-linux-gnu.so
+783a097a0000-783a097a4000 r--p 00000000 08:10 66922683                   /workspace/miniconda3/lib/python3.13/lib-dynload/array.cpython-313-x86_64-linux-gnu.so
+783a097a4000-783a097ab000 r-xp 00004000 08:10 66922683                   /workspace/miniconda3/lib/python3.13/lib-dynload/array.cpython-313-x86_64-linux-gnu.so
+783a097ab000-783a097b0000 r--p 0000b000 08:10 66922683                   /workspace/miniconda3/lib/python3.13/lib-dynload/array.cpython-313-x86_64-linux-gnu.so
+783a097b0000-783a097b1000 r--p 0000f000 08:10 66922683                   /workspace/miniconda3/lib/python3.13/lib-dynload/array.cpython-313-x86_64-linux-gnu.so
+783a097b1000-783a097b2000 rw-p 00010000 08:10 66922683                   /workspace/miniconda3/lib/python3.13/lib-dynload/array.cpython-313-x86_64-linux-gnu.so
+783a097b2000-783a097b5000 r--p 00000000 08:10 66920317                   /workspace/miniconda3/lib/python3.13/lib-dynload/select.cpython-313-x86_64-linux-gnu.so
+783a097b5000-783a097b8000 r-xp 00003000 08:10 66920317                   /workspace/miniconda3/lib/python3.13/lib-dynload/select.cpython-313-x86_64-linux-gnu.so
+783a097b8000-783a097ba000 r--p 00006000 08:10 66920317                   /workspace/miniconda3/lib/python3.13/lib-dynload/select.cpython-313-x86_64-linux-gnu.so
+783a097ba000-783a097bb000 r--p 00008000 08:10 66920317                   /workspace/miniconda3/lib/python3.13/lib-dynload/select.cpython-313-x86_64-linux-gnu.so
+783a097bb000-783a097bc000 rw-p 00009000 08:10 66920317                   /workspace/miniconda3/lib/python3.13/lib-dynload/select.cpython-313-x86_64-linux-gnu.so
+783a097bc000-783a097c0000 r--p 00000000 08:10 66923806                   /workspace/miniconda3/lib/python3.13/lib-dynload/math.cpython-313-x86_64-linux-gnu.so
+783a097c0000-783a097c9000 r-xp 00004000 08:10 66923806                   /workspace/miniconda3/lib/python3.13/lib-dynload/math.cpython-313-x86_64-linux-gnu.so
+783a097c9000-783a097ce000 r--p 0000d000 08:10 66923806                   /workspace/miniconda3/lib/python3.13/lib-dynload/math.cpython-313-x86_64-linux-gnu.so
+783a097ce000-783a097cf000 r--p 00011000 08:10 66923806                   /workspace/miniconda3/lib/python3.13/lib-dynload/math.cpython-313-x86_64-linux-gnu.so
+783a097cf000-783a097d0000 rw-p 00012000 08:10 66923806                   /workspace/miniconda3/lib/python3.13/lib-dynload/math.cpython-313-x86_64-linux-gnu.so
+783a097d0000-783a097d5000 r--p 00000000 08:10 66920841                   /workspace/miniconda3/lib/python3.13/lib-dynload/_socket.cpython-313-x86_64-linux-gnu.so
+783a097d5000-783a097df000 r-xp 00005000 08:10 66920841                   /workspace/miniconda3/lib/python3.13/lib-dynload/_socket.cpython-313-x86_64-linux-gnu.so
+783a097df000-783a097e8000 r--p 0000f000 08:10 66920841                   /workspace/miniconda3/lib/python3.13/lib-dynload/_socket.cpython-313-x86_64-linux-gnu.so
+783a097e8000-783a097e9000 r--p 00017000 08:10 66920841                   /workspace/miniconda3/lib/python3.13/lib-dynload/_socket.cpython-313-x86_64-linux-gnu.so
+783a097e9000-783a097ea000 rw-p 00018000 08:10 66920841                   /workspace/miniconda3/lib/python3.13/lib-dynload/_socket.cpython-313-x86_64-linux-gnu.so
+783a097ea000-783a097eb000 r--p 00000000 08:10 66920583                   /workspace/miniconda3/lib/python3.13/lib-dynload/_heapq.cpython-313-x86_64-linux-gnu.so
+783a097eb000-783a097ee000 r-xp 00001000 08:10 66920583                   /workspace/miniconda3/lib/python3.13/lib-dynload/_heapq.cpython-313-x86_64-linux-gnu.so
+783a097ee000-783a097f1000 r--p 00004000 08:10 66920583                   /workspace/miniconda3/lib/python3.13/lib-dynload/_heapq.cpython-313-x86_64-linux-gnu.so
+783a097f1000-783a097f2000 r--p 00006000 08:10 66920583                   /workspace/miniconda3/lib/python3.13/lib-dynload/_heapq.cpython-313-x86_64-linux-gnu.so
+783a097f2000-783a097f3000 rw-p 00007000 08:10 66920583                   /workspace/miniconda3/lib/python3.13/lib-dynload/_heapq.cpython-313-x86_64-linux-gnu.so
+783a097f3000-783a098f3000 rw-p 00000000 00:00 0 
+783a098f3000-783a098f4000 ---p 00000000 00:00 0 
+783a098f4000-783a098f5000 r--p 00000000 00:b1 97920184                   /usr/lib/x86_64-linux-gnu/librt.so.1
+783a098f5000-783a098f6000 r-xp 00001000 00:b1 97920184                   /usr/lib/x86_64-linux-gnu/librt.so.1
+783a098f6000-783a098f7000 r--p 00002000 00:b1 97920184                   /usr/lib/x86_64-linux-gnu/librt.so.1
+783a098f7000-783a098f8000 r--p 00002000 00:b1 97920184                   /usr/lib/x86_64-linux-gnu/librt.so.1
+783a098f8000-783a098f9000 rw-p 00003000 00:b1 97920184                   /usr/lib/x86_64-linux-gnu/librt.so.1
+783a098f9000-783a098fd000 r--p 00000000 08:10 66923745                   /workspace/miniconda3/lib/python3.13/lib-dynload/_hashlib.cpython-313-x86_64-linux-gnu.so
+783a098fd000-783a09903000 r-xp 00004000 08:10 66923745                   /workspace/miniconda3/lib/python3.13/lib-dynload/_hashlib.cpython-313-x86_64-linux-gnu.so
+783a09903000-783a09907000 r--p 0000a000 08:10 66923745                   /workspace/miniconda3/lib/python3.13/lib-dynload/_hashlib.cpython-313-x86_64-linux-gnu.so
+783a09907000-783a09908000 r--p 0000e000 08:10 66923745                   /workspace/miniconda3/lib/python3.13/lib-dynload/_hashlib.cpython-313-x86_64-linux-gnu.so
+783a09908000-783a09909000 rw-p 0000f000 08:10 66923745                   /workspace/miniconda3/lib/python3.13/lib-dynload/_hashlib.cpython-313-x86_64-linux-gnu.so
+783a09909000-783a0990b000 r--p 00000000 08:10 66921573                   /workspace/miniconda3/lib/python3.13/lib-dynload/grp.cpython-313-x86_64-linux-gnu.so
+783a0990b000-783a0990c000 r-xp 00002000 08:10 66921573                   /workspace/miniconda3/lib/python3.13/lib-dynload/grp.cpython-313-x86_64-linux-gnu.so
+783a0990c000-783a0990d000 r--p 00003000 08:10 66921573                   /workspace/miniconda3/lib/python3.13/lib-dynload/grp.cpython-313-x86_64-linux-gnu.so
+783a0990d000-783a0990e000 r--p 00003000 08:10 66921573                   /workspace/miniconda3/lib/python3.13/lib-dynload/grp.cpython-313-x86_64-linux-gnu.so
+783a0990e000-783a0990f000 rw-p 00004000 08:10 66921573                   /workspace/miniconda3/lib/python3.13/lib-dynload/grp.cpython-313-x86_64-linux-gnu.so
+783a0990f000-783a09914000 r--p 00000000 08:10 66921270                   /workspace/miniconda3/lib/python3.13/lib-dynload/_asyncio.cpython-313-x86_64-linux-gnu.so
+783a09914000-783a0991a000 r-xp 00005000 08:10 66921270                   /workspace/miniconda3/lib/python3.13/lib-dynload/_asyncio.cpython-313-x86_64-linux-gnu.so
+783a0991a000-783a0991e000 r--p 0000b000 08:10 66921270                   /workspace/miniconda3/lib/python3.13/lib-dynload/_asyncio.cpython-313-x86_64-linux-gnu.so
+783a0991e000-783a0991f000 r--p 0000f000 08:10 66921270                   /workspace/miniconda3/lib/python3.13/lib-dynload/_asyncio.cpython-313-x86_64-linux-gnu.so
+783a0991f000-783a09921000 rw-p 00010000 08:10 66921270                   /workspace/miniconda3/lib/python3.13/lib-dynload/_asyncio.cpython-313-x86_64-linux-gnu.so
+783a09921000-783a09922000 r--p 00000000 08:10 66923154                   /workspace/miniconda3/lib/python3.13/lib-dynload/_contextvars.cpython-313-x86_64-linux-gnu.so
+783a09922000-783a09923000 r-xp 00001000 08:10 66923154                   /workspace/miniconda3/lib/python3.13/lib-dynload/_contextvars.cpython-313-x86_64-linux-gnu.so
+783a09923000-783a09924000 r--p 00002000 08:10 66923154                   /workspace/miniconda3/lib/python3.13/lib-dynload/_contextvars.cpython-313-x86_64-linux-gnu.so
+783a09924000-783a09925000 r--p 00002000 08:10 66923154                   /workspace/miniconda3/lib/python3.13/lib-dynload/_contextvars.cpython-313-x86_64-linux-gnu.so
+783a09925000-783a09926000 rw-p 00003000 08:10 66923154                   /workspace/miniconda3/lib/python3.13/lib-dynload/_contextvars.cpython-313-x86_64-linux-gnu.so
+783a09926000-783a09928000 r--p 00000000 08:10 66979746                   /workspace/miniconda3/lib/libuuid.so.1.3.0
+783a09928000-783a0992c000 r-xp 00002000 08:10 66979746                   /workspace/miniconda3/lib/libuuid.so.1.3.0
+783a0992c000-783a0992d000 r--p 00006000 08:10 66979746                   /workspace/miniconda3/lib/libuuid.so.1.3.0
+783a0992d000-783a0992e000 r--p 00006000 08:10 66979746                   /workspace/miniconda3/lib/libuuid.so.1.3.0
+783a0992e000-783a0992f000 rw-p 00007000 08:10 66979746                   /workspace/miniconda3/lib/libuuid.so.1.3.0
+783a0992f000-783a09930000 r--p 00000000 08:10 66922059                   /workspace/miniconda3/lib/python3.13/lib-dynload/_uuid.cpython-313-x86_64-linux-gnu.so
+783a09930000-783a09931000 r-xp 00001000 08:10 66922059                   /workspace/miniconda3/lib/python3.13/lib-dynload/_uuid.cpython-313-x86_64-linux-gnu.so
+783a09931000-783a09932000 r--p 00002000 08:10 66922059                   /workspace/miniconda3/lib/python3.13/lib-dynload/_uuid.cpython-313-x86_64-linux-gnu.so
+783a09932000-783a09933000 r--p 00002000 08:10 66922059                   /workspace/miniconda3/lib/python3.13/lib-dynload/_uuid.cpython-313-x86_64-linux-gnu.so
+783a09933000-783a09934000 rw-p 00003000 08:10 66922059                   /workspace/miniconda3/lib/python3.13/lib-dynload/_uuid.cpython-313-x86_64-linux-gnu.so
+783a09934000-783a09c96000 rw-p 00000000 00:00 0 
+783a09c96000-783a09cef000 r--p 00000000 00:b1 97917410                   /usr/lib/locale/C.utf8/LC_CTYPE
+783a09cef000-783a09fda000 r--p 00000000 00:b1 98173676                   /usr/lib/locale/locale-archive
+783a09fda000-783a09fdf000 rw-p 00000000 00:00 0 
+783a09fdf000-783a0a007000 r--p 00000000 00:b1 97919981                   /usr/lib/x86_64-linux-gnu/libc.so.6
+783a0a007000-783a0a18f000 r-xp 00028000 00:b1 97919981                   /usr/lib/x86_64-linux-gnu/libc.so.6
+783a0a18f000-783a0a1de000 r--p 001b0000 00:b1 97919981                   /usr/lib/x86_64-linux-gnu/libc.so.6
+783a0a1de000-783a0a1e2000 r--p 001fe000 00:b1 97919981                   /usr/lib/x86_64-linux-gnu/libc.so.6
+783a0a1e2000-783a0a1e4000 rw-p 00202000 00:b1 97919981                   /usr/lib/x86_64-linux-gnu/libc.so.6
+783a0a1e4000-783a0a1f1000 rw-p 00000000 00:00 0 
+783a0a1f1000-783a0a201000 r--p 00000000 00:b1 97920107                   /usr/lib/x86_64-linux-gnu/libm.so.6
+783a0a201000-783a0a280000 r-xp 00010000 00:b1 97920107                   /usr/lib/x86_64-linux-gnu/libm.so.6
+783a0a280000-783a0a2d8000 r--p 0008f000 00:b1 97920107                   /usr/lib/x86_64-linux-gnu/libm.so.6
+783a0a2d8000-783a0a2d9000 r--p 000e7000 00:b1 97920107                   /usr/lib/x86_64-linux-gnu/libm.so.6
+783a0a2d9000-783a0a2da000 rw-p 000e8000 00:b1 97920107                   /usr/lib/x86_64-linux-gnu/libm.so.6
+783a0a2da000-783a0a2db000 r--p 00000000 00:b1 97920235                   /usr/lib/x86_64-linux-gnu/libutil.so.1
+783a0a2db000-783a0a2dc000 r-xp 00001000 00:b1 97920235                   /usr/lib/x86_64-linux-gnu/libutil.so.1
+783a0a2dc000-783a0a2dd000 r--p 00002000 00:b1 97920235                   /usr/lib/x86_64-linux-gnu/libutil.so.1
+783a0a2dd000-783a0a2de000 r--p 00002000 00:b1 97920235                   /usr/lib/x86_64-linux-gnu/libutil.so.1
+783a0a2de000-783a0a2df000 rw-p 00003000 00:b1 97920235                   /usr/lib/x86_64-linux-gnu/libutil.so.1
+783a0a2df000-783a0a2e0000 r--p 00000000 00:b1 97920011                   /usr/lib/x86_64-linux-gnu/libdl.so.2
+783a0a2e0000-783a0a2e1000 r-xp 00001000 00:b1 97920011                   /usr/lib/x86_64-linux-gnu/libdl.so.2
+783a0a2e1000-783a0a2e2000 r--p 00002000 00:b1 97920011                   /usr/lib/x86_64-linux-gnu/libdl.so.2
+783a0a2e2000-783a0a2e3000 r--p 00002000 00:b1 97920011                   /usr/lib/x86_64-linux-gnu/libdl.so.2
+783a0a2e3000-783a0a2e4000 rw-p 00003000 00:b1 97920011                   /usr/lib/x86_64-linux-gnu/libdl.so.2
+783a0a2e4000-783a0a2e5000 r--p 00000000 00:b1 97920170                   /usr/lib/x86_64-linux-gnu/libpthread.so.0
+783a0a2e5000-783a0a2e6000 r-xp 00001000 00:b1 97920170                   /usr/lib/x86_64-linux-gnu/libpthread.so.0
+783a0a2e6000-783a0a2e7000 r--p 00002000 00:b1 97920170                   /usr/lib/x86_64-linux-gnu/libpthread.so.0
+783a0a2e7000-783a0a2e8000 r--p 00002000 00:b1 97920170                   /usr/lib/x86_64-linux-gnu/libpthread.so.0
+783a0a2e8000-783a0a2e9000 rw-p 00003000 00:b1 97920170                   /usr/lib/x86_64-linux-gnu/libpthread.so.0
+783a0a2e9000-783a0a2f1000 rw-p 00000000 00:00 0 
+783a0a2f1000-783a0a2f8000 r--s 00000000 00:b1 97919774                   /usr/lib/x86_64-linux-gnu/gconv/gconv-modules.cache
+783a0a2f8000-783a0a2fa000 rw-p 00000000 00:00 0 
+783a0a2fa000-783a0a2fb000 r--p 00000000 00:b1 97919810                   /usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2
+783a0a2fb000-783a0a326000 r-xp 00001000 00:b1 97919810                   /usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2
+783a0a326000-783a0a330000 r--p 0002c000 00:b1 97919810                   /usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2
+783a0a330000-783a0a332000 r--p 00036000 00:b1 97919810                   /usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2
+783a0a332000-783a0a334000 rw-p 00038000 00:b1 97919810                   /usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2
+7ffc7a446000-7ffc7a44a000 ---p 00000000 00:00 0 
+7ffc7a44a000-7ffc7a546000 rw-p 00000000 00:00 0                          [stack]
+7ffc7a5ac000-7ffc7a5b0000 r--p 00000000 00:00 0                          [vvar]
+7ffc7a5b0000-7ffc7a5b2000 r-xp 00000000 00:00 0                          [vdso]
+ffffffffff600000-ffffffffff601000 --xp 00000000 00:00 0                  [vsyscall]
+Total number of mappings: 508
+
+JVMTI agents: none
+
+
+VM Arguments:
+jvm_args: -Dpyghidra.sys.prefix=/home/lulizhi/.local/share/uv/tools/reverse-engineering-assistant -Dpyghidra.sys.executable=/home/lulizhi/.local/share/uv/tools/reverse-engineering-assistant/bin/python -Djava.system.class.loader=ghidra.GhidraClassLoader -Dfile.encoding=UTF8 -Duser.country=US -Duser.language=en -Duser.variant= -Dsun.java2d.opengl=false -Dsun.java2d.pmoffscreen=false -Dsun.java2d.xrender=true -Dsun.java2d.uiScale=1 -Dawt.useSystemAAFontSettings=on -Djdk.tls.client.protocols=TLSv1.2,TLSv1.3 -Dcpu.core.limit= -Dcpu.core.override= -Dfont.size.override= -Dpython.console.encoding=UTF-8 -Xshare:off -Djavax.xml.accessExternalDTD= -Djavax.xml.accessExternalSchema= -Djavax.xml.accessExternalStylesheet= --enable-native-access=ALL-UNNAMED 
+java_command: <unknown>
+java_class_path (initial): /home/lulizhi/.local/opt/ghidra_12.1.2_PUBLIC/Ghidra/Framework/Utility/lib/Utility.jar:/home/lulizhi/.local/share/uv/tools/reverse-engineering-assistant/lib/python3.13/site-packages/org.jpype.jar
+Launcher Type: generic
+
+[Global flags]
+     intx CICompilerCount                          = 18                                        {product} {ergonomic}
+     uint ConcGCThreads                            = 18                                        {product} {ergonomic}
+     uint G1ConcRefinementThreads                  = 73                                        {product} {ergonomic}
+   size_t G1HeapRegionSize                         = 16777216                                  {product} {ergonomic}
+    uintx GCDrainStackTargetSize                   = 64                                        {product} {ergonomic}
+   size_t InitialHeapSize                          = 2147483648                                {product} {ergonomic}
+   size_t MarkStackSize                            = 4194304                                   {product} {ergonomic}
+   size_t MaxHeapSize                              = 32178700288                               {product} {ergonomic}
+   size_t MaxNewSize                               = 19293798400                               {product} {ergonomic}
+   size_t MinHeapDeltaBytes                        = 16777216                                  {product} {ergonomic}
+   size_t MinHeapSize                              = 16777216                                  {product} {ergonomic}
+    uintx NonNMethodCodeHeapSize                   = 8782280                                {pd product} {ergonomic}
+    uintx NonProfiledCodeHeapSize                  = 121437980                              {pd product} {ergonomic}
+    uintx ProfiledCodeHeapSize                     = 121437980                              {pd product} {ergonomic}
+    uintx ReservedCodeCacheSize                    = 251658240                              {pd product} {ergonomic}
+     bool SegmentedCodeCache                       = true                                      {product} {ergonomic}
+   size_t SoftMaxHeapSize                          = 32178700288                            {manageable} {ergonomic}
+     bool UseCompressedOops                        = true                           {product lp64_product} {ergonomic}
+     bool UseG1GC                                  = true                                      {product} {ergonomic}
+
+Logging:
+Log output configuration:
+ #0: stdout all=warning uptime,level,tags foldmultilines=false
+ #1: stderr all=off uptime,level,tags foldmultilines=false
+
+Release file:
+IMPLEMENTOR="Ubuntu"
+JAVA_RUNTIME_VERSION="21.0.11+10-1-24.04.2-Ubuntu"
+JAVA_VERSION="21.0.11"
+JAVA_VERSION_DATE="2026-04-21"
+LIBC="gnu"
+MODULES="java.base java.compiler java.datatransfer java.xml java.prefs java.desktop java.instrument java.logging java.management java.security.sasl java.naming java.rmi java.management.rmi java.net.http java.scripting java.security.jgss java.transaction.xa java.sql java.sql.rowset java.xml.crypto java.se java.smartcardio jdk.accessibility jdk.internal.jvmstat jdk.attach jdk.charsets jdk.internal.opt jdk.zipfs jdk.compiler jdk.crypto.ec jdk.crypto.cryptoki jdk.dynalink jdk.internal.ed jdk.editpad jdk.hotspot.agent jdk.httpserver jdk.incubator.vector jdk.internal.le jdk.internal.vm.ci jdk.internal.vm.compiler jdk.internal.vm.compiler.management jdk.jartool jdk.javadoc jdk.jcmd jdk.management jdk.management.agent jdk.jconsole jdk.jdeps jdk.jdwp.agent jdk.jdi jdk.jfr jdk.jlink jdk.jpackage jdk.jshell jdk.jsobject jdk.jstatd jdk.localedata jdk.management.jfr jdk.naming.dns jdk.naming.rmi jdk.net jdk.nio.mapmode jdk.random jdk.sctp jdk.security.auth jdk.security.jgss jdk.unsupported jdk.unsupported.desktop jdk.xml.dom"
+OS_ARCH="x86_64"
+OS_NAME="Linux"
+SOURCE=""
+
+Environment Variables:
+JAVA_HOME=/usr/lib/jvm/java-21-openjdk-amd64
+PATH=/home/lulizhi/.local/opt/ghidra_12.1.2_PUBLIC/support:/home/lulizhi/.local/bin:/workspace/.triton_3.5/llvm-7d5de303-ubuntu-x64/bin:/home/lulizhi/.local/bin:/home/lulizhi/.local/share/opencode-multi/profiles/../bin:/home/lulizhi/.bun/bin:/usr/local/cuda/bin:/home/lulizhi/.local/bin:/home/lulizhi/.local/bin:/home/lulizhi/.cargo/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/home/lulizhi/.local/bin:/home/lulizhi/.bun/bin:/home/lulizhi/.cargo/bin:/home/lulizhi/.local/opt/ghidra_12.1.2_PUBLIC/support
+LD_LIBRARY_PATH=/usr/local/cuda/lib64:
+SHELL=/bin/bash
+LANG=en_US.UTF-8
+LC_ALL=C.UTF-8
+TERM=xterm-256color
+
+Active Locale:
+LC_ALL=LC_CTYPE=C.UTF-8;LC_NUMERIC=C;LC_TIME=C;LC_COLLATE=C;LC_MONETARY=C;LC_MESSAGES=C;LC_PAPER=C.UTF-8;LC_NAME=C.UTF-8;LC_ADDRESS=C.UTF-8;LC_TELEPHONE=C.UTF-8;LC_MEASUREMENT=C.UTF-8;LC_IDENTIFICATION=C.UTF-8
+LC_COLLATE=C
+LC_CTYPE=C.UTF-8
+LC_MESSAGES=C
+LC_MONETARY=C
+LC_NUMERIC=C
+LC_TIME=C
+
+Signal Handlers:
+   SIGSEGV: crash_handler in libjvm.so, mask=11100100010111111101111111111110, flags=SA_RESTART|SA_SIGINFO, unblocked
+    SIGBUS: crash_handler in libjvm.so, mask=11100100010111111101111111111110, flags=SA_RESTART|SA_SIGINFO, unblocked
+    SIGFPE: crash_handler in libjvm.so, mask=11100100010111111101111111111110, flags=SA_RESTART|SA_SIGINFO, unblocked
+   SIGPIPE: javaSignalHandler in libjvm.so, mask=11100100010111111101111111111110, flags=SA_RESTART|SA_SIGINFO, blocked
+   SIGXFSZ: javaSignalHandler in libjvm.so, mask=11100100010111111101111111111110, flags=SA_RESTART|SA_SIGINFO, blocked
+    SIGILL: crash_handler in libjvm.so, mask=11100100010111111101111111111110, flags=SA_RESTART|SA_SIGINFO, unblocked
+   SIGUSR2: SR_handler in libjvm.so, mask=00000000000000000000000000000000, flags=SA_RESTART|SA_SIGINFO, blocked
+    SIGHUP: UserHandler in libjvm.so, mask=11100100010111111101111111111110, flags=SA_RESTART|SA_SIGINFO, blocked
+    SIGINT: UserHandler in libjvm.so, mask=11100100010111111101111111111110, flags=SA_RESTART|SA_SIGINFO, blocked
+   SIGTERM: UserHandler in libjvm.so, mask=11100100010111111101111111111110, flags=SA_RESTART|SA_SIGINFO, blocked
+   SIGQUIT: UserHandler in libjvm.so, mask=11100100010111111101111111111110, flags=SA_RESTART|SA_SIGINFO, blocked
+   SIGTRAP: crash_handler in libjvm.so, mask=11100100010111111101111111111110, flags=SA_RESTART|SA_SIGINFO, unblocked
+
+
+Periodic native trim disabled
+
+---------------  S Y S T E M  ---------------
+
+OS:
+DISTRIB_ID=Ubuntu
+DISTRIB_RELEASE=24.04
+DISTRIB_CODENAME=noble
+DISTRIB_DESCRIPTION="Ubuntu 24.04.3 LTS"
+uname: Linux 6.8.0-117-generic #117-Ubuntu SMP PREEMPT_DYNAMIC Tue May  5 19:26:24 UTC 2026 x86_64
+OS uptime: 43 days 8:40 hours
+libc: glibc 2.39 NPTL 2.39 
+rlimit (soft/hard): STACK 8192k/infinity , CORE infinity/infinity , NPROC infinity/infinity , NOFILE 65535/65535 , AS infinity/infinity , CPU infinity/infinity , DATA infinity/infinity , FSIZE infinity/infinity , MEMLOCK 8192k/8192k
+load average: 6.71 6.59 6.44
+
+/proc/meminfo:
+MemTotal:       395840152 kB
+MemFree:        90449136 kB
+MemAvailable:   334450204 kB
+Buffers:         6620580 kB
+Cached:         221012140 kB
+SwapCached:        33760 kB
+Active:         96509452 kB
+Inactive:       181739684 kB
+Active(anon):   35217596 kB
+Inactive(anon): 15877964 kB
+Active(file):   61291856 kB
+Inactive(file): 165861720 kB
+Unevictable:       32440 kB
+Mlocked:           27376 kB
+SwapTotal:       8388604 kB
+SwapFree:         663960 kB
+Zswap:                 0 kB
+Zswapped:              0 kB
+Dirty:               172 kB
+Writeback:             0 kB
+AnonPages:      50611748 kB
+Mapped:          2288856 kB
+Shmem:            470440 kB
+KReclaimable:   19224276 kB
+Slab:           22597776 kB
+SReclaimable:   19224276 kB
+SUnreclaim:      3373500 kB
+KernelStack:      122672 kB
+PageTables:       351300 kB
+SecPageTables:         0 kB
+NFS_Unstable:          0 kB
+Bounce:                0 kB
+WritebackTmp:          0 kB
+CommitLimit:    206308680 kB
+Committed_AS:   167617908 kB
+VmallocTotal:   13743895347199 kB
+VmallocUsed:      656152 kB
+VmallocChunk:          0 kB
+Percpu:           589120 kB
+HardwareCorrupted:     0 kB
+AnonHugePages:     32768 kB
+ShmemHugePages:        0 kB
+ShmemPmdMapped:        0 kB
+FileHugePages:         0 kB
+FilePmdMapped:         0 kB
+Unaccepted:            0 kB
+HugePages_Total:       0
+HugePages_Free:        0
+HugePages_Rsvd:        0
+HugePages_Surp:        0
+Hugepagesize:       2048 kB
+Hugetlb:               0 kB
+DirectMap4k:    25092520 kB
+DirectMap2M:    257658880 kB
+DirectMap1G:    121634816 kB
+
+/sys/kernel/mm/transparent_hugepage/enabled: always [madvise] never
+/sys/kernel/mm/transparent_hugepage/hpage_pmd_size: 2097152
+/sys/kernel/mm/transparent_hugepage/defrag (defrag/compaction efforts parameter): always defer defer+madvise [madvise] never
+
+Process Memory:
+Virtual Size: 36031408K (peak: 36031408K)
+Resident Set Size: 225988K (peak: 225988K) (anon: 188180K, file: 37808K, shmem: 0K)
+Swapped out: 0K
+C-Heap outstanding allocations: 261372K, retained: 32047K
+glibc malloc tunables: (default)
+
+/proc/sys/kernel/threads-max (system-wide limit on the number of threads): 3091848
+/proc/sys/vm/max_map_count (maximum number of memory map areas a process may have): 1048576
+/proc/sys/vm/swappiness (control to define how aggressively the kernel swaps out anonymous memory): 60
+/proc/sys/kernel/pid_max (system-wide limit on number of process identifiers): 4194304
+
+container information not found.
+Steal ticks since vm start: 0
+Steal ticks percentage since vm start:  0.000
+
+CPU: total 112 (initial active 112) (28 cores per cpu, 2 threads per core) family 6 model 106 stepping 6 microcode 0xd000421, cx8, cmov, fxsr, ht, mmx, 3dnowpref, sse, sse2, sse3, ssse3, sse4.1, sse4.2, popcnt, lzcnt, tsc, tscinvbit, avx, avx2, aes, erms, clmul, bmi1, bmi2, adx, avx512f, avx512dq, avx512cd, avx512bw, avx512vl, sha, fma, vzeroupper, avx512_vpopcntdq, avx512_vpclmulqdq, avx512_vaes, avx512_vnni, clflush, clflushopt, clwb, avx512_vbmi2, avx512_vbmi, rdtscp, rdpid, fsrm, gfni, avx512_bitalg, f16c, pku, ospke, avx512_ifma
+CPU Model and flags from /proc/cpuinfo:
+model name	: Intel(R) Xeon(R) Gold 6330 CPU @ 2.00GHz
+flags		: fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe syscall nx pdpe1gb rdtscp lm constant_tsc art arch_perfmon pebs bts rep_good nopl xtopology nonstop_tsc cpuid aperfmperf pni pclmulqdq dtes64 ds_cpl vmx smx est tm2 ssse3 sdbg fma cx16 xtpr pdcm pcid dca sse4_1 sse4_2 x2apic movbe popcnt tsc_deadline_timer aes xsave avx f16c rdrand lahf_lm abm 3dnowprefetch cpuid_fault epb cat_l3 intel_ppin ssbd mba ibrs ibpb stibp ibrs_enhanced tpr_shadow flexpriority ept vpid ept_ad fsgsbase tsc_adjust bmi1 avx2 smep bmi2 erms invpcid cqm rdt_a avx512f avx512dq rdseed adx smap avx512ifma clflushopt clwb intel_pt avx512cd sha_ni avx512bw avx512vl xsaveopt xsavec xgetbv1 xsaves cqm_llc cqm_occup_llc cqm_mbm_total cqm_mbm_local split_lock_detect wbnoinvd dtherm ida arat pln pts vnmi avx512vbmi umip pku ospke avx512_vbmi2 gfni vaes vpclmulqdq avx512_vnni avx512_bitalg tme avx512_vpopcntdq la57 rdpid fsrm md_clear pconfig flush_l1d arch_capabilities
+
+Online cpus: 0-111
+Offline cpus: 
+BIOS frequency limitation: <Not Available>
+Frequency switch latency (ns): 20000
+Available cpu frequencies: <Not Available>
+Current governor: schedutil
+Core performance/turbo boost: <Not Available>
+
+Memory: 4k page, physical 395840152k(334450204k free), swap 8388604k(663960k free)
+Page Sizes: 4k
+
+vm_info: OpenJDK 64-Bit Server VM (21.0.11+10-1-24.04.2-Ubuntu) for linux-amd64 JRE (21.0.11+10-1-24.04.2-Ubuntu), built on 2026-04-26T09:33:23Z by "buildd" with gcc 13.3.0
+
+END.

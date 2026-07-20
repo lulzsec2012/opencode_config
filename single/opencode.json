@@ -12,7 +12,7 @@
                 "serve",
                 "--mcp"
             ],
-            "enabled": false
+            "enabled": true
         },
         "sequential-thinking": {
             "type": "local",
@@ -54,10 +54,12 @@
         "opencode-agent-context",
         "opencode-autoresearch@latest",
         "opencode-codegraph",
+        "opencode-debug-helper",
         "opencode-headroom",
         "opencode-localmemory",
+        "opencode-qoder-auth",
         "opencode-skill-creator",
-        "opencode-yaml-hooks"
+        "@arkfactory/opencode-checkpoint"
     ],
     "provider": {
         "deepseek": {

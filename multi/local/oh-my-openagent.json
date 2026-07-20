@@ -3,37 +3,33 @@
   "agents": {
     "sisyphus": {
       "model": "mixapi/qwen3.6-27b",
-      "description": "主协调者（ECS 推理核心）",
-      "maxTokens": 32768,
-      "prompt_append": "You are an AI assistant. You must always respond in Simplified Chinese (中文). 你必须始终用中文回复用户。即使思考过程可以用英文，最终回复必须是中文。",
+      "description": "\u4e3b\u534f\u8c03\u8005\uff08ECS \u63a8\u7406\u6838\u5fc3\uff09",
+      "prompt_append": "You are an AI assistant. You must always respond in Simplified Chinese (\u4e2d\u6587). \u4f60\u5fc5\u987b\u59cb\u7ec8\u7528\u4e2d\u6587\u56de\u590d\u7528\u6237\u3002\u5373\u4f7f\u601d\u8003\u8fc7\u7a0b\u53ef\u4ee5\u7528\u82f1\u6587\uff0c\u6700\u7ec8\u56de\u590d\u5fc5\u987b\u662f\u4e2d\u6587\u3002",
       "fallback_models": [
         "mixapi/gemma4-26b-fp8"
       ]
     },
     "prometheus": {
       "model": "mixapi/qwen3.6-27b",
-      "description": "规划（ECS 高阶推理）",
-      "maxTokens": 16384,
+      "description": "\u89c4\u5212\uff08ECS \u9ad8\u9636\u63a8\u7406\uff09",
       "reasoningEffort": "high",
-      "prompt_append": "You are an AI assistant. You must always respond in Simplified Chinese (中文). 你必须始终用中文回复用户。即使思考过程可以用英文，最终回复必须是中文。",
+      "prompt_append": "You are an AI assistant. You must always respond in Simplified Chinese (\u4e2d\u6587). \u4f60\u5fc5\u987b\u59cb\u7ec8\u7528\u4e2d\u6587\u56de\u590d\u7528\u6237\u3002\u5373\u4f7f\u601d\u8003\u8fc7\u7a0b\u53ef\u4ee5\u7528\u82f1\u6587\uff0c\u6700\u7ec8\u56de\u590d\u5fc5\u987b\u662f\u4e2d\u6587\u3002",
       "fallback_models": [
         "mixapi/gemma4-26b-fp8"
       ]
     },
     "hephaestus": {
       "model": "mixapi/qwen3.6-27b",
-      "description": "代码执行核心（ECS 保障质量）",
-      "maxTokens": 32768,
+      "description": "\u4ee3\u7801\u6267\u884c\u6838\u5fc3\uff08ECS \u4fdd\u969c\u8d28\u91cf\uff09",
       "temperature": 0.2,
-      "prompt_append": "You are an AI assistant. You must always respond in Simplified Chinese (中文). 你必须始终用中文回复用户。即使思考过程可以用英文，最终回复必须是中文。",
+      "prompt_append": "You are an AI assistant. You must always respond in Simplified Chinese (\u4e2d\u6587). \u4f60\u5fc5\u987b\u59cb\u7ec8\u7528\u4e2d\u6587\u56de\u590d\u7528\u6237\u3002\u5373\u4f7f\u601d\u8003\u8fc7\u7a0b\u53ef\u4ee5\u7528\u82f1\u6587\uff0c\u6700\u7ec8\u56de\u590d\u5fc5\u987b\u662f\u4e2d\u6587\u3002",
       "fallback_models": [
         "mixapi/gemma4-26b-fp8"
       ]
     },
     "oracle": {
       "model": "mixapi/qwen3.6-27b",
-      "description": "只读推理专家 — MixAPI qwen3.6 本地 (~100 tok/s)",
-      "maxTokens": 32768,
+      "description": "\u53ea\u8bfb\u63a8\u7406\u4e13\u5bb6 \u2014 MixAPI qwen3.6 \u672c\u5730 (~100 tok/s)",
       "reasoningEffort": "high",
       "prompt_append": "",
       "fallback_models": [
@@ -42,8 +38,7 @@
     },
     "momus": {
       "model": "mixapi/qwen3.6-27b",
-      "description": "质量裁判（ECS 审查）",
-      "maxTokens": 16384,
+      "description": "\u8d28\u91cf\u88c1\u5224\uff08ECS \u5ba1\u67e5\uff09",
       "temperature": 0.1,
       "prompt_append": "",
       "fallback_models": [
@@ -52,8 +47,7 @@
     },
     "metis": {
       "model": "mixapi/qwen3.6-27b",
-      "description": "风险评估（ECS 决策）",
-      "maxTokens": 16384,
+      "description": "\u98ce\u9669\u8bc4\u4f30\uff08ECS \u51b3\u7b56\uff09",
       "prompt_append": "",
       "fallback_models": [
         "mixapi/gemma4-26b-fp8"
@@ -61,8 +55,8 @@
     },
     "atlas": {
       "model": "mixapi/qwen3.6-27b",
-      "description": "任务拆解（ECS 推理）",
-      "maxTokens": 16384,
+      "description": "\u4efb\u52a1\u62c6\u89e3\uff08ECS \u63a8\u7406\uff09",
+      "maxTokens": 8192,
       "prompt_append": "",
       "fallback_models": [
         "mixapi/gemma4-26b-fp8"
@@ -70,7 +64,7 @@
     },
     "explore": {
       "model": "mixapi/qwen3.6-27b",
-      "description": "代码搜索理解（ECS 高速）",
+      "description": "\u4ee3\u7801\u641c\u7d22\u7406\u89e3\uff08ECS \u9ad8\u901f\uff09",
       "maxTokens": 16384,
       "prompt_append": "",
       "fallback_models": [
@@ -79,7 +73,7 @@
     },
     "librarian": {
       "model": "mixapi/qwen3.6-27b",
-      "description": "文档处理（ECS 高质量）",
+      "description": "\u6587\u6863\u5904\u7406\uff08ECS \u9ad8\u8d28\u91cf\uff09",
       "maxTokens": 16384,
       "prompt_append": "",
       "fallback_models": [
@@ -88,8 +82,8 @@
     },
     "multimodal-looker": {
       "model": "mixapi/qwen3.6-27b",
-      "description": "视觉任务（ECS 多模态）",
-      "maxTokens": 8192,
+      "description": "\u89c6\u89c9\u4efb\u52a1\uff08ECS \u591a\u6a21\u6001\uff09",
+      "maxTokens": 16384,
       "prompt_append": ""
     }
   },
@@ -99,7 +93,7 @@
   "categories": {
     "visual-engineering": {
       "model": "mixapi/qwen3.6-27b",
-      "description": "前端/UI/UX/设计",
+      "description": "\u524d\u7aef/UI/UX/\u8bbe\u8ba1",
       "maxTokens": 8192,
       "fallback_models": [
         "mixapi/gemma4-26b-fp8"
@@ -107,7 +101,7 @@
     },
     "artistry": {
       "model": "mixapi/qwen3.6-27b",
-      "description": "创意写作",
+      "description": "\u521b\u610f\u5199\u4f5c",
       "maxTokens": 8192,
       "fallback_models": [
         "mixapi/gemma4-26b-fp8"
@@ -115,7 +109,7 @@
     },
     "ultrabrain": {
       "model": "mixapi/qwen3.6-27b",
-      "description": "超难任务 — MixAPI qwen3.6 本地推理 (~100 tok/s)",
+      "description": "\u8d85\u96be\u4efb\u52a1 \u2014 MixAPI qwen3.6 \u672c\u5730\u63a8\u7406 (~100 tok/s)",
       "maxTokens": 32768,
       "reasoningEffort": "high",
       "fallback_models": [
@@ -124,7 +118,7 @@
     },
     "deep": {
       "model": "mixapi/qwen3.6-27b",
-      "description": "深度研究 — ECS 本地质量兜底",
+      "description": "\u6df1\u5ea6\u7814\u7a76 \u2014 ECS \u672c\u5730\u8d28\u91cf\u515c\u5e95",
       "maxTokens": 16384,
       "reasoningEffort": "high",
       "fallback_models": [
@@ -133,15 +127,15 @@
     },
     "coder": {
       "model": "mixapi/qwen3.6-27b",
-      "description": "代码执行（ECS 高质量）",
-      "maxTokens": 16384,
+      "description": "\u4ee3\u7801\u6267\u884c\uff08ECS \u9ad8\u8d28\u91cf\uff09",
+      "maxTokens": 32768,
       "fallback_models": [
         "mixapi/gemma4-26b-fp8"
       ]
     },
     "quick": {
       "model": "mixapi/gemma4-26b-fp8",
-      "description": "快速轻量任务（ECS 轻量）",
+      "description": "\u5feb\u901f\u8f7b\u91cf\u4efb\u52a1\uff08ECS \u8f7b\u91cf\uff09",
       "maxTokens": 4096,
       "fallback_models": [
         "mixapi/qwen3.6-27b"
@@ -149,7 +143,7 @@
     },
     "writing": {
       "model": "mixapi/qwen3.6-27b",
-      "description": "文档写作",
+      "description": "\u6587\u6863\u5199\u4f5c",
       "maxTokens": 16384,
       "fallback_models": [
         "mixapi/gemma4-26b-fp8"
@@ -157,7 +151,7 @@
     },
     "analysis-lite": {
       "model": "mixapi/gemma4-26b-fp8",
-      "description": "轻量分析 — ECS gemma4 FP8 快速",
+      "description": "\u8f7b\u91cf\u5206\u6790 \u2014 ECS gemma4 FP8 \u5feb\u901f",
       "maxTokens": 4096,
       "fallback_models": [
         "mixapi/qwen3.6-27b"
@@ -165,15 +159,15 @@
     },
     "unspecified-low": {
       "model": "mixapi/gemma4-26b-fp8",
-      "description": "低复杂度通用任务（ECS 轻量）",
-      "maxTokens": 8192,
+      "description": "\u4f4e\u590d\u6742\u5ea6\u901a\u7528\u4efb\u52a1\uff08ECS \u8f7b\u91cf\uff09",
+      "maxTokens": 4096,
       "fallback_models": [
         "mixapi/qwen3.6-27b"
       ]
     },
     "unspecified-high": {
       "model": "mixapi/qwen3.6-27b",
-      "description": "高复杂度通用任务（ECS 高质量）",
+      "description": "\u9ad8\u590d\u6742\u5ea6\u901a\u7528\u4efb\u52a1\uff08ECS \u9ad8\u8d28\u91cf\uff09",
       "maxTokens": 16384,
       "fallback_models": [
         "mixapi/gemma4-26b-fp8"
@@ -181,5 +175,11 @@
     }
   },
   "default_agent": "sisyphus",
-  "hashline_edit": true
+  "hashline_edit": true,
+  "sisyphus_agent": {
+    "disabled": false,
+    "default_builder_enabled": false,
+    "planner_enabled": false,
+    "replace_plan": false
+  }
 }

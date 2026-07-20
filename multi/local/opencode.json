@@ -36,19 +36,20 @@
     }
   },
   "model": "mixapi/qwen3.6-27b",
-  "plugin": [
-    "@tarquinen/opencode-dcp@latest",
-    "opencode-dcp-dynamic-limits",
-    "oh-my-openagent@latest",
-    "opencode-agent-context",
-    "opencode-autoresearch@latest",
-    "opencode-codegraph",
-    "opencode-localmemory",
-    "opencode-skill-creator",
-    "opencode-yaml-hooks",
-    "@dietrichgebert/ponytail",
-    "caveman-opencode-plugin"
-  ],
+    "plugin": [
+        "oh-my-openagent@latest",
+        "opencode-agent-context",
+        "opencode-autoresearch@latest",
+        "opencode-codegraph",
+        "opencode-debug-helper",
+        "opencode-headroom",
+        "opencode-localmemory",
+        "opencode-qoder-auth",
+        "opencode-skill-creator",
+        "@dietrichgebert/ponytail",
+        "caveman-opencode-plugin",
+        "@arkfactory/opencode-checkpoint"
+    ],
   "provider": {
     "mixapi": {
       "npm": "@ai-sdk/openai-compatible",

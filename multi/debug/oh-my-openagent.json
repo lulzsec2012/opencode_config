@@ -7,8 +7,8 @@
   },
   "sisyphus_agent": {
     "disabled": false,
-    "default_builder_enabled": true,
-    "planner_enabled": true,
+    "default_builder_enabled": false,
+    "planner_enabled": false,
     "replace_plan": true
   },
   "disabled_hooks": [
@@ -17,19 +17,16 @@
   "agents": {
     "sisyphus": {
       "model": "deepseek/deepseek-v4-pro",
-      "description": "主协调者 — cloud pro（debug 专用高推理）",
-      "maxTokens": 32768
+      "description": "\u4e3b\u534f\u8c03\u8005 \u2014 cloud pro\uff08debug \u4e13\u7528\u9ad8\u63a8\u7406\uff09"
     },
     "prometheus": {
       "model": "deepseek/deepseek-v4-pro",
-      "description": "规划 — cloud pro（debug 专用高推理）",
-      "maxTokens": 16384,
+      "description": "\u89c4\u5212 \u2014 cloud pro\uff08debug \u4e13\u7528\u9ad8\u63a8\u7406\uff09",
       "reasoningEffort": "high"
     },
     "hephaestus": {
       "model": "deepseek/deepseek-v4-flash",
-      "description": "代码执行核心 — cloud flash（debug 专用）",
-      "maxTokens": 32768,
+      "description": "\u4ee3\u7801\u6267\u884c\u6838\u5fc3 \u2014 cloud flash\uff08debug \u4e13\u7528\uff09",
       "temperature": 0.2,
       "fallback_models": [
         "deepseek/deepseek-v4-flash",
@@ -38,24 +35,21 @@
     },
     "oracle": {
       "model": "deepseek/deepseek-v4-pro",
-      "description": "只读推理专家 — cloud pro（debug 专用高推理）",
-      "maxTokens": 32768,
+      "description": "\u53ea\u8bfb\u63a8\u7406\u4e13\u5bb6 \u2014 cloud pro\uff08debug \u4e13\u7528\u9ad8\u63a8\u7406\uff09",
       "reasoningEffort": "high"
     },
     "momus": {
       "model": "deepseek/deepseek-v4-pro",
-      "description": "质量裁判 — cloud pro（debug 专用）",
-      "maxTokens": 16384,
+      "description": "\u8d28\u91cf\u88c1\u5224 \u2014 cloud pro\uff08debug \u4e13\u7528\uff09",
       "temperature": 0.1
     },
     "metis": {
       "model": "deepseek/deepseek-v4-pro",
-      "description": "风险评估 — cloud pro（debug 专用）",
-      "maxTokens": 8192
+      "description": "\u98ce\u9669\u8bc4\u4f30 \u2014 cloud pro\uff08debug \u4e13\u7528\uff09"
     },
     "atlas": {
       "model": "mixapi/gemma4-26b-fp8",
-      "description": "任务拆解 — MixAPI gemma4 FP8 快速 (65K)",
+      "description": "\u4efb\u52a1\u62c6\u89e3 \u2014 MixAPI gemma4 FP8 \u5feb\u901f (65K)",
       "maxTokens": 8192,
       "fallback_models": [
         "mixapi/qwen3.6-27b",
@@ -64,7 +58,7 @@
     },
     "explore": {
       "model": "mixapi/gemma4-26b-fp8",
-      "description": "代码理解 — MixAPI gemma4 FP8 快速 (65K)",
+      "description": "\u4ee3\u7801\u7406\u89e3 \u2014 MixAPI gemma4 FP8 \u5feb\u901f (65K)",
       "maxTokens": 16384,
       "fallback_models": [
         "mixapi/qwen3.6-27b",
@@ -73,7 +67,7 @@
     },
     "librarian": {
       "model": "mixapi/gemma4-26b-fp8",
-      "description": "文档处理 — MixAPI gemma4 FP8 快速 (65K)",
+      "description": "\u6587\u6863\u5904\u7406 \u2014 MixAPI gemma4 FP8 \u5feb\u901f (65K)",
       "maxTokens": 16384,
       "fallback_models": [
         "mixapi/qwen3.6-27b",
@@ -82,7 +76,7 @@
     },
     "sisyphus-junior": {
       "model": "deepseek/deepseek-v4-flash",
-      "description": "轻量执行 — cloud flash",
+      "description": "\u8f7b\u91cf\u6267\u884c \u2014 cloud flash",
       "maxTokens": 16384,
       "fallback_models": [
         "deepseek/deepseek-v4-flash",
@@ -91,37 +85,37 @@
     },
     "multimodal-looker": {
       "model": "deepseek/deepseek-v4-flash",
-      "description": "视觉分析 — cloud (本地不支持多模态)",
-      "maxTokens": 8192
+      "description": "\u89c6\u89c9\u5206\u6790 \u2014 cloud (\u672c\u5730\u4e0d\u652f\u6301\u591a\u6a21\u6001)",
+      "maxTokens": 16384
     }
   },
   "categories": {
     "visual-engineering": {
       "model": "deepseek/deepseek-v4-flash",
-      "description": "前端/UI/UX/设计 — cloud 多模态兜底",
+      "description": "\u524d\u7aef/UI/UX/\u8bbe\u8ba1 \u2014 cloud \u591a\u6a21\u6001\u515c\u5e95",
       "maxTokens": 8192
     },
     "artistry": {
       "model": "deepseek/deepseek-v4-flash",
-      "description": "创意写作 — cloud",
+      "description": "\u521b\u610f\u5199\u4f5c \u2014 cloud",
       "maxTokens": 8192
     },
     "ultrabrain": {
       "model": "deepseek/deepseek-v4-pro",
-      "description": "超难任务 — cloud pro（debug 专用）",
+      "description": "\u8d85\u96be\u4efb\u52a1 \u2014 cloud pro\uff08debug \u4e13\u7528\uff09",
       "maxTokens": 32768,
       "reasoningEffort": "high"
     },
     "deep": {
       "model": "deepseek/deepseek-v4-pro",
-      "description": "深度研究 — cloud pro（debug 专用）",
+      "description": "\u6df1\u5ea6\u7814\u7a76 \u2014 cloud pro\uff08debug \u4e13\u7528\uff09",
       "maxTokens": 16384,
       "reasoningEffort": "high"
     },
     "coder": {
       "model": "deepseek/deepseek-v4-flash",
-      "description": "代码执行 — cloud flash",
-      "maxTokens": 16384,
+      "description": "\u4ee3\u7801\u6267\u884c \u2014 cloud flash",
+      "maxTokens": 32768,
       "fallback_models": [
         "deepseek/deepseek-v4-flash",
         "mixapi/qwen3.6-27b"
@@ -129,7 +123,7 @@
     },
     "quick": {
       "model": "mixapi/gemma4-26b-fp8",
-      "description": "快速轻量 — MixAPI gemma4 FP8 (TTFT~64ms)",
+      "description": "\u5feb\u901f\u8f7b\u91cf \u2014 MixAPI gemma4 FP8 (TTFT~64ms)",
       "maxTokens": 4096,
       "fallback_models": [
         "mixapi/qwen3.6-27b",
@@ -138,12 +132,12 @@
     },
     "writing": {
       "model": "deepseek/deepseek-v4-flash",
-      "description": "文档写作 — cloud 质量更优",
-      "maxTokens": 8192
+      "description": "\u6587\u6863\u5199\u4f5c \u2014 cloud \u8d28\u91cf\u66f4\u4f18",
+      "maxTokens": 16384
     },
     "analysis-lite": {
       "model": "mixapi/gemma4-26b-fp8",
-      "description": "轻量分析 — MixAPI gemma4 FP8 快速",
+      "description": "\u8f7b\u91cf\u5206\u6790 \u2014 MixAPI gemma4 FP8 \u5feb\u901f",
       "maxTokens": 4096,
       "fallback_models": [
         "mixapi/qwen3.6-27b",
@@ -152,7 +146,7 @@
     },
     "unspecified-low": {
       "model": "mixapi/gemma4-26b-fp8",
-      "description": "低优先级通用 — MixAPI gemma4 FP8 快速",
+      "description": "\u4f4e\u4f18\u5148\u7ea7\u901a\u7528 \u2014 MixAPI gemma4 FP8 \u5feb\u901f",
       "maxTokens": 4096,
       "fallback_models": [
         "mixapi/qwen3.6-27b",
@@ -161,9 +155,8 @@
     },
     "unspecified-high": {
       "model": "deepseek/deepseek-v4-flash",
-      "description": "高优先级通用 — cloud 兜底",
+      "description": "\u9ad8\u4f18\u5148\u7ea7\u901a\u7528 \u2014 cloud \u515c\u5e95",
       "maxTokens": 16384
     }
   }
-
 }

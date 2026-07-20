@@ -36,21 +36,21 @@
     }
   },
   "model": "deepseek/deepseek-v4-flash",
-  "plugin": [
-    "@tarquinen/opencode-dcp@latest",
-    "opencode-dcp-dynamic-limits",
-    "oh-my-openagent@latest",
-    "opencode-agent-context",
-    "opencode-autoresearch@latest",
-    "opencode-codegraph",
-    "opencode-headroom",
-    "opencode-localmemory",
-    "opencode-skill-creator",
-    "opencode-yaml-hooks",
-    "opencode-skills-collection",
-    "@dietrichgebert/ponytail",
-    "caveman-opencode-plugin"
-  ],
+    "plugin": [
+        "oh-my-openagent@latest",
+        "opencode-agent-context",
+        "opencode-autoresearch@latest",
+        "opencode-codegraph",
+        "opencode-debug-helper",
+        "opencode-headroom",
+        "opencode-localmemory",
+        "opencode-qoder-auth",
+        "opencode-skill-creator",
+        "opencode-skills-collection",
+        "@dietrichgebert/ponytail",
+        "caveman-opencode-plugin",
+        "@arkfactory/opencode-checkpoint"
+    ],
   "provider": {
     "deepseek": {
       "npm": "@ai-sdk/openai-compatible",

@@ -1,6 +1,0 @@
-hooks:
-  - event: file.changed
-    conditions:
-      - matchesCodeFiles
-    actions:
-      - bash: "cat | jq -r '.files[]' | xargs -r biome format --write"

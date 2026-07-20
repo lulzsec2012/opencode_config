@@ -1,0 +1,57 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "lsp": true,
+  "instructions": [
+    "../../instructions/behavior.md"
+  ],
+  "mcp": {
+    "codegraph": {
+      "type": "local",
+      "command": [
+        "codegraph",
+        "serve",
+        "--mcp"
+      ],
+      "enabled": true
+    },
+    "sequential-thinking": {
+      "type": "local",
+      "command": ["npx", "-y", "@modelcontextprotocol/server-sequential-thinking"],
+      "enabled": true
+    },
+    "ReVa": {
+      "type": "local",
+      "command": ["mcp-reva-wrapper"],
+      "enabled": true
+    },
+    "codebase-memory-mcp": {
+      "type": "local",
+      "command": ["codebase-memory-mcp"],
+      "enabled": true
+    },
+    "mcp-math-calculator": {
+      "type": "local",
+      "command": ["npx", "-y", "mcp-math-calculator"],
+      "enabled": true
+    }
+  },
+  "model": "qoder/performance",
+  "small_model": "qoder/lite",
+  "plugin": [
+    "@tarquinen/opencode-dcp@latest",
+    "opencode-dcp-dynamic-limits",
+    "opencode-debug-helper",
+    "opencode-headroom",
+    "oh-my-openagent@latest",
+    "opencode-agent-context",
+    "opencode-autoresearch@latest",
+    "opencode-codegraph",
+    "opencode-localmemory",
+    "opencode-qoder-auth",
+    "opencode-skill-creator",
+    "@dietrichgebert/ponytail",
+    "opencode-skills-collection",
+    "caveman-opencode-plugin",
+    "@arkfactory/opencode-checkpoint"
+  ]
+}

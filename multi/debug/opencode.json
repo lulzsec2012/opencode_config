@@ -36,17 +36,19 @@
     }
   },
   "model": "deepseek/deepseek-v4-flash",
-  "plugin": [
-    "opencode-headroom",
-    "oh-my-openagent@latest",
-    "opencode-agent-context",
-    "opencode-autoresearch@latest",
-    "opencode-codegraph",
-    "opencode-localmemory",
-    "opencode-skill-creator",
-    "opencode-yaml-hooks",
-    "caveman-opencode-plugin"
-  ],
+    "plugin": [
+        "opencode-debug-helper",
+        "opencode-headroom",
+        "oh-my-openagent@latest",
+        "opencode-agent-context",
+        "opencode-autoresearch@latest",
+        "opencode-codegraph",
+        "opencode-localmemory",
+        "opencode-qoder-auth",
+        "opencode-skill-creator",
+        "caveman-opencode-plugin",
+        "@arkfactory/opencode-checkpoint"
+    ],
   "provider": {
     "deepseek": {
       "npm": "@ai-sdk/openai-compatible",

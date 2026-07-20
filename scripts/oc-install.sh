@@ -234,7 +234,7 @@ echo "  headroom 已安装，在 opencode.json 的 plugin 中添加 opencode-hea
 # ---------- 10. opencode plugins ----------
 echo ""
 echo "[10/14] Installing opencode plugins..."
-for _pkg in opencode-agent-context opencode-codegraph opencode-localmemory opencode-skill-creator opencode-yaml-hooks opencode-skills-collection; do
+for _pkg in opencode-debug-helper opencode-agent-context opencode-codegraph opencode-localmemory opencode-skill-creator opencode-yaml-hooks opencode-skills-collection; do
   npm_check_upgrade "$_pkg"
 done
 
@@ -349,6 +349,20 @@ if [ -d "$_SKILLS_SRC" ]; then
 else
   echo "  ⚠️  Failed to download speckit-agent-skills"
 fi
+
+# ---------- 11f. opencode-debug-helper ----------
+echo ""
+echo "[11f/14] Installing opencode-debug-helper plugin..."
+echo "  Debug Helper for OpenCode: inspect context, prompts, and provider state."
+echo "  npm: opencode-debug-helper"
+# plugin已在上方通过npm_check_upgrade安装，此处确保添加到各配置
+_OC_MULTI="${XDG_CONFIG_HOME:-$HOME/.config}/opencode-multi/profiles"
+for _profile in mix-work mix-local work local debug; do
+  _cfg="$_OC_MULTI/$_profile/opencode.json"
+  if [ -f "$_cfg" ]; then
+    plugin_add "$_cfg" "opencode-debug-helper"
+  fi
+done
 
 # ---------- 12. Ghidra + ReVa ----------
 echo ""
