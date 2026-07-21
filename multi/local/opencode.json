@@ -1,41 +1,53 @@
 {
-  "$schema": "https://opencode.ai/config.json",
-  "lsp": true,
-  "instructions": [
-    "../../instructions/behavior.md"
-  ],
-  "mcp": {
-    "codegraph": {
-      "type": "local",
-      "command": [
-        "codegraph",
-        "serve",
-        "--mcp"
-      ],
-      "enabled": true
+    "$schema": "https://opencode.ai/config.json",
+    "lsp": true,
+    "instructions": [
+        "../../instructions/behavior.md"
+    ],
+    "mcp": {
+        "codegraph": {
+            "type": "local",
+            "command": [
+                "codegraph",
+                "serve",
+                "--mcp"
+            ],
+            "enabled": true
+        },
+        "sequential-thinking": {
+            "type": "local",
+            "command": [
+                "npx",
+                "-y",
+                "@modelcontextprotocol/server-sequential-thinking"
+            ],
+            "enabled": true
+        },
+        "ReVa": {
+            "type": "local",
+            "command": [
+                "mcp-reva-wrapper"
+            ],
+            "enabled": true
+        },
+        "codebase-memory-mcp": {
+            "type": "local",
+            "command": [
+                "codebase-memory-mcp"
+            ],
+            "enabled": false
+        },
+        "mcp-math-calculator": {
+            "type": "local",
+            "command": [
+                "npx",
+                "-y",
+                "mcp-math-calculator"
+            ],
+            "enabled": true
+        }
     },
-    "sequential-thinking": {
-      "type": "local",
-      "command": ["npx", "-y", "@modelcontextprotocol/server-sequential-thinking"],
-      "enabled": true
-    },
-    "ReVa": {
-      "type": "local",
-      "command": ["mcp-reva-wrapper"],
-      "enabled": true
-    },
-    "codebase-memory-mcp": {
-      "type": "local",
-      "command": ["codebase-memory-mcp"],
-      "enabled": false
-    },
-    "mcp-math-calculator": {
-      "type": "local",
-      "command": ["npx", "-y", "mcp-math-calculator"],
-      "enabled": true
-    }
-  },
-  "model": "mixapi/qwen3.6-27b",
+    "model": "mixapi/qwen3.6-27b",
     "plugin": [
         "oh-my-openagent@latest",
         "opencode-agent-context",
@@ -48,37 +60,39 @@
         "opencode-skill-creator",
         "@dietrichgebert/ponytail",
         "caveman-opencode-plugin",
-        "@arkfactory/opencode-checkpoint"
+        "@arkfactory/opencode-checkpoint",
+        "opencode-refactor-agent"
     ],
-  "provider": {
-    "mixapi": {
-      "npm": "@ai-sdk/openai-compatible",
-      "name": "本地 vLLM 模型 (Local Only)",
-      "options": {
-        "baseURL": "{env:MIXAPI_BASE_URL}",
-        "apiKey": "{env:MIXAPI_API_KEY}",
-        "timeout": 600000,
-        "chunkTimeout": 300000
-      },
-      "models": {
-        "qwen3.6-27b": {
-          "name": "Qwen3.6 27B（本地, 262K, ~105 tok/s）",
-          "tools": true,
-          "limit": {
-            "context": 262144,
-            "output": 32768
-          }
-        },
-        "gemma4-26b-fp8": {
-          "name": "Gemma4 26B FP8（本地高速, 262K, ~260 tok/s）",
-          "tools": true,
-          "limit": {
-            "context": 262144,
-            "output": 32768
-          }
+    "provider": {
+        "mixapi": {
+            "npm": "@ai-sdk/openai-compatible",
+            "name": "\u672c\u5730 vLLM \u6a21\u578b (Local Only)",
+            "options": {
+                "baseURL": "{env:MIXAPI_BASE_URL}",
+                "apiKey": "{env:MIXAPI_API_KEY}",
+                "timeout": 600000,
+                "chunkTimeout": 300000
+            },
+            "models": {
+                "qwen3.6-27b": {
+                    "name": "Qwen3.6 27B\uff08\u672c\u5730, 262K, ~105 tok/s\uff09",
+                    "tools": true,
+                    "limit": {
+                        "context": 262144,
+                        "output": 32768
+                    }
+                },
+                "gemma4-26b-fp8": {
+                    "name": "Gemma4 26B FP8\uff08\u672c\u5730\u9ad8\u901f, 262K, ~260 tok/s\uff09",
+                    "tools": true,
+                    "limit": {
+                        "context": 262144,
+                        "output": 32768
+                    }
+                }
+            }
         }
-      }
-    }
-  },
-  "small_model": "mixapi/qwen3.6-27b"
+    },
+    "small_model": "mixapi/qwen3.6-27b",
+    "formatter": true
 }

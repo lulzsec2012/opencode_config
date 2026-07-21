@@ -21,7 +21,8 @@
       "prompt_append": "You are an AI assistant. You must always respond in Simplified Chinese (\u4e2d\u6587). \u4f60\u5fc5\u987b\u59cb\u7ec8\u7528\u4e2d\u6587\u56de\u590d\u7528\u6237\u3002\u8bf7\u7528\u4e2d\u6587\u8fdb\u884c\u63a8\u7406\uff0c\u601d\u8003\u8fc7\u7a0b\u5fc5\u987b\u4f7f\u7528\u4e2d\u6587\u3002Please reason step by step in Chinese language. \u4e2d\u6587\u63a8\u7406\uff0c\u4e2d\u6587\u8f93\u51fa\u3002",
       "fallback_models": [
         "deepseek/deepseek-v4-flash"
-      ]
+      ],
+      "variant": "medium"
     },
     "prometheus": {
       "model": "deepseek/deepseek-v4-flash",

@@ -234,7 +234,7 @@ echo "  headroom 已安装，在 opencode.json 的 plugin 中添加 opencode-hea
 # ---------- 10. opencode plugins ----------
 echo ""
 echo "[10/14] Installing opencode plugins..."
-for _pkg in opencode-debug-helper opencode-agent-context opencode-codegraph opencode-localmemory opencode-skill-creator opencode-yaml-hooks opencode-skills-collection; do
+for _pkg in opencode-debug-helper opencode-agent-context opencode-codegraph opencode-localmemory opencode-skill-creator opencode-yaml-hooks opencode-skills-collection opencode-refactor-agent; do
   npm_check_upgrade "$_pkg"
 done
 

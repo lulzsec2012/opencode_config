@@ -17,7 +17,8 @@
   "agents": {
     "sisyphus": {
       "model": "deepseek/deepseek-v4-pro",
-      "description": "\u4e3b\u534f\u8c03\u8005 \u2014 cloud pro\uff08debug \u4e13\u7528\u9ad8\u63a8\u7406\uff09"
+      "description": "\u4e3b\u534f\u8c03\u8005 \u2014 cloud pro\uff08debug \u4e13\u7528\u9ad8\u63a8\u7406\uff09",
+      "variant": "medium"
     },
     "prometheus": {
       "model": "deepseek/deepseek-v4-pro",

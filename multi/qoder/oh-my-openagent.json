@@ -17,59 +17,60 @@
   "agents": {
     "sisyphus": {
       "model": "qoder/efficient",
-      "description": "主协调者（Qoder Efficient 0.3x 快速响应）",
-      "prompt_append": "You are an AI assistant. You must always respond in Simplified Chinese (中文). 你必须始终用中文回复用户。即使思考过程可以用英文，最终回复必须是中文。",
+      "description": "\u4e3b\u534f\u8c03\u8005\uff08Qoder Efficient 0.3x \u5feb\u901f\u54cd\u5e94\uff09",
+      "prompt_append": "You are an AI assistant. You must always respond in Simplified Chinese (\u4e2d\u6587). \u4f60\u5fc5\u987b\u59cb\u7ec8\u7528\u4e2d\u6587\u56de\u590d\u7528\u6237\u3002\u5373\u4f7f\u601d\u8003\u8fc7\u7a0b\u53ef\u4ee5\u7528\u82f1\u6587\uff0c\u6700\u7ec8\u56de\u590d\u5fc5\u987b\u662f\u4e2d\u6587\u3002",
       "fallback_models": [
         "qoder/q35model"
-      ]
+      ],
+      "variant": "medium"
     },
     "prometheus": {
       "model": "qoder/ultimate",
-      "description": "规划（Qoder Ultimate 含推理能力）",
+      "description": "\u89c4\u5212\uff08Qoder Ultimate \u542b\u63a8\u7406\u80fd\u529b\uff09",
       "reasoningEffort": "high",
-      "prompt_append": "You are an AI assistant. You must always respond in Simplified Chinese (中文). 你必须始终用中文回复用户。请用中文进行推理，思考过程必须使用中文。Please reason step by step in Chinese language. 中文推理，中文输出。",
+      "prompt_append": "You are an AI assistant. You must always respond in Simplified Chinese (\u4e2d\u6587). \u4f60\u5fc5\u987b\u59cb\u7ec8\u7528\u4e2d\u6587\u56de\u590d\u7528\u6237\u3002\u8bf7\u7528\u4e2d\u6587\u8fdb\u884c\u63a8\u7406\uff0c\u601d\u8003\u8fc7\u7a0b\u5fc5\u987b\u4f7f\u7528\u4e2d\u6587\u3002Please reason step by step in Chinese language. \u4e2d\u6587\u63a8\u7406\uff0c\u4e2d\u6587\u8f93\u51fa\u3002",
       "fallback_models": [
         "qoder/qmodel"
       ]
     },
     "hephaestus": {
       "model": "qoder/qmodel",
-      "description": "代码执行核心（Qoder qmodel = DeepSeek-V4-Pro，0.5x 价格达 Pro 质量）",
+      "description": "\u4ee3\u7801\u6267\u884c\u6838\u5fc3\uff08Qoder qmodel = DeepSeek-V4-Pro\uff0c0.5x \u4ef7\u683c\u8fbe Pro \u8d28\u91cf\uff09",
       "temperature": 0.2,
-      "prompt_append": "You are an AI assistant. You must always respond in Simplified Chinese (中文). 你必须始终用中文回复用户。即使思考过程可以用英文，最终回复必须是中文。",
+      "prompt_append": "You are an AI assistant. You must always respond in Simplified Chinese (\u4e2d\u6587). \u4f60\u5fc5\u987b\u59cb\u7ec8\u7528\u4e2d\u6587\u56de\u590d\u7528\u6237\u3002\u5373\u4f7f\u601d\u8003\u8fc7\u7a0b\u53ef\u4ee5\u7528\u82f1\u6587\uff0c\u6700\u7ec8\u56de\u590d\u5fc5\u987b\u662f\u4e2d\u6587\u3002",
       "fallback_models": [
         "qoder/performance"
       ]
     },
     "oracle": {
       "model": "qoder/ultimate",
-      "description": "只读推理专家（Qoder Ultimate 唯一带 reasoning 的模型）",
+      "description": "\u53ea\u8bfb\u63a8\u7406\u4e13\u5bb6\uff08Qoder Ultimate \u552f\u4e00\u5e26 reasoning \u7684\u6a21\u578b\uff09",
       "reasoningEffort": "high",
-      "prompt_append": "You are an AI assistant. You must always respond in Simplified Chinese (中文). 你必须始终用中文回复用户。请用中文进行推理，思考过程必须使用中文。Please reason step by step in Chinese language. 中文推理，中文输出。",
+      "prompt_append": "You are an AI assistant. You must always respond in Simplified Chinese (\u4e2d\u6587). \u4f60\u5fc5\u987b\u59cb\u7ec8\u7528\u4e2d\u6587\u56de\u590d\u7528\u6237\u3002\u8bf7\u7528\u4e2d\u6587\u8fdb\u884c\u63a8\u7406\uff0c\u601d\u8003\u8fc7\u7a0b\u5fc5\u987b\u4f7f\u7528\u4e2d\u6587\u3002Please reason step by step in Chinese language. \u4e2d\u6587\u63a8\u7406\uff0c\u4e2d\u6587\u8f93\u51fa\u3002",
       "fallback_models": [
         "qoder/qmodel"
       ]
     },
     "momus": {
       "model": "qoder/qmodel",
-      "description": "质量裁判（Qoder qmodel = DeepSeek-V4-Pro，审查需要 Pro 质量）",
+      "description": "\u8d28\u91cf\u88c1\u5224\uff08Qoder qmodel = DeepSeek-V4-Pro\uff0c\u5ba1\u67e5\u9700\u8981 Pro \u8d28\u91cf\uff09",
       "temperature": 0.1,
-      "prompt_append": "You are an AI assistant. You must always respond in Simplified Chinese (中文). 你必须始终用中文回复用户。即使思考过程可以用英文，最终回复必须是中文。",
+      "prompt_append": "You are an AI assistant. You must always respond in Simplified Chinese (\u4e2d\u6587). \u4f60\u5fc5\u987b\u59cb\u7ec8\u7528\u4e2d\u6587\u56de\u590d\u7528\u6237\u3002\u5373\u4f7f\u601d\u8003\u8fc7\u7a0b\u53ef\u4ee5\u7528\u82f1\u6587\uff0c\u6700\u7ec8\u56de\u590d\u5fc5\u987b\u662f\u4e2d\u6587\u3002",
       "fallback_models": [
         "qoder/performance"
       ]
     },
     "metis": {
       "model": "qoder/qmodel",
-      "description": "风险分析（Qoder qmodel = DeepSeek-V4-Pro 分析能力）",
-      "prompt_append": "You are an AI assistant. You must always respond in Simplified Chinese (中文). 你必须始终用中文回复用户。即使思考过程可以用英文，最终回复必须是中文。",
+      "description": "\u98ce\u9669\u5206\u6790\uff08Qoder qmodel = DeepSeek-V4-Pro \u5206\u6790\u80fd\u529b\uff09",
+      "prompt_append": "You are an AI assistant. You must always respond in Simplified Chinese (\u4e2d\u6587). \u4f60\u5fc5\u987b\u59cb\u7ec8\u7528\u4e2d\u6587\u56de\u590d\u7528\u6237\u3002\u5373\u4f7f\u601d\u8003\u8fc7\u7a0b\u53ef\u4ee5\u7528\u82f1\u6587\uff0c\u6700\u7ec8\u56de\u590d\u5fc5\u987b\u662f\u4e2d\u6587\u3002",
       "fallback_models": [
         "qoder/performance"
       ]
     },
     "atlas": {
       "model": "qoder/performance",
-      "description": "任务拆解（Qoder Performance 均衡快速）",
+      "description": "\u4efb\u52a1\u62c6\u89e3\uff08Qoder Performance \u5747\u8861\u5feb\u901f\uff09",
       "maxTokens": 8192,
       "fallback_models": [
         "qoder/q35model"
@@ -77,7 +78,7 @@
     },
     "explore": {
       "model": "qoder/q35model",
-      "description": "代码理解（Qoder q35model = DeepSeek-V4-Flash，0.1x 极速低价）",
+      "description": "\u4ee3\u7801\u7406\u89e3\uff08Qoder q35model = DeepSeek-V4-Flash\uff0c0.1x \u6781\u901f\u4f4e\u4ef7\uff09",
       "maxTokens": 16384,
       "fallback_models": [
         "qoder/efficient",
@@ -86,7 +87,7 @@
     },
     "librarian": {
       "model": "qoder/q35model",
-      "description": "文档处理（Qoder q35model = DS-V4-Flash，低成本文档搜索）",
+      "description": "\u6587\u6863\u5904\u7406\uff08Qoder q35model = DS-V4-Flash\uff0c\u4f4e\u6210\u672c\u6587\u6863\u641c\u7d22\uff09",
       "maxTokens": 16384,
       "fallback_models": [
         "qoder/efficient",
@@ -95,7 +96,7 @@
     },
     "sisyphus-junior": {
       "model": "qoder/efficient",
-      "description": "轻量执行任务（Qoder Efficient 0.3x 快速便宜）",
+      "description": "\u8f7b\u91cf\u6267\u884c\u4efb\u52a1\uff08Qoder Efficient 0.3x \u5feb\u901f\u4fbf\u5b9c\uff09",
       "maxTokens": 16384,
       "fallback_models": [
         "qoder/q35model"
@@ -103,7 +104,7 @@
     },
     "multimodal-looker": {
       "model": "qoder/performance",
-      "description": "视觉分析（Qoder Performance 支持附件，质量均衡）",
+      "description": "\u89c6\u89c9\u5206\u6790\uff08Qoder Performance \u652f\u6301\u9644\u4ef6\uff0c\u8d28\u91cf\u5747\u8861\uff09",
       "maxTokens": 16384,
       "fallback_models": [
         "qoder/auto"
@@ -113,7 +114,7 @@
   "categories": {
     "visual-engineering": {
       "model": "qoder/performance",
-      "description": "前端/UI/UX/设计（Qoder Performance 支持附件，质量均衡）",
+      "description": "\u524d\u7aef/UI/UX/\u8bbe\u8ba1\uff08Qoder Performance \u652f\u6301\u9644\u4ef6\uff0c\u8d28\u91cf\u5747\u8861\uff09",
       "maxTokens": 8192,
       "fallback_models": [
         "qoder/auto"
@@ -121,7 +122,7 @@
     },
     "artistry": {
       "model": "qoder/q35model",
-      "description": "创意写作（Qoder q35model DS-V4-Flash，创意任务够用）",
+      "description": "\u521b\u610f\u5199\u4f5c\uff08Qoder q35model DS-V4-Flash\uff0c\u521b\u610f\u4efb\u52a1\u591f\u7528\uff09",
       "maxTokens": 8192,
       "fallback_models": [
         "qoder/efficient"
@@ -129,7 +130,7 @@
     },
     "ultrabrain": {
       "model": "qoder/ultimate",
-      "description": "复杂推理（Qoder Ultimate，唯一带 reasoning 能力，最高质量）",
+      "description": "\u590d\u6742\u63a8\u7406\uff08Qoder Ultimate\uff0c\u552f\u4e00\u5e26 reasoning \u80fd\u529b\uff0c\u6700\u9ad8\u8d28\u91cf\uff09",
       "maxTokens": 32768,
       "reasoningEffort": "high",
       "fallback_models": [
@@ -138,7 +139,7 @@
     },
     "deep": {
       "model": "qoder/ultimate",
-      "description": "深度研究（Qoder Ultimate 推理能力支撑深度研究）",
+      "description": "\u6df1\u5ea6\u7814\u7a76\uff08Qoder Ultimate \u63a8\u7406\u80fd\u529b\u652f\u6491\u6df1\u5ea6\u7814\u7a76\uff09",
       "maxTokens": 16384,
       "fallback_models": [
         "qoder/qmodel"
@@ -146,7 +147,7 @@
     },
     "coder": {
       "model": "qoder/qmodel",
-      "description": "代码执行（Qoder qmodel = DeepSeek-V4-Pro 质量，仅 0.5x 价格）",
+      "description": "\u4ee3\u7801\u6267\u884c\uff08Qoder qmodel = DeepSeek-V4-Pro \u8d28\u91cf\uff0c\u4ec5 0.5x \u4ef7\u683c\uff09",
       "maxTokens": 32768,
       "fallback_models": [
         "qoder/performance"
@@ -154,7 +155,7 @@
     },
     "quick": {
       "model": "qoder/q35model",
-      "description": "快速轻量任务（Qoder q35model DS-V4-Flash，0.1x 极致低价快速）",
+      "description": "\u5feb\u901f\u8f7b\u91cf\u4efb\u52a1\uff08Qoder q35model DS-V4-Flash\uff0c0.1x \u6781\u81f4\u4f4e\u4ef7\u5feb\u901f\uff09",
       "maxTokens": 4096,
       "fallback_models": [
         "qoder/efficient"
@@ -162,7 +163,7 @@
     },
     "writing": {
       "model": "qoder/qmodel",
-      "description": "文档写作（Qoder qmodel = DeepSeek-V4-Pro 输出质量）",
+      "description": "\u6587\u6863\u5199\u4f5c\uff08Qoder qmodel = DeepSeek-V4-Pro \u8f93\u51fa\u8d28\u91cf\uff09",
       "maxTokens": 16384,
       "fallback_models": [
         "qoder/performance"
@@ -170,7 +171,7 @@
     },
     "analysis-lite": {
       "model": "qoder/efficient",
-      "description": "轻量分析（Qoder Efficient 0.3x 快速分析）",
+      "description": "\u8f7b\u91cf\u5206\u6790\uff08Qoder Efficient 0.3x \u5feb\u901f\u5206\u6790\uff09",
       "maxTokens": 4096,
       "fallback_models": [
         "qoder/q35model"
@@ -178,7 +179,7 @@
     },
     "unspecified-low": {
       "model": "qoder/lite",
-      "description": "低优先级通用任务（Qoder Lite 免费模型，基础任务够用）",
+      "description": "\u4f4e\u4f18\u5148\u7ea7\u901a\u7528\u4efb\u52a1\uff08Qoder Lite \u514d\u8d39\u6a21\u578b\uff0c\u57fa\u7840\u4efb\u52a1\u591f\u7528\uff09",
       "maxTokens": 4096,
       "fallback_models": [
         "qoder/q35model"
@@ -186,7 +187,7 @@
     },
     "unspecified-high": {
       "model": "qoder/performance",
-      "description": "高优先级通用任务（Qoder Performance 质量兜底）",
+      "description": "\u9ad8\u4f18\u5148\u7ea7\u901a\u7528\u4efb\u52a1\uff08Qoder Performance \u8d28\u91cf\u515c\u5e95\uff09",
       "maxTokens": 16384,
       "fallback_models": [
         "qoder/qmodel"

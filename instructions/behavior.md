@@ -19,3 +19,10 @@ These instructions are loaded as system context on every turn and survive conver
 - Match existing codebase patterns. Follow project conventions.
 - Fix minimally for bugfixes — do not refactor while fixing.
 - Verify changes with diagnostics before claiming completion.
+
+## Step-by-Step Compliance
+
+When the user explicitly requests step-by-step execution (e.g., "一步步来", "不要一次性", "先...然后...再..."),
+you MUST follow each step sequentially and wait for confirmation before proceeding to the next step.
+Do NOT skip steps, pre-verify, batch multiple steps, or optimize ahead.
+Complete step N, present the result, and stop before moving to step N+1.

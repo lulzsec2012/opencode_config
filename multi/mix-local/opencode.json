@@ -1,41 +1,53 @@
 {
-  "$schema": "https://opencode.ai/config.json",
-  "lsp": true,
-  "instructions": [
-    "../../instructions/behavior.md"
-  ],
-  "mcp": {
-    "codegraph": {
-      "type": "local",
-      "command": [
-        "codegraph",
-        "serve",
-        "--mcp"
-      ],
-      "enabled": true
+    "$schema": "https://opencode.ai/config.json",
+    "lsp": true,
+    "instructions": [
+        "../../instructions/behavior.md"
+    ],
+    "mcp": {
+        "codegraph": {
+            "type": "local",
+            "command": [
+                "codegraph",
+                "serve",
+                "--mcp"
+            ],
+            "enabled": true
+        },
+        "sequential-thinking": {
+            "type": "local",
+            "command": [
+                "npx",
+                "-y",
+                "@modelcontextprotocol/server-sequential-thinking"
+            ],
+            "enabled": true
+        },
+        "ReVa": {
+            "type": "local",
+            "command": [
+                "mcp-reva-wrapper"
+            ],
+            "enabled": true
+        },
+        "codebase-memory-mcp": {
+            "type": "local",
+            "command": [
+                "codebase-memory-mcp"
+            ],
+            "enabled": false
+        },
+        "mcp-math-calculator": {
+            "type": "local",
+            "command": [
+                "npx",
+                "-y",
+                "mcp-math-calculator"
+            ],
+            "enabled": true
+        }
     },
-    "sequential-thinking": {
-      "type": "local",
-      "command": ["npx", "-y", "@modelcontextprotocol/server-sequential-thinking"],
-      "enabled": true
-    },
-    "ReVa": {
-      "type": "local",
-      "command": ["mcp-reva-wrapper"],
-      "enabled": true
-    },
-    "codebase-memory-mcp": {
-      "type": "local",
-      "command": ["codebase-memory-mcp"],
-      "enabled": false
-    },
-    "mcp-math-calculator": {
-      "type": "local",
-      "command": ["npx", "-y", "mcp-math-calculator"],
-      "enabled": true
-    }
-  },
-  "model": "deepseek/deepseek-v4-flash",
+    "model": "deepseek/deepseek-v4-flash",
     "plugin": [
         "oh-my-openagent@latest",
         "opencode-agent-context",
@@ -49,55 +61,57 @@
         "opencode-skills-collection",
         "@dietrichgebert/ponytail",
         "caveman-opencode-plugin",
-        "@arkfactory/opencode-checkpoint"
+        "@arkfactory/opencode-checkpoint",
+        "opencode-refactor-agent"
     ],
-  "provider": {
-    "deepseek": {
-      "npm": "@ai-sdk/openai-compatible",
-      "name": "DeepSeek 云端 (6 个高性能模块专用)",
-      "options": {
-        "baseURL": "https://api.deepseek.com/v1",
-        "apiKey": "{env:DEEPSEEK_API_KEY}"
-      },
-      "models": {
-        "deepseek-v4-flash": {
-          "name": "DeepSeek V4 Flash（云端保底）",
-          "tools": true
+    "provider": {
+        "deepseek": {
+            "npm": "@ai-sdk/openai-compatible",
+            "name": "DeepSeek \u4e91\u7aef (6 \u4e2a\u9ad8\u6027\u80fd\u6a21\u5757\u4e13\u7528)",
+            "options": {
+                "baseURL": "https://api.deepseek.com/v1",
+                "apiKey": "{env:DEEPSEEK_API_KEY}"
+            },
+            "models": {
+                "deepseek-v4-flash": {
+                    "name": "DeepSeek V4 Flash\uff08\u4e91\u7aef\u4fdd\u5e95\uff09",
+                    "tools": true
+                },
+                "deepseek-v4-pro": {
+                    "name": "DeepSeek V4 Pro\uff08\u4e91\u7aef\u9ad8\u9636\u63a8\u7406\uff09",
+                    "tools": true
+                }
+            }
         },
-        "deepseek-v4-pro": {
-          "name": "DeepSeek V4 Pro（云端高阶推理）",
-          "tools": true
+        "mixapi": {
+            "npm": "@ai-sdk/openai-compatible",
+            "name": "\u672c\u5730 vLLM \u96c6\u7fa4",
+            "options": {
+                "baseURL": "{env:MIXAPI_BASE_URL}",
+                "apiKey": "{env:MIXAPI_API_KEY}",
+                "timeout": 600000,
+                "chunkTimeout": 300000
+            },
+            "models": {
+                "qwen3.6-27b": {
+                    "name": "Qwen3.6 27B\uff08\u672c\u5730, 262K, ~105 tok/s\uff09",
+                    "tools": true,
+                    "limit": {
+                        "context": 262144,
+                        "output": 32768
+                    }
+                },
+                "gemma4-26b-fp8": {
+                    "name": "Gemma4 26B FP8\uff08\u672c\u5730\u9ad8\u901f, 262K, ~260 tok/s\uff09",
+                    "tools": true,
+                    "limit": {
+                        "context": 262144,
+                        "output": 32768
+                    }
+                }
+            }
         }
-      }
     },
-    "mixapi": {
-      "npm": "@ai-sdk/openai-compatible",
-      "name": "本地 vLLM 集群",
-      "options": {
-        "baseURL": "{env:MIXAPI_BASE_URL}",
-        "apiKey": "{env:MIXAPI_API_KEY}",
-        "timeout": 600000,
-        "chunkTimeout": 300000
-      },
-      "models": {
-        "qwen3.6-27b": {
-          "name": "Qwen3.6 27B（本地, 262K, ~105 tok/s）",
-          "tools": true,
-          "limit": {
-            "context": 262144,
-            "output": 32768
-          }
-        },
-        "gemma4-26b-fp8": {
-          "name": "Gemma4 26B FP8（本地高速, 262K, ~260 tok/s）",
-          "tools": true,
-          "limit": {
-            "context": 262144,
-            "output": 32768
-          }
-        }
-      }
-    }
-  },
-  "small_model": "mixapi/gemma4-26b-fp8"
+    "small_model": "mixapi/gemma4-26b-fp8",
+    "formatter": true
 }
