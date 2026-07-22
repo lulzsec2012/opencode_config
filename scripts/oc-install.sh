@@ -396,6 +396,18 @@ else
   echo "  install-reva.sh 未找到（预期路径: $_REVA_SCRIPT），跳过"
 fi
 
+# ---------- 13b. open-code-review & ocr CLI ----------
+echo ""
+echo "[13b/14] Installing alibaba/open-code-review skill & ocr CLI..."
+npm install -g @alibaba-group/open-code-review 2>&1 | tail -3
+if command -v ocr &>/dev/null; then
+  echo "  ocr CLI: $(ocr --version 2>/dev/null | head -1)"
+  echo "  Skill:   npx --yes skills add alibaba/open-code-review"
+  echo "  (已在 repo 配置中，运行 setup.sh 即同步)"
+else
+  echo "  ocr CLI 安装失败，请手动: npm install -g @alibaba-group/open-code-review"
+fi
+
 # ---------- 13. codebase-memory-mcp ----------
 echo ""
 echo "[13/14] Installing codebase-memory-mcp (Code Intelligence Knowledge Graph)..."
