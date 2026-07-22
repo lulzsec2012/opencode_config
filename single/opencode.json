@@ -84,5 +84,15 @@
             }
         }
     },
-    "formatter": true
+    "formatter": true,
+    "agent": {
+        "refactor": {
+            "color": "#55f76d",
+            "description": "orchestrates safe refactors to improve code quality.",
+            "mode": "primary",
+            "permission": {
+                "question": "allow"
+            }
+        }
+    }
 }
