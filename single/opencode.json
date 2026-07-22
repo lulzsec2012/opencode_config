@@ -1,106 +1,97 @@
 {
-  "$schema": "https://opencode.ai/config.json",
-  "agent": {
-    "refactor": {
-      "color": "#55f76d",
-      "description": "orchestrates safe refactors to improve code quality.",
-      "mode": "primary",
-      "permission": {
-        "question": "allow"
-      }
-    }
-  },
-  "formatter": true,
-  "instructions": [
-    "../instructions/behavior.md"
-  ],
-  "lsp": true,
-  "mcp": {
-    "codegraph": {
-      "type": "local",
-      "command": [
-        "codegraph",
-        "serve",
-        "--mcp"
-      ],
-      "enabled": true
-    },
-    "sequential-thinking": {
-      "type": "local",
-      "command": [
-        "npx",
-        "-y",
-        "@modelcontextprotocol/server-sequential-thinking"
-      ],
-      "enabled": true
-    },
-    "ReVa": {
-      "type": "local",
-      "command": [
-        "mcp-reva-wrapper"
-      ],
-      "enabled": false
-    },
-    "codebase-memory-mcp": {
-      "type": "local",
-      "command": [
-        "codebase-memory-mcp"
-      ],
-      "enabled": true
-    },
-    "mcp-math-calculator": {
-      "type": "local",
-      "command": [
-        "npx",
-        "-y",
-        "mcp-math-calculator"
-      ],
-      "enabled": true
-    },
-    "llm-router": {
-      "type": "local",
-      "command": [
-        "llm-router-mcp"
-      ],
-      "enabled": true
-    }
-  },
-  "model": "deepseek/deepseek-v4-flash",
-  "plugin": [
-    "@arkfactory/opencode-checkpoint",
-    "oh-my-openagent@latest",
-    "opencode-agent-context",
-    "opencode-autoresearch@latest",
-    "opencode-codegraph",
-    "opencode-debug-helper",
-    "opencode-headroom",
-    "opencode-localmemory",
-    "opencode-qoder-auth",
-    "opencode-refactor-agent",
-    "opencode-refactor-agent@latest",
-    "opencode-skill-creator"
-  ],
-  "provider": {
-    "deepseek": {
-      "npm": "@ai-sdk/openai-compatible",
-      "name": "DeepSeek 云端",
-      "options": {
-        "baseURL": "https://api.deepseek.com/v1",
-        "apiKey": "{env:DEEPSEEK_API_KEY}",
-        "timeout": 600000,
-        "chunkTimeout": 300000
-      },
-      "models": {
-        "deepseek-v4-flash": {
-          "name": "DeepSeek V4 Flash（云端主力）",
-          "tools": true
-        },
-        "deepseek-v4-pro": {
-          "name": "DeepSeek V4 Pro（云端高阶推理）",
-          "tools": true
+    "$schema": "https://opencode.ai/config.json",
+    "agent": {
+        "refactor": {
+            "color": "#55f76d",
+            "description": "orchestrates safe refactors to improve code quality.",
+            "mode": "primary",
+            "permission": {
+                "question": "allow"
+            }
         }
-      }
-    }
-  },
-  "small_model": "deepseek/deepseek-v4-flash"
+    },
+    "formatter": true,
+    "instructions": [
+        "../instructions/behavior.md"
+    ],
+    "lsp": true,
+    "mcp": {
+        "codegraph": {
+            "type": "local",
+            "command": [
+                "codegraph",
+                "serve",
+                "--mcp"
+            ],
+            "enabled": true
+        },
+        "ReVa": {
+            "type": "local",
+            "command": [
+                "mcp-reva-wrapper"
+            ],
+            "enabled": false
+        },
+        "codebase-memory-mcp": {
+            "type": "local",
+            "command": [
+                "codebase-memory-mcp"
+            ],
+            "enabled": true
+        },
+        "mcp-math-calculator": {
+            "type": "local",
+            "command": [
+                "npx",
+                "-y",
+                "mcp-math-calculator"
+            ],
+            "enabled": true
+        },
+        "llm-router": {
+            "type": "local",
+            "command": [
+                "llm-router-mcp"
+            ],
+            "enabled": true
+        }
+    },
+    "model": "deepseek/deepseek-v4-flash",
+    "plugin": [
+        "@arkfactory/opencode-checkpoint",
+        "oh-my-openagent@latest",
+        "opencode-agent-context",
+        "opencode-autoresearch@latest",
+        "opencode-codegraph",
+        "opencode-debug-helper",
+        "opencode-headroom",
+        "opencode-localmemory",
+        "opencode-qoder-auth",
+        "opencode-refactor-agent",
+        "opencode-refactor-agent@latest",
+        "opencode-skill-creator"
+    ],
+    "provider": {
+        "deepseek": {
+            "npm": "@ai-sdk/openai-compatible",
+            "name": "DeepSeek 云端",
+            "options": {
+                "baseURL": "https://api.deepseek.com/v1",
+                "apiKey": "{env:DEEPSEEK_API_KEY}",
+                "timeout": 600000,
+                "chunkTimeout": 300000
+            },
+            "models": {
+                "deepseek-v4-flash": {
+                    "name": "DeepSeek V4 Flash（云端主力）",
+                    "tools": true
+                },
+                "deepseek-v4-pro": {
+                    "name": "DeepSeek V4 Pro（云端高阶推理）",
+                    "tools": true
+                }
+            }
+        }
+    },
+    "small_model": "deepseek/deepseek-v4-flash"
 }
