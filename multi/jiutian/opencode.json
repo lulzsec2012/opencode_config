@@ -51,6 +51,25 @@
         "opencode-refactor-agent"
     ],
     "provider": {
+        "mixapi": {
+            "npm": "@ai-sdk/openai-compatible",
+            "name": "MixAPI 本地 (llm-router MCP)",
+            "options": {
+                "baseURL": "http://localhost:8000/v1",
+                "timeout": 600000,
+                "chunkTimeout": 300000
+            },
+            "models": {
+                "gemma4-26b-fp8": {
+                    "name": "Gemma4 26B FP8 (109 t/s, TTFT=0.14s)",
+                    "tools": true
+                },
+                "qwen3.6-27b": {
+                    "name": "Qwen3.6 27B (61 t/s, TTFT=0.24s)",
+                    "tools": true
+                }
+            }
+        },
         "jiutian": {
             "npm": "@ai-sdk/openai-compatible",
             "name": "九天模型平台 (jiutian-moma)",
@@ -117,7 +136,7 @@
             }
         }
     },
-    "small_model": "jiutian/jiutian/jiutian-lan-13b",
+    "small_model": "mixapi/gemma4-26b-fp8",
     "formatter": true,
     "agent": {
         "refactor": {
