@@ -1,0 +1,132 @@
+{
+    "$schema": "https://opencode.ai/config.json",
+    "lsp": true,
+    "instructions": [
+        "../../instructions/behavior.md"
+    ],
+    "mcp": {
+        "codegraph": {
+            "type": "local",
+            "command": ["codegraph", "serve", "--mcp"],
+            "enabled": true
+        },
+        "ReVa": {
+            "type": "local",
+            "command": ["mcp-reva-wrapper"],
+            "enabled": true
+        },
+        "codebase-memory-mcp": {
+            "type": "local",
+            "command": ["codebase-memory-mcp"],
+            "enabled": true
+        },
+        "mcp-math-calculator": {
+            "type": "local",
+            "command": ["npx", "-y", "mcp-math-calculator"],
+            "enabled": true
+        },
+        "llm-router": {
+            "type": "local",
+            "command": ["llm-router-mcp"],
+            "enabled": true
+        }
+    },
+    "model": "jiutian/z.ai/glm-5.2",
+    "plugin": [
+        "@tarquinen/opencode-dcp@latest",
+        "opencode-dcp-dynamic-limits",
+        "opencode-debug-helper",
+        "opencode-headroom",
+        "oh-my-openagent@latest",
+        "opencode-agent-context",
+        "opencode-autoresearch@latest",
+        "opencode-codegraph",
+        "opencode-localmemory",
+        "opencode-qoder-auth",
+        "opencode-skill-creator",
+        "@dietrichgebert/ponytail",
+        "opencode-skills-collection",
+        "caveman-opencode-plugin",
+        "@arkfactory/opencode-checkpoint",
+        "opencode-refactor-agent"
+    ],
+    "provider": {
+        "jiutian": {
+            "npm": "@ai-sdk/openai-compatible",
+            "name": "九天模型平台 (jiutian-moma)",
+            "options": {
+                "baseURL": "https://jiutian.10086.cn/largemodel/moma/api/v3",
+                "apiKey": "{env:JIUTIAN_API_KEY}"
+            },
+            "_models": "以下仅保留有独特优势的模型，被全面碾压的模型已移除",
+            "models": {
+                "z.ai/glm-5": {
+                    "name": "GLM-5 (Vending Bench #1 OS，长周期规划王者)",
+                    "tools": true
+                },
+                "z.ai/glm-5.1": {
+                    "name": "GLM-5.1 (文档生成 docx/pdf/xlsx，33 t/s)",
+                    "tools": true
+                },
+                "z.ai/glm-5.2": {
+                    "name": "GLM-5.2 (开源Agentic SOTA，终极兜底)",
+                    "tools": true
+                },
+                "deepseek/deepseek-r1": {
+                    "name": "DeepSeek R1 (纯推理模型)"
+                },
+                "deepseek/deepseek-v4-flash": {
+                    "name": "DeepSeek V4 Flash (低TTFT可靠通用)",
+                    "tools": true
+                },
+                "qwen/qwen3-coder-next": {
+                    "name": "Qwen3 Coder Next (80B/3B active，高效编码)",
+                    "tools": true
+                },
+                "moonshotai/kimi-k2.6": {
+                    "name": "Kimi K2.6 (长周期编码王者，Terminal-Bench 66.7)",
+                    "tools": true
+                },
+                "moonshotai/kimi-k2.5-thinking": {
+                    "name": "Kimi K2.5 Thinking (多模态推理，HLE 50.2)"
+                },
+                "minimax/minimax-m2.7": {
+                    "name": "MiniMax M2.7 (SRE/DevOps，GDPval-AA 1495)",
+                    "tools": true
+                },
+                "nvidia/nemotron-3-super-120b-a12b": {
+                    "name": "NVIDIA Nemotron 120B (1M上下文，95 t/s)",
+                    "tools": true
+                },
+                "openai/gpt-oss-120b": {
+                    "name": "GPT-OSS 120B (119 t/s 速度之王)",
+                    "tools": true
+                },
+                "jiutian/jiutian-code-8b": {
+                    "name": "九天Code 8B (TTFT=0.9s 代码极速搜索)",
+                    "tools": true
+                },
+                "jiutian/jiutian-math-8b": {
+                    "name": "九天Math 8B (数学专业，31 t/s)",
+                    "tools": true
+                },
+                "jiutian/jiutian-lan-13b": {
+                    "name": "九天蓝 13B (TTFT=0.8s 最快响应)",
+                    "tools": true
+                }
+            }
+        }
+    },
+    "small_model": "jiutian/jiutian/jiutian-lan-13b",
+    "formatter": true,
+    "agent": {
+        "refactor": {
+            "color": "#55f76d",
+            "description": "orchestrates safe refactors to improve code quality.",
+            "mode": "primary",
+            "permission": {
+                "question": "allow"
+            }
+        }
+    }
+}

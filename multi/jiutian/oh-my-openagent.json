@@ -1,0 +1,147 @@
+{
+  "$schema": "https://raw.githubusercontent.com/code-yeongyu/oh-my-openagent/refs/heads/dev/assets/oh-my-opencode.schema.json",
+  "default_agent": "sisyphus",
+  "hashline_edit": true,
+  "background_task": { "defaultConcurrency": 3 },
+  "sisyphus_agent": { "disabled": false, "default_builder_enabled": false, "planner_enabled": false, "replace_plan": true },
+  "disabled_hooks": ["atlas-orchestrator"],
+
+  "agents": {
+    "sisyphus": {
+      "model": "jiutian/z.ai/glm-5.2",
+      "description": "主协调器 — GLM-5.2（Sisyphus兼容最佳，开源Agentic SOTA，MCP-Atlas 67.8）",
+      "prompt_append": "You are an AI assistant. You must always respond in Simplified Chinese (中文). 你必须始终用中文回复用户。即使思考过程可以用英文，最终回复必须是中文。",
+      "variant": "medium",
+      "fallback_models": ["jiutian/minimax/minimax-m2.7", "jiutian/deepseek/deepseek-v4-flash"]
+    },
+    "prometheus": {
+      "model": "jiutian/z.ai/glm-5",
+      "description": "规划 — GLM-5（Vending Bench #1 OS，长周期规划王者）",
+      "reasoningEffort": "high",
+      "prompt_append": "You are an AI assistant. You must always respond in Simplified Chinese (中文). 你必须始终用中文回复用户。请用中文进行推理，思考过程必须使用中文。Please reason step by step in Chinese language. 中文推理，中文输出。",
+      "fallback_models": ["jiutian/z.ai/glm-5.2"]
+    },
+    "hephaestus": {
+      "model": "jiutian/moonshotai/kimi-k2.6",
+      "description": "代码执行 — Kimi K2.6（Terminal-Bench 66.7，12h持续编码）",
+      "temperature": 0.2,
+      "prompt_append": "You are an AI assistant. You must always respond in Simplified Chinese (中文). 你必须始终用中文回复用户。即使思考过程可以用英文，最终回复必须是中文。",
+      "fallback_models": ["jiutian/z.ai/glm-5.2", "jiutian/minimax/minimax-m2.7"]
+    },
+    "oracle": {
+      "model": "jiutian/deepseek/deepseek-r1",
+      "description": "只读推理 — DeepSeek R1（纯推理模型，深度分析不妥协）",
+      "reasoningEffort": "high",
+      "prompt_append": "You are an AI assistant. You must always respond in Simplified Chinese (中文). 你必须始终用中文回复用户。请用中文进行推理，思考过程必须使用中文。Please reason step by step in Chinese language. 中文推理，中文输出。",
+      "fallback_models": ["jiutian/moonshotai/kimi-k2.5-thinking"]
+    },
+    "momus": {
+      "model": "jiutian/minimax/minimax-m2.7",
+      "description": "质量裁判 — MiniMax M2.7（SRE/DevOps，97%技能遵循，GDPval-AA 1495）",
+      "temperature": 0.1,
+      "prompt_append": "You are an AI assistant. You must always respond in Simplified Chinese (中文). 你必须始终用中文回复用户。即使思考过程可以用英文，最终回复必须是中文。",
+      "fallback_models": ["jiutian/z.ai/glm-5.2"]
+    },
+    "metis": {
+      "model": "jiutian/deepseek/deepseek-r1",
+      "description": "风险分析 — DeepSeek R1（反事实推理与边界条件识别）",
+      "reasoningEffort": "high",
+      "prompt_append": "You are an AI assistant. You must always respond in Simplified Chinese (中文). 你必须始终用中文回复用户。请用中文进行推理，思考过程必须使用中文。Please reason step by step in Chinese language. 中文推理，中文输出。",
+      "fallback_models": ["jiutian/moonshotai/kimi-k2.5-thinking"]
+    },
+    "atlas": {
+      "model": "jiutian/jiutian/jiutian-code-8b",
+      "description": "任务拆解 — 九天Code 8B（TTFT=0.9s极速拆解）",
+      "maxTokens": 8192,
+      "fallback_models": ["jiutian/jiutian/jiutian-code-8b"]
+    },
+    "explore": {
+      "model": "jiutian/jiutian/jiutian-code-8b",
+      "description": "代码理解 — 九天Code 8B（TTFT=0.9s，代码理解快速）",
+      "maxTokens": 16384,
+      "fallback_models": ["jiutian/jiutian/jiutian-code-8b"]
+    },
+    "librarian": {
+      "model": "jiutian/nvidia/nemotron-3-super-120b-a12b",
+      "description": "文档处理 — NVIDIA Nemotron（1M超长上下文，95 t/s）",
+      "maxTokens": 16384,
+      "fallback_models": ["jiutian/z.ai/glm-5.2"]
+    },
+    "sisyphus-junior": {
+      "model": "jiutian/jiutian/jiutian-lan-13b",
+      "description": "轻量执行 — 九天蓝13B（TTFT=0.8s最快响应，轻量任务）",
+      "maxTokens": 16384,
+      "fallback_models": ["jiutian/jiutian/jiutian-lan-13b"]
+    },
+    "multimodal-looker": {
+      "model": "jiutian/moonshotai/kimi-k2.5-thinking",
+      "description": "视觉分析 — Kimi K2.5 Thinking（原生多模态MoonViT，MMMU-Pro 78.5）",
+      "maxTokens": 16384,
+      "fallback_models": ["jiutian/z.ai/glm-5.2"]
+    }
+  },
+
+  "categories": {
+    "visual-engineering": {
+      "model": "jiutian/moonshotai/kimi-k2.5-thinking",
+      "description": "前端/UI/UX — Kimi K2.5 Thinking（原生多模态，设计稿→代码）",
+      "maxTokens": 8192,
+      "fallback_models": ["jiutian/z.ai/glm-5.2"]
+    },
+    "artistry": {
+      "model": "jiutian/z.ai/glm-5.1",
+      "description": "创意写作 — GLM-5.1（可生成docx/pdf/xlsx，33 t/s）",
+      "maxTokens": 8192,
+      "fallback_models": ["jiutian/z.ai/glm-5.2"]
+    },
+    "ultrabrain": {
+      "model": "jiutian/deepseek/deepseek-r1",
+      "description": "复杂推理 — DeepSeek R1（纯推理，不妥协的深度分析）",
+      "maxTokens": 32768,
+      "reasoningEffort": "high",
+      "fallback_models": ["jiutian/moonshotai/kimi-k2.5-thinking"]
+    },
+    "deep": {
+      "model": "jiutian/moonshotai/kimi-k2.5-thinking",
+      "description": "深度研究 — Kimi K2.5 Thinking（HLE 50.2，Agent Swarm 78.4）",
+      "maxTokens": 16384,
+      "fallback_models": ["jiutian/z.ai/glm-5.2"]
+    },
+    "coder": {
+      "model": "jiutian/moonshotai/kimi-k2.6",
+      "description": "代码执行 — Kimi K2.6（Terminal-Bench 66.7，12h稳定）",
+      "maxTokens": 32768,
+      "fallback_models": ["jiutian/z.ai/glm-5.2", "jiutian/qwen/qwen3-coder-next"]
+    },
+    "quick": {
+      "model": "jiutian/jiutian/jiutian-code-8b",
+      "description": "快速轻量 — 九天Code 8B（TTFT=0.9s快速响应）",
+      "maxTokens": 4096,
+      "fallback_models": ["jiutian/jiutian/jiutian-code-8b", "jiutian/jiutian/jiutian-lan-13b"]
+    },
+    "writing": {
+      "model": "jiutian/z.ai/glm-5.1",
+      "description": "文档写作 — GLM-5.1（一键生成docx/pdf/xlsx，端到端交付）",
+      "maxTokens": 16384,
+      "fallback_models": ["jiutian/z.ai/glm-5.2"]
+    },
+    "analysis-lite": {
+      "model": "jiutian/jiutian/jiutian-math-8b",
+      "description": "轻量分析 — 九天Math 8B（数学专业，TTFT=1.0s）",
+      "maxTokens": 4096,
+      "fallback_models": ["jiutian/jiutian/jiutian-math-8b", "jiutian/jiutian/jiutian-code-8b"]
+    },
+    "unspecified-low": {
+      "model": "jiutian/jiutian/jiutian-lan-13b",
+      "description": "低优先级 — 九天蓝13B（TTFT=0.8s，低优任务）",
+      "maxTokens": 4096,
+      "fallback_models": ["jiutian/jiutian/jiutian-lan-13b"]
+    },
+    "unspecified-high": {
+      "model": "jiutian/openai/gpt-oss-120b",
+      "description": "高优先级 — GPT-OSS 120B（119 t/s速度之王，可靠兜底）",
+      "maxTokens": 16384,
+      "fallback_models": ["jiutian/nvidia/nemotron-3-super-120b-a12b", "jiutian/z.ai/glm-5.2"]
+    }
+  }
+}
