@@ -68,6 +68,21 @@ deploy_reva_wrapper() {
   fi
 }
 
+# ---------- LLM Router MCP 部署 ----------
+LLM_ROUTER_SRC="$REPO_DIR/scripts/llm-router-mcp.py"
+LLM_ROUTER_NAME="llm-router-mcp"
+
+deploy_llm_router_mcp() {
+  mkdir -p "$HOME/.local/bin"
+  chmod +x "$LLM_ROUTER_SRC"
+  if [ ! -L "$HOME/.local/bin/$LLM_ROUTER_NAME" ] || [ "$(readlink "$HOME/.local/bin/$LLM_ROUTER_NAME")" != "$LLM_ROUTER_SRC" ]; then
+    do_link "$LLM_ROUTER_SRC" "$HOME/.local/bin/$LLM_ROUTER_NAME"
+    ok "LLM Router MCP → $HOME/.local/bin/$LLM_ROUTER_NAME"
+  else
+    ok "$HOME/.local/bin/$LLM_ROUTER_NAME 已指向 repo，跳过"
+  fi
+}
+
 undeploy_reva_wrapper() {
   # 撤销链接（不删源文件）
   [ -L "$OPENCODE_CFG/scripts/$REVA_SCRIPT_NAME" ] && rm -f "$OPENCODE_CFG/scripts/$REVA_SCRIPT_NAME"
@@ -291,6 +306,7 @@ check_jq
 deploy_single
 deploy_multi
 deploy_reva_wrapper
+deploy_llm_router_mcp
 
 echo ""
 action "完成"

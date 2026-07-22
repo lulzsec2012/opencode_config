@@ -15,7 +15,7 @@
   - 从环境变量 MIXAPI_BASE_URL 获取 MixAPI 地址
 """
 
-import json, os, sys, socket, threading, time, subprocess
+import json, os, sys, socket, threading, time, subprocess, datetime, urllib.request
 from http.server import HTTPServer, BaseHTTPRequestHandler
 from urllib.request import Request, urlopen
 from urllib.error import URLError
@@ -74,14 +74,26 @@ class BackendCache:
         self._mixapi_key = None
 
     def _read_env(self):
-        self._mixapi_url = os.environ.get("MIXAPI_BASE_URL", "").rstrip("/")
+        raw = os.environ.get("MIXAPI_BASE_URL", "").rstrip("/")
+        self._mixapi_url = raw.replace("/v1", "") if raw else ""
         self._mixapi_key = os.environ.get("MIXAPI_API_KEY", "")
+
+    def _discover_models(self, host, port):
+        """查询一个端口上运行的是什么模型"""
+        try:
+            url = f"http://{host}:{port}/v1/models"
+            req = urllib.request.Request(url)
+            resp = urllib.request.urlopen(req, timeout=2)
+            data = json.loads(resp.read())
+            models = [m["id"] for m in data.get("data", []) if m.get("id")]
+            return models
+        except Exception:
+            return []
 
     def _probe_all(self):
         self._read_env()
         ts_ip = detect_tailscale_ip()
         port_range = list(range(8000, 8011))
-        # 排除 router 自身占用的端口
         exclude = set()
         try:
             s = socket.socket()
@@ -93,16 +105,24 @@ class BackendCache:
             port_range = [p for p in port_range if p not in exclude]
         results = []
 
-        # localhost
-        found = probe_ports("127.0.0.1", port_range)
-        if found:
-            results.append(("localhost", "127.0.0.1", found))
+        # localhost: 找开放端口 → 查模型名称 → 建立映射
+        local_map = {}
+        for port in probe_ports("127.0.0.1", port_range):
+            models = self._discover_models("127.0.0.1", port)
+            for m in models:
+                local_map[m] = port
+        if local_map:
+            results.append(("localhost", "127.0.0.1", local_map))
 
         # tailscale
         if ts_ip and ts_ip != "127.0.0.1":
-            found = probe_ports(ts_ip, port_range)
-            if found:
-                results.append(("tailscale", ts_ip, found))
+            ts_map = {}
+            for port in probe_ports(ts_ip, port_range):
+                models = self._discover_models(ts_ip, port)
+                for m in models:
+                    ts_map[m] = port
+            if ts_map:
+                results.append(("tailscale", ts_ip, ts_map))
 
         # mixapi
         if self._mixapi_url:
@@ -115,7 +135,6 @@ class BackendCache:
         with self._lock:
             if now < self._expires and self._best is not None:
                 return self._best
-        # 刷新缓存
         bk = self._probe_all()
         with self._lock:
             self._best = bk
@@ -123,16 +142,99 @@ class BackendCache:
         return bk
 
     def get_backend_for_model(self, model):
-        """获取最优后端 for a model request"""
+        """根据模型名称查找最优后端和端口"""
         backends = self.get_backends()
         for name, addr, meta in backends:
             if name == "mixapi":
                 return name, addr, meta
-            if isinstance(meta, list) and meta:
-                return name, addr, meta
-        return backends[-1] if backends else ("mixapi", self._mixapi_url or "", "")
+            if isinstance(meta, dict):
+                port = meta.get(model)
+                if port:
+                    return name, addr, port
+        # 兜底：走 mixapi
+        return ("mixapi", self._mixapi_url or "", self._mixapi_key or "")
 
 cache = BackendCache()
+
+# ── Token 日志（本地文件 + Langfuse 自动检测）─────────────────────────
+
+LOG_FILE = "/tmp/llm-token-log.jsonl"
+
+class TokenLogger:
+    """记录每次 LLM 调用的 token 消耗。
+
+    自动探测 Langfuse 服务，存在则实时推送，不存在或中断则静默回退。
+    任何情况下不影响主线请求。
+    """
+    def __init__(self):
+        self._enabled = False
+        self._lock = threading.Lock()
+        self._last_probe = 0
+        self._consecutive_fails = 0
+
+    def _check(self):
+        now = time.time()
+        with self._lock:
+            if now - self._last_probe < 60:
+                return self._enabled
+        ok = port_open("127.0.0.1", 3010, timeout=0.1)
+        with self._lock:
+            self._enabled = ok
+            self._last_probe = now
+            if ok:
+                self._consecutive_fails = 0
+        return ok
+
+    def log(self, model, prompt_tokens, completion_tokens, elapsed_ms, backend):
+        if not self._check():
+            return
+        record = {
+            "t": time.time(),
+            "model": model,
+            "provider": backend,
+            "in": prompt_tokens,
+            "out": completion_tokens,
+            "total": prompt_tokens + completion_tokens,
+            "ms": int(elapsed_ms),
+        }
+        threading.Thread(target=self._push, args=(record,), daemon=True).start()
+
+    def _push(self, record):
+        try:
+            body = json.dumps({
+                "batch": [{
+                    "type": "observation-create",
+                    "body": {
+                        "type": "GENERATION",
+                        "model": record["model"],
+                        "metadata": {"provider": record["provider"]},
+                        "usage": {
+                            "input": record["in"],
+                            "output": record["out"],
+                            "unit": "TOKENS",
+                            "total": record["total"]
+                        },
+                        "startTime": datetime.datetime.fromtimestamp(record["t"]).isoformat(),
+                    }
+                }]
+            }).encode()
+            req = urllib.request.Request(
+                "http://127.0.0.1:3010/api/public/ingestion",
+                data=body,
+                headers={"Content-Type": "application/json"},
+                method="POST"
+            )
+            urllib.request.urlopen(req, timeout=2)
+            with self._lock:
+                self._consecutive_fails = 0
+        except Exception:
+            with self._lock:
+                self._consecutive_fails += 1
+                # 连续 3 次失败则立即禁用，下次 probe 再重新检测
+                if self._consecutive_fails >= 3:
+                    self._enabled = False
+
+token_log = TokenLogger()
 
 # ── HTTP Handler ──────────────────────────────────────────────────────
 
@@ -149,13 +251,11 @@ class RouterHandler(BaseHTTPRequestHandler):
         name, addr, meta = cache.get_backend_for_model(model)
         stream = body and '"stream":true' in body
 
-        # 构造目标 URL
         if name == "mixapi":
-            target = f"{addr}/v1{self.path}"
+            target = f"{addr}{self.path}"
             headers = {"Authorization": f"Bearer {meta}"}
         else:
-            port = meta[0] if isinstance(meta, list) else 8001
-            target = f"http://{addr}:{port}/v1{self.path}"
+            target = f"http://{addr}:{meta}{self.path}"
             headers = {}
 
         # 转发
@@ -169,6 +269,17 @@ class RouterHandler(BaseHTTPRequestHandler):
             data = resp.read()
             elapsed = (time.time() - t0) * 1000
             print(f"  [{name:10s}] {model.split('/')[-1][:20]:20s} {resp.status} {len(data)}B {elapsed:.0f}ms")
+
+            # 解析 token 用量并推送 Langfuse
+            if not stream and data:
+                try:
+                    u = json.loads(data).get("usage", {})
+                    pt = u.get("prompt_tokens", 0) or u.get("input_tokens", 0)
+                    ct = u.get("completion_tokens", 0) or u.get("output_tokens", 0)
+                    if pt or ct:
+                        token_log.log(model, pt, ct, elapsed, name)
+                except (json.JSONDecodeError, AttributeError):
+                    pass
 
             self.send_response(resp.status)
             for k, v in resp.headers.items():

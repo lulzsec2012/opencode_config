@@ -4,3 +4,4 @@ multi/*/package-lock.json
 multi/*/bun.lock
 ._*
 __pycache__/
+__pycache__/

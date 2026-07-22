@@ -49,8 +49,7 @@
         "llm-router": {
             "type": "local",
             "command": [
-                "python3",
-                "scripts/llm-router-mcp.py"
+                "llm-router-mcp"
             ],
             "enabled": true
         }
