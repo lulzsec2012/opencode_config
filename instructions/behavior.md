@@ -26,3 +26,10 @@ When the user explicitly requests step-by-step execution (e.g., "一步步来", 
 you MUST follow each step sequentially and wait for confirmation before proceeding to the next step.
 Do NOT skip steps, pre-verify, batch multiple steps, or optimize ahead.
 Complete step N, present the result, and stop before moving to step N+1.
+
+## LLVM IR Generation
+
+When the task involves writing or modifying LLVM IR embedded in Python strings:
+- Delegate IR generation to the oracle agent (deepseek/deepseek-v4-pro with reasoningEffort=high)
+- The oracle agent must verify: string termination, % identifier ordering, $/{}/escaping
+- Do NOT batch-generate IR in Python scripts - write one piece at a time and verify

@@ -45,6 +45,14 @@
                 "mcp-math-calculator"
             ],
             "enabled": true
+        },
+        "llm-router": {
+            "type": "local",
+            "command": [
+                "python3",
+                "scripts/llm-router-mcp.py"
+            ],
+            "enabled": true
         }
     },
     "model": "deepseek/deepseek-v4-flash",
@@ -65,7 +73,7 @@
     "provider": {
         "deepseek": {
             "npm": "@ai-sdk/openai-compatible",
-            "name": "DeepSeek \u4e91\u7aef\u4e3b\u529b [debug]",
+            "name": "DeepSeek 云端主力 [debug]",
             "options": {
                 "baseURL": "https://api.deepseek.com/v1",
                 "apiKey": "{env:DEEPSEEK_API_KEY}",
@@ -74,27 +82,26 @@
             },
             "models": {
                 "deepseek-v4-flash": {
-                    "name": "DeepSeek V4 Flash\uff08\u4e91\u7aef\u5de5\u4f5c\u4e3b\u529b\uff09",
+                    "name": "DeepSeek V4 Flash（云端工作主力）",
                     "tools": true
                 },
                 "deepseek-v4-pro": {
-                    "name": "DeepSeek V4 Pro\uff08\u4e91\u7aef\u9ad8\u9636\u63a8\u7406\uff09",
+                    "name": "DeepSeek V4 Pro（云端高阶推理）",
                     "tools": true
                 }
             }
         },
         "mixapi": {
             "npm": "@ai-sdk/openai-compatible",
-            "name": "MixAPI \u672c\u5730\u4fdd\u5e95 [debug]",
+            "name": "MixAPI 本地保底 [debug]",
             "options": {
-                "baseURL": "{env:MIXAPI_BASE_URL}",
-                "apiKey": "{env:MIXAPI_API_KEY}",
+                "baseURL": "http://localhost:8000/v1",
                 "timeout": 600000,
                 "chunkTimeout": 300000
             },
             "models": {
                 "qwen3.6-27b": {
-                    "name": "Qwen3.6 27B\uff08\u672c\u5730\u957f\u4e0a\u4e0b\u6587\u4fdd\u5e95, 262K\uff09",
+                    "name": "Qwen3.6 27B（本地长上下文保底, 262K）",
                     "tools": true,
                     "limit": {
                         "context": 262144,
@@ -102,7 +109,7 @@
                     }
                 },
                 "gemma4-26b-fp8": {
-                    "name": "Gemma4 26B FP8 (\u5feb\u901f, TP2, 262K, MTP=4)",
+                    "name": "Gemma4 26B FP8 (快速, TP2, 262K, MTP=4)",
                     "tools": true,
                     "limit": {
                         "context": 262144,

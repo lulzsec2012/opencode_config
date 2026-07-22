@@ -45,6 +45,14 @@
                 "mcp-math-calculator"
             ],
             "enabled": true
+        },
+        "llm-router": {
+            "type": "local",
+            "command": [
+                "python3",
+                "scripts/llm-router-mcp.py"
+            ],
+            "enabled": true
         }
     },
     "model": "deepseek/deepseek-v4-flash",
@@ -65,7 +73,7 @@
     "provider": {
         "deepseek": {
             "npm": "@ai-sdk/openai-compatible",
-            "name": "DeepSeek \u4e91\u7aef",
+            "name": "DeepSeek 云端",
             "options": {
                 "baseURL": "https://api.deepseek.com/v1",
                 "apiKey": "{env:DEEPSEEK_API_KEY}",
@@ -74,11 +82,11 @@
             },
             "models": {
                 "deepseek-v4-flash": {
-                    "name": "DeepSeek V4 Flash\uff08\u4e91\u7aef\u4e3b\u529b\uff09",
+                    "name": "DeepSeek V4 Flash（云端主力）",
                     "tools": true
                 },
                 "deepseek-v4-pro": {
-                    "name": "DeepSeek V4 Pro\uff08\u4e91\u7aef\u9ad8\u9636\u63a8\u7406\uff09",
+                    "name": "DeepSeek V4 Pro（云端高阶推理）",
                     "tools": true
                 }
             }

@@ -45,6 +45,14 @@
                 "mcp-math-calculator"
             ],
             "enabled": true
+        },
+        "llm-router": {
+            "type": "local",
+            "command": [
+                "python3",
+                "scripts/llm-router-mcp.py"
+            ],
+            "enabled": true
         }
     },
     "model": "qoder/performance",

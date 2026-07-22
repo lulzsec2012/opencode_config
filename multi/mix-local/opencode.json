@@ -45,6 +45,14 @@
                 "mcp-math-calculator"
             ],
             "enabled": true
+        },
+        "llm-router": {
+            "type": "local",
+            "command": [
+                "python3",
+                "scripts/llm-router-mcp.py"
+            ],
+            "enabled": true
         }
     },
     "model": "deepseek/deepseek-v4-flash",
@@ -67,34 +75,33 @@
     "provider": {
         "deepseek": {
             "npm": "@ai-sdk/openai-compatible",
-            "name": "DeepSeek \u4e91\u7aef (6 \u4e2a\u9ad8\u6027\u80fd\u6a21\u5757\u4e13\u7528)",
+            "name": "DeepSeek 云端 (6 个高性能模块专用)",
             "options": {
                 "baseURL": "https://api.deepseek.com/v1",
                 "apiKey": "{env:DEEPSEEK_API_KEY}"
             },
             "models": {
                 "deepseek-v4-flash": {
-                    "name": "DeepSeek V4 Flash\uff08\u4e91\u7aef\u4fdd\u5e95\uff09",
+                    "name": "DeepSeek V4 Flash（云端保底）",
                     "tools": true
                 },
                 "deepseek-v4-pro": {
-                    "name": "DeepSeek V4 Pro\uff08\u4e91\u7aef\u9ad8\u9636\u63a8\u7406\uff09",
+                    "name": "DeepSeek V4 Pro（云端高阶推理）",
                     "tools": true
                 }
             }
         },
         "mixapi": {
             "npm": "@ai-sdk/openai-compatible",
-            "name": "\u672c\u5730 vLLM \u96c6\u7fa4",
+            "name": "本地 vLLM 集群",
             "options": {
-                "baseURL": "{env:MIXAPI_BASE_URL}",
-                "apiKey": "{env:MIXAPI_API_KEY}",
+                "baseURL": "http://localhost:8000/v1",
                 "timeout": 600000,
                 "chunkTimeout": 300000
             },
             "models": {
                 "qwen3.6-27b": {
-                    "name": "Qwen3.6 27B\uff08\u672c\u5730, 262K, ~105 tok/s\uff09",
+                    "name": "Qwen3.6 27B（本地, 262K, ~105 tok/s）",
                     "tools": true,
                     "limit": {
                         "context": 262144,
@@ -102,7 +109,7 @@
                     }
                 },
                 "gemma4-26b-fp8": {
-                    "name": "Gemma4 26B FP8\uff08\u672c\u5730\u9ad8\u901f, 262K, ~260 tok/s\uff09",
+                    "name": "Gemma4 26B FP8（本地高速, 262K, ~260 tok/s）",
                     "tools": true,
                     "limit": {
                         "context": 262144,
