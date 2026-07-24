@@ -573,6 +573,14 @@ else
   echo "  🔸 heaptrack: 系统包管理未提供，跳过"
 fi
 
+# ruff — fast Python linter + formatter
+if command -v ruff &>/dev/null; then
+  echo "  ruff $(ruff --version 2>&1 | head -1) 已安装"
+else
+  echo "  Installing ruff..."
+  python3 -m pip install --break-system-packages ruff 2>&1 | tail -1 || echo "  ⚠️ 安装失败"
+fi
+
 # pytest + pytest-timeout + ipdb
 if python3 -c "import pytest, ipdb" 2>/dev/null; then
   echo "  pytest $(pytest --version 2>&1 | head -1) + ipdb 已安装"

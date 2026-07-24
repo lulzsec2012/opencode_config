@@ -48,3 +48,17 @@ For general debugging, prefer dedicated tools over re-reading code:
 - Search codebase with explore agents in parallel while analyzing
 
 Do NOT try fixes blindly — instrument first, form hypotheses, verify root cause.
+
+## Python Code Quality
+
+- `@cometjc/opencode-py-indent-guard` 会在每次编辑后自动 `py_compile` 验证，缩进/语法错误即时回滚
+- 编辑 Python 后无需手动验证语法，插件已自动兜底
+- `ruff check <file>` 可用于额外的代码规范检查
+- **heredoc 防护**: 生成 `python3 << 'PYEOF'` 脚本时，先用 `write` 写到文件 → py_compile 检查 → 再执行，不要直接 pipe 到 python3
+- **import 检查**: 生成独立脚本时，确认 `import os/json/time/sys` 等标准库已在顶部声明
+
+## C++ Code Quality
+
+- C++ 没有自动守卫插件。编辑后建议快速检查：
+- `clang++ -fsyntax-only <file>` — 毫秒级，不链接，秒出括号不匹配
+- `clang-format --dry-run <file>` — 检查格式一致性

@@ -1,79 +1,81 @@
 {
-    "$schema": "https://opencode.ai/config.json",
-    "lsp": true,
-    "instructions": [
-        "../../instructions/behavior.md"
-    ],
-    "mcp": {
-        "codegraph": {
-            "type": "local",
-            "command": [
-                "codegraph",
-                "serve",
-                "--mcp"
-            ],
-            "enabled": true
-        },
-        "ReVa": {
-            "type": "local",
-            "command": [
-                "mcp-reva-wrapper"
-            ],
-            "enabled": true
-        },
-        "codebase-memory-mcp": {
-            "type": "local",
-            "command": [
-                "codebase-memory-mcp"
-            ],
-            "enabled": true
-        },
-        "mcp-math-calculator": {
-            "type": "local",
-            "command": [
-                "npx",
-                "-y",
-                "mcp-math-calculator"
-            ],
-            "enabled": true
-        },
-        "llm-router": {
-            "type": "local",
-            "command": [
-                "llm-router-mcp"
-            ],
-            "enabled": true
-        }
+  "$schema": "https://opencode.ai/config.json",
+  "lsp": true,
+  "instructions": [
+    "../../instructions/behavior.md"
+  ],
+  "mcp": {
+    "codegraph": {
+      "type": "local",
+      "command": [
+        "codegraph",
+        "serve",
+        "--mcp"
+      ],
+      "enabled": true
     },
-    "model": "qoder/performance",
-    "small_model": "qoder/lite",
-    "plugin": [
-        "@tarquinen/opencode-dcp@latest",
-        "opencode-dcp-dynamic-limits",
-        "opencode-debug-helper",
-        "opencode-headroom",
-        "oh-my-openagent@latest",
-        "opencode-agent-context",
-        "opencode-autoresearch@latest",
-        "opencode-codegraph",
-        "opencode-localmemory",
-        "opencode-qoder-auth",
-        "opencode-skill-creator",
-        "@dietrichgebert/ponytail",
-        "opencode-skills-collection",
-        "caveman-opencode-plugin",
-        "@arkfactory/opencode-checkpoint",
-        "opencode-refactor-agent"
-    ],
-    "formatter": true,
-    "agent": {
-        "refactor": {
-            "color": "#55f76d",
-            "description": "orchestrates safe refactors to improve code quality.",
-            "mode": "primary",
-            "permission": {
-                "question": "allow"
-            }
-        }
+    "ReVa": {
+      "type": "local",
+      "command": [
+        "mcp-reva-wrapper"
+      ],
+      "enabled": true
+    },
+    "codebase-memory-mcp": {
+      "type": "local",
+      "command": [
+        "codebase-memory-mcp"
+      ],
+      "enabled": true
+    },
+    "mcp-math-calculator": {
+      "type": "local",
+      "command": [
+        "npx",
+        "-y",
+        "mcp-math-calculator"
+      ],
+      "enabled": true
+    },
+    "llm-router": {
+      "type": "local",
+      "command": [
+        "llm-router-mcp"
+      ],
+      "enabled": true
     }
+  },
+  "model": "qoder/performance",
+  "small_model": "qoder/lite",
+  "plugin": [
+    "@tarquinen/opencode-dcp@latest",
+    "opencode-dcp-dynamic-limits",
+    "opencode-debug-helper",
+    "opencode-headroom",
+    "oh-my-openagent@latest",
+    "opencode-agent-context",
+    "opencode-autoresearch@latest",
+    "opencode-codegraph",
+    "opencode-localmemory",
+    "opencode-qoder-auth",
+    "opencode-skill-creator",
+    "@dietrichgebert/ponytail",
+    "opencode-skills-collection",
+    "caveman-opencode-plugin",
+    "@arkfactory/opencode-checkpoint",
+    "opencode-refactor-agent",
+    "opencode-mission-control",
+    "@cometjc/opencode-py-indent-guard"
+  ],
+  "formatter": true,
+  "agent": {
+    "refactor": {
+      "color": "#55f76d",
+      "description": "orchestrates safe refactors to improve code quality.",
+      "mode": "primary",
+      "permission": {
+        "question": "allow"
+      }
+    }
+  }
 }

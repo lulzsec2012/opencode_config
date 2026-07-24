@@ -62,7 +62,9 @@
     "opencode-skills-collection",
     "caveman-opencode-plugin",
     "@arkfactory/opencode-checkpoint",
-    "opencode-refactor-agent"
+    "opencode-refactor-agent",
+    "opencode-mission-control",
+    "@cometjc/opencode-py-indent-guard"
   ],
   "provider": {
     "deepseek": {
