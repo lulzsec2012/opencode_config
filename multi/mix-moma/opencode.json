@@ -45,7 +45,7 @@
       "enabled": true
     }
   },
-  "model": "jiutian/nvidia/nemotron-3-super-120b-a12b",
+  "model": "deepseek/deepseek-v4-flash",
   "plugin": [
     "@tarquinen/opencode-dcp@latest",
     "opencode-dcp-dynamic-limits",
@@ -65,101 +65,129 @@
     "opencode-refactor-agent"
   ],
   "provider": {
+    "deepseek": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "DeepSeek \u4e91\u7aef (\u4ed8\u8d39\u9ad8\u901f)",
+      "options": {
+        "baseURL": "https://api.deepseek.com/v1",
+        "apiKey": "{env:DEEPSEEK_API_KEY}"
+      },
+      "models": {
+        "deepseek-v4-flash": {
+          "name": "DeepSeek V4 Flash (62 t/s, TTFT=0.2s)",
+          "tools": true
+        },
+        "deepseek-v4-pro": {
+          "name": "DeepSeek V4 Pro (59 t/s, TTFT=0.2s)",
+          "tools": true
+        }
+      }
+    },
     "mixapi": {
       "npm": "@ai-sdk/openai-compatible",
-      "name": "MixAPI \u672c\u5730 (llm-router MCP)",
+      "name": "MixAPI \u672c\u5730 (llm-router)",
       "options": {
         "baseURL": "http://localhost:8000/v1",
         "timeout": 600000,
         "chunkTimeout": 300000
       },
       "models": {
-        "gemma4-26b-fp8": {
-          "name": "Gemma4 26B FP8 (109 t/s, TTFT=0.14s)",
-          "tools": true
-        },
         "qwen3.6-27b": {
-          "name": "Qwen3.6 27B (61 t/s, TTFT=0.24s)",
+          "name": "Qwen3.6 27B (100 t/s via router)",
+          "tools": true
+        }
+      }
+    },
+    "vllm": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "\u672c\u5730 vLLM \u76f4\u8fde",
+      "options": {
+        "baseURL": "http://localhost:8001/v1",
+        "timeout": 600000,
+        "chunkTimeout": 300000
+      },
+      "models": {
+        "gemma4-26b-fp8": {
+          "name": "Gemma4 26B FP8 (82 t/s, TTFT=0.2s)",
           "tools": true
         }
       }
     },
     "jiutian": {
       "npm": "@ai-sdk/openai-compatible",
-      "name": "\u4e5d\u5929\u6a21\u578b\u5e73\u53f0 (jiutian-moma)",
+      "name": "\u4e5d\u5929\u6a21\u578b\u5e73\u53f0 (\u514d\u8d39)",
       "options": {
         "baseURL": "https://jiutian.10086.cn/largemodel/moma/api/v3",
         "apiKey": "{env:JIUTIAN_API_KEY}"
       },
-      "_models": "\u4ee5\u4e0b\u4ec5\u4fdd\u7559\u6d4b\u901f\u901a\u8fc7\u7684\u7a33\u5b9a\u6a21\u578b\uff0c\u5931\u8d25\u7684\u5df2\u79fb\u81f3 _disabled_models",
       "models": {
         "z.ai/glm-5.1": {
-          "name": "GLM-5.1 (\u6587\u6863\u751f\u6210 docx/pdf/xlsx\uff0c33 t/s)",
+          "name": "GLM-5.1 (21 t/s, \u6587\u6863\u751f\u6210)",
           "tools": true
         },
         "z.ai/glm-5.2": {
-          "name": "GLM-5.2 (\u5f00\u6e90Agentic SOTA\uff0c\u5e26fallback\u4fdd\u969c)",
-          "tools": true
-        },
-        "deepseek/deepseek-r1": {
-          "name": "DeepSeek R1 (\u7eaf\u63a8\u7406\u6a21\u578b)"
-        },
-        "qwen/qwen3-coder-next": {
-          "name": "Qwen3 Coder Next (80B/3B active\uff0c\u9ad8\u6548\u7f16\u7801)",
-          "tools": true
-        },
-        "moonshotai/kimi-k2.6": {
-          "name": "Kimi K2.6 (\u957f\u5468\u671f\u7f16\u7801\u738b\u8005\uff0cTerminal-Bench 66.7)",
-          "tools": true
-        },
-        "minimax/minimax-m2.7": {
-          "name": "MiniMax M2.7 (SRE/DevOps\uff0cGDPval-AA 1495)",
-          "tools": true
-        },
-        "minimax/minimax-latest": {
-          "name": "MiniMax Latest (16.2 t/s)",
-          "tools": true
-        },
-        "nvidia/nemotron-3-super-120b-a12b": {
-          "name": "NVIDIA Nemotron 120B (1M\u4e0a\u4e0b\u6587\uff0c95 t/s)",
-          "tools": true
-        },
-        "openai/gpt-oss-120b": {
-          "name": "GPT-OSS 120B (119 t/s \u901f\u5ea6\u4e4b\u738b)",
-          "tools": true
-        },
-        "jiutian/jiutian-code-8b": {
-          "name": "\u4e5d\u5929Code 8B (TTFT=0.9s \u4ee3\u7801\u6781\u901f\u641c\u7d22)",
-          "tools": true
-        },
-        "jiutian/jiutian-math-8b": {
-          "name": "\u4e5d\u5929Math 8B (\u6570\u5b66\u4e13\u4e1a\uff0c31 t/s)",
-          "tools": true
-        },
-        "jiutian/jiutian-lan-13b": {
-          "name": "\u4e5d\u5929\u84dd 13B (TTFT=0.8s \u6700\u5feb\u54cd\u5e94)",
+          "name": "GLM-5.2 (26 t/s, Agentic SOTA)",
           "tools": true
         },
         "z.ai/glm-5": {
-          "name": "GLM-5",
+          "name": "GLM-5 (5 t/s, \u957f\u5468\u671f\u89c4\u5212)",
           "tools": true
         },
+        "deepseek/deepseek-r1": {
+          "name": "DeepSeek R1 (\u7eaf\u63a8\u7406)"
+        },
         "deepseek/deepseek-v3": {
-          "name": "DeepSeek V3",
+          "name": "DeepSeek V3 (23 t/s via \u4e5d\u5929)",
           "tools": true
         },
         "deepseek/deepseek-v4-flash": {
-          "name": "DeepSeek V4 Flash",
+          "name": "DeepSeek V4 Flash (24 t/s via \u4e5d\u5929)",
+          "tools": true
+        },
+        "qwen/qwen3-coder-next": {
+          "name": "Qwen3 Coder Next (52 t/s, \u7f16\u7801)",
+          "tools": true
+        },
+        "moonshotai/kimi-k2.6": {
+          "name": "Kimi K2.6 (18 t/s, \u7f16\u7801)",
           "tools": true
         },
         "moonshotai/kimi-k2.5-thinking": {
-          "name": "Kimi K2.5 Thinking",
+          "name": "Kimi K2.5 Thinking (18 t/s, \u591a\u6a21\u6001)",
+          "tools": true
+        },
+        "minimax/minimax-latest": {
+          "name": "MiniMax Latest (19 t/s)",
+          "tools": true
+        },
+        "minimax/minimax-m2.7": {
+          "name": "MiniMax M2.7 (13 t/s, SRE)",
+          "tools": true
+        },
+        "nvidia/nemotron-3-super-120b-a12b": {
+          "name": "Nemotron 120B (13 t/s, 1Mctx)",
+          "tools": true
+        },
+        "openai/gpt-oss-120b": {
+          "name": "GPT-OSS 120B (135 t/s, \u6781\u901f)",
+          "tools": true
+        },
+        "jiutian/jiutian-code-8b": {
+          "name": "\u4e5d\u5929Code 8B (50 t/s, \u5feb\u901f)",
+          "tools": true
+        },
+        "jiutian/jiutian-math-8b": {
+          "name": "\u4e5d\u5929Math 8B (56 t/s)",
+          "tools": true
+        },
+        "jiutian/jiutian-lan-13b": {
+          "name": "\u4e5d\u5929\u84dd 13B (51 t/s)",
           "tools": true
         }
       }
     }
   },
-  "small_model": "mixapi/gemma4-26b-fp8",
+  "small_model": "mixapi/qwen3.6-27b",
   "formatter": true,
   "agent": {
     "refactor": {

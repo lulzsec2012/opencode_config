@@ -295,7 +295,47 @@ class RouterHandler(BaseHTTPRequestHandler):
             self.send_error(502, f"Backend error: {e.reason}")
 
     def do_GET(self):
-        if self.path.startswith("/v1"):
+        if self.path == "/v1/models":
+            backends = cache.get_backends()
+            all_models = []
+            seen = set()
+            import urllib.request
+            for name, addr, meta in backends:
+                if isinstance(meta, dict):
+                    # localhost / tailscale: meta = {model_name: port}
+                    for model_name, port in meta.items():
+                        base = f"http://{addr}:{port}/v1"
+                        try:
+                            req = urllib.request.Request(f"{base}/models")
+                            resp = urllib.request.urlopen(req, timeout=3)
+                            data = json.loads(resp.read())
+                            for m in data.get("data", []):
+                                mid = m.get("id")
+                                if mid and mid not in seen:
+                                    seen.add(mid)
+                                    all_models.append(m)
+                        except Exception:
+                            pass
+                elif isinstance(meta, str) and name == "mixapi":
+                    # mixapi: meta = api_key
+                    base = f"{addr}/v1"
+                    try:
+                        req = urllib.request.Request(f"{base}/models")
+                        req.add_header("Authorization", f"Bearer {meta}")
+                        resp = urllib.request.urlopen(req, timeout=5)
+                        data = json.loads(resp.read())
+                        for m in data.get("data", []):
+                            mid = m.get("id")
+                            if mid and mid not in seen:
+                                seen.add(mid)
+                                all_models.append(m)
+                    except Exception:
+                        pass
+            self.send_response(200)
+            self.send_header("Content-Type", "application/json")
+            self.end_headers()
+            self.wfile.write(json.dumps({"object":"list","data":all_models}).encode())
+        elif self.path.startswith("/v1"):
             self._forward()
         else:
             self.send_response(200)

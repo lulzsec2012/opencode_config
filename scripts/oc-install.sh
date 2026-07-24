@@ -547,6 +547,48 @@ else
   fi
 fi
 
+# ---------- 13c. Debug Tools ----------
+echo ""
+echo "[13c/14] Installing debug tools (rr, heaptrack, pytest-ipdb, bugpoint)..."
+echo "  For C++/Python/LLVM debugging in FlagOS and other projects"
+echo ""
+
+# rr — reversible C++ debugger
+if command -v rr &>/dev/null; then
+  echo "  rr $(rr --version 2>&1 | head -1) 已安装"
+elif apt-cache show rr &>/dev/null 2>&1; then
+  echo "  Installing rr..."
+  sudo apt-get install -y -qq rr 2>&1 | tail -1 || echo "  ⚠️ 安装失败"
+else
+  echo "  🔸 rr: 系统包管理未提供，跳过 (仅 Ubuntu 较新版本支持)"
+fi
+
+# heaptrack — C++ heap memory profiler
+if command -v heaptrack &>/dev/null; then
+  echo "  heaptrack $(heaptrack --version 2>&1 | head -1) 已安装"
+elif apt-cache show heaptrack &>/dev/null 2>&1; then
+  echo "  Installing heaptrack..."
+  sudo apt-get install -y -qq heaptrack 2>&1 | tail -1 || echo "  ⚠️ 安装失败"
+else
+  echo "  🔸 heaptrack: 系统包管理未提供，跳过"
+fi
+
+# pytest + pytest-timeout + ipdb
+if python3 -c "import pytest, ipdb" 2>/dev/null; then
+  echo "  pytest $(pytest --version 2>&1 | head -1) + ipdb 已安装"
+else
+  echo "  Installing pytest + pytest-timeout + ipdb..."
+  python3 -m pip install --break-system-packages pytest pytest-timeout ipdb 2>&1 | tail -1 || echo "  ⚠️ 安装失败"
+fi
+
+# bugpoint — LLVM pass debugger (part of LLVM toolchain)
+if command -v bugpoint &>/dev/null; then
+  echo "  bugpoint (LLVM) 已安装"
+elif ls /workspace/.triton_3.5/llvm-*/bin/bugpoint &>/dev/null 2>&1; then
+  echo "  bugpoint (via triton LLVM) 已安装"
+else
+  echo "  🔸 bugpoint: LLVM 工具链中未发现 — 请确认已安装 llvm 包"
+fi
 # ---------- PATH 注入 .bashrc ----------
 echo ""
 echo "[14/14] Ensuring PATH is set in ~/.bashrc..."

@@ -33,3 +33,18 @@ When the task involves writing or modifying LLVM IR embedded in Python strings:
 - Delegate IR generation to the oracle agent (deepseek/deepseek-v4-pro with reasoningEffort=high)
 - The oracle agent must verify: string termination, % identifier ordering, $/{}/escaping
 - Do NOT batch-generate IR in Python scripts - write one piece at a time and verify
+
+
+## Debugging Tools
+
+When debugging, always check project AGENTS.md first for project-specific tools.
+For general debugging, prefer dedicated tools over re-reading code:
+- C++ crash/bug: `rr record` + `rr replay` for reversible debugging
+- C++ memory: `heaptrack` for allocation profiling, `valgrind` for leaks
+- C++ UB: compile with `-fsanitize=address,undefined`
+- LLVM/MLIR: `mlir-opt --debug-only`, `bugpoint` for pass bisection
+- Python: `ipdb` for interactive debugging, `pytest --pdb` for test failures
+- When 2+ fix attempts fail, consult the oracle agent
+- Search codebase with explore agents in parallel while analyzing
+
+Do NOT try fixes blindly — instrument first, form hypotheses, verify root cause.

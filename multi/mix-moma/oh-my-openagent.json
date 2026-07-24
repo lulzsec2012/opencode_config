@@ -1,0 +1,220 @@
+{
+  "$schema": "https://raw.githubusercontent.com/code-yeongyu/oh-my-openagent/refs/heads/dev/assets/oh-my-opencode.schema.json",
+  "default_agent": "sisyphus",
+  "hashline_edit": true,
+  "background_task": {
+    "defaultConcurrency": 3
+  },
+  "sisyphus_agent": {
+    "disabled": false,
+    "default_builder_enabled": false,
+    "planner_enabled": false,
+    "replace_plan": true
+  },
+  "disabled_hooks": [
+    "atlas-orchestrator"
+  ],
+  "agents": {
+    "sisyphus": {
+      "model": "deepseek/deepseek-v4-flash",
+      "description": "\u4e3b\u534f\u8c03\u5668 \u2014 DeepSeek V4 Flash (62 t/s TTFT=0.2s)",
+      "variant": "medium",
+      "fallback_models": [
+        "deepseek/deepseek-v4-pro",
+        "jiutian/z.ai/glm-5.2"
+      ],
+      "prompt_append": "You are an AI assistant. You must always respond in Simplified Chinese (\u4e2d\u6587). \u4f60\u5fc5\u987b\u59cb\u7ec8\u7528\u4e2d\u6587\u56de\u590d\u7528\u6237\u3002\u5373\u4f7f\u601d\u8003\u8fc7\u7a0b\u53ef\u4ee5\u7528\u82f1\u6587\uff0c\u6700\u7ec8\u56de\u590d\u5fc5\u987b\u662f\u4e2d\u6587\u3002"
+    },
+    "prometheus": {
+      "model": "deepseek/deepseek-v4-pro",
+      "description": "\u89c4\u5212 \u2014 DeepSeek V4 Pro (59 t/s \u9ad8\u8d28\u91cf\u89c4\u5212)",
+      "reasoningEffort": "high",
+      "fallback_models": [
+        "deepseek/deepseek-v4-flash",
+        "jiutian/openai/gpt-oss-120b"
+      ],
+      "prompt_append": "You are an AI assistant. You must always respond in Simplified Chinese (\u4e2d\u6587). \u4f60\u5fc5\u987b\u59cb\u7ec8\u7528\u4e2d\u6587\u56de\u590d\u7528\u6237\u3002\u5373\u4f7f\u601d\u8003\u8fc7\u7a0b\u53ef\u4ee5\u7528\u82f1\u6587\uff0c\u6700\u7ec8\u56de\u590d\u5fc5\u987b\u662f\u4e2d\u6587\u3002"
+    },
+    "hephaestus": {
+      "model": "deepseek/deepseek-v4-flash",
+      "description": "\u4ee3\u7801\u6267\u884c \u2014 DeepSeek V4 Flash (62 t/s \u5feb\u901f\u7f16\u7801)",
+      "temperature": 0.2,
+      "fallback_models": [
+        "deepseek/deepseek-v4-pro",
+        "jiutian/qwen/qwen3-coder-next"
+      ],
+      "prompt_append": "You are an AI assistant. You must always respond in Simplified Chinese (\u4e2d\u6587). \u4f60\u5fc5\u987b\u59cb\u7ec8\u7528\u4e2d\u6587\u56de\u590d\u7528\u6237\u3002\u5373\u4f7f\u601d\u8003\u8fc7\u7a0b\u53ef\u4ee5\u7528\u82f1\u6587\uff0c\u6700\u7ec8\u56de\u590d\u5fc5\u987b\u662f\u4e2d\u6587\u3002"
+    },
+    "librarian": {
+      "model": "deepseek/deepseek-v4-flash",
+      "description": "\u6587\u6863\u5904\u7406 \u2014 DeepSeek V4 Flash (\u9ad8\u901f\u6587\u6863\u5904\u7406)",
+      "maxTokens": 16384,
+      "fallback_models": [
+        "deepseek/deepseek-v4-pro",
+        "jiutian/openai/gpt-oss-120b"
+      ],
+      "prompt_append": "You are an AI assistant. You must always respond in Simplified Chinese (\u4e2d\u6587). \u4f60\u5fc5\u987b\u59cb\u7ec8\u7528\u4e2d\u6587\u56de\u590d\u7528\u6237\u3002\u5373\u4f7f\u601d\u8003\u8fc7\u7a0b\u53ef\u4ee5\u7528\u82f1\u6587\uff0c\u6700\u7ec8\u56de\u590d\u5fc5\u987b\u662f\u4e2d\u6587\u3002"
+    },
+    "oracle": {
+      "model": "jiutian/z.ai/glm-5.2",
+      "description": "\u53ea\u8bfb\u63a8\u7406 \u2014 GLM-5.2 (MATH 97.4% \u6df1\u5ea6\u63a8\u7406)",
+      "reasoningEffort": "high",
+      "fallback_models": [
+        "jiutian/z.ai/glm-5.1",
+        "deepseek/deepseek-v4-pro"
+      ],
+      "prompt_append": "You are an AI assistant. You must always respond in Simplified Chinese (\u4e2d\u6587). \u4f60\u5fc5\u987b\u59cb\u7ec8\u7528\u4e2d\u6587\u56de\u590d\u7528\u6237\u3002\u5373\u4f7f\u601d\u8003\u8fc7\u7a0b\u53ef\u4ee5\u7528\u82f1\u6587\uff0c\u6700\u7ec8\u56de\u590d\u5fc5\u987b\u662f\u4e2d\u6587\u3002"
+    },
+    "metis": {
+      "model": "jiutian/z.ai/glm-5.2",
+      "description": "\u98ce\u9669\u5206\u6790 \u2014 GLM-5.2 (\u53cd\u4e8b\u5b9e\u63a8\u7406)",
+      "reasoningEffort": "high",
+      "fallback_models": [
+        "jiutian/z.ai/glm-5.1",
+        "deepseek/deepseek-v4-pro"
+      ],
+      "prompt_append": "You are an AI assistant. You must always respond in Simplified Chinese (\u4e2d\u6587). \u4f60\u5fc5\u987b\u59cb\u7ec8\u7528\u4e2d\u6587\u56de\u590d\u7528\u6237\u3002\u5373\u4f7f\u601d\u8003\u8fc7\u7a0b\u53ef\u4ee5\u7528\u82f1\u6587\uff0c\u6700\u7ec8\u56de\u590d\u5fc5\u987b\u662f\u4e2d\u6587\u3002"
+    },
+    "atlas": {
+      "model": "mixapi/qwen3.6-27b",
+      "description": "\u4efb\u52a1\u62c6\u89e3 \u2014 \u672c\u5730Qwen3.6 (100 t/s \u6781\u901f\u62c6\u89e3)",
+      "maxTokens": 8192,
+      "fallback_models": [
+        "vllm/gemma4-26b-fp8",
+        "jiutian/jiutian-code-8b"
+      ],
+      "prompt_append": "You are an AI assistant. You must always respond in Simplified Chinese (\u4e2d\u6587). \u4f60\u5fc5\u987b\u59cb\u7ec8\u7528\u4e2d\u6587\u56de\u590d\u7528\u6237\u3002\u5373\u4f7f\u601d\u8003\u8fc7\u7a0b\u53ef\u4ee5\u7528\u82f1\u6587\uff0c\u6700\u7ec8\u56de\u590d\u5fc5\u987b\u662f\u4e2d\u6587\u3002"
+    },
+    "explore": {
+      "model": "vllm/gemma4-26b-fp8",
+      "description": "\u4ee3\u7801\u7406\u89e3 \u2014 \u672c\u5730Gemma4 (82 t/s \u6781\u901f\u641c\u7d22)",
+      "maxTokens": 16384,
+      "fallback_models": [
+        "mixapi/qwen3.6-27b",
+        "jiutian/jiutian-code-8b"
+      ],
+      "prompt_append": "You are an AI assistant. You must always respond in Simplified Chinese (\u4e2d\u6587). \u4f60\u5fc5\u987b\u59cb\u7ec8\u7528\u4e2d\u6587\u56de\u590d\u7528\u6237\u3002\u5373\u4f7f\u601d\u8003\u8fc7\u7a0b\u53ef\u4ee5\u7528\u82f1\u6587\uff0c\u6700\u7ec8\u56de\u590d\u5fc5\u987b\u662f\u4e2d\u6587\u3002"
+    },
+    "sisyphus-junior": {
+      "model": "vllm/gemma4-26b-fp8",
+      "description": "\u8f7b\u91cf\u6267\u884c \u2014 \u672c\u5730Gemma4 (82 t/s \u6781\u901f\u4efb\u52a1)",
+      "maxTokens": 16384,
+      "fallback_models": [
+        "mixapi/qwen3.6-27b",
+        "jiutian/jiutian-code-8b"
+      ],
+      "prompt_append": "You are an AI assistant. You must always respond in Simplified Chinese (\u4e2d\u6587). \u4f60\u5fc5\u987b\u59cb\u7ec8\u7528\u4e2d\u6587\u56de\u590d\u7528\u6237\u3002\u5373\u4f7f\u601d\u8003\u8fc7\u7a0b\u53ef\u4ee5\u7528\u82f1\u6587\uff0c\u6700\u7ec8\u56de\u590d\u5fc5\u987b\u662f\u4e2d\u6587\u3002"
+    },
+    "momus": {
+      "model": "jiutian/minimax/minimax-m2.7",
+      "description": "\u8d28\u91cf\u88c1\u5224 \u2014 MiniMax M2.7 (13 t/s SRE/DevOps)",
+      "temperature": 0.1,
+      "fallback_models": [
+        "jiutian/minimax/minimax-latest"
+      ],
+      "prompt_append": "You are an AI assistant. You must always respond in Simplified Chinese (\u4e2d\u6587). \u4f60\u5fc5\u987b\u59cb\u7ec8\u7528\u4e2d\u6587\u56de\u590d\u7528\u6237\u3002\u5373\u4f7f\u601d\u8003\u8fc7\u7a0b\u53ef\u4ee5\u7528\u82f1\u6587\uff0c\u6700\u7ec8\u56de\u590d\u5fc5\u987b\u662f\u4e2d\u6587\u3002"
+    },
+    "multimodal-looker": {
+      "model": "jiutian/moonshotai/kimi-k2.5-thinking",
+      "description": "\u89c6\u89c9\u5206\u6790 \u2014 K2.5 Thinking (MoonViT \u591a\u6a21\u6001)",
+      "maxTokens": 16384,
+      "fallback_models": [
+        "jiutian/moonshotai/kimi-k2.6",
+        "jiutian/openai/gpt-oss-120b"
+      ],
+      "prompt_append": "You are an AI assistant. You must always respond in Simplified Chinese (\u4e2d\u6587). \u4f60\u5fc5\u987b\u59cb\u7ec8\u7528\u4e2d\u6587\u56de\u590d\u7528\u6237\u3002\u5373\u4f7f\u601d\u8003\u8fc7\u7a0b\u53ef\u4ee5\u7528\u82f1\u6587\uff0c\u6700\u7ec8\u56de\u590d\u5fc5\u987b\u662f\u4e2d\u6587\u3002"
+    }
+  },
+  "categories": {
+    "coder": {
+      "model": "deepseek/deepseek-v4-flash",
+      "description": "\u4ee3\u7801\u6267\u884c \u2014 DeepSeek V4 Flash (62 t/s \u5feb\u901f\u7f16\u7801)",
+      "maxTokens": 32768,
+      "fallback_models": [
+        "jiutian/qwen/qwen3-coder-next",
+        "deepseek/deepseek-v4-pro"
+      ]
+    },
+    "unspecified-high": {
+      "model": "deepseek/deepseek-v4-flash",
+      "description": "\u9ad8\u4f18\u5148\u7ea7 \u2014 DeepSeek V4 Flash (62 t/s \u9ad8\u8d28\u91cf)",
+      "maxTokens": 16384,
+      "fallback_models": [
+        "deepseek/deepseek-v4-pro",
+        "jiutian/openai/gpt-oss-120b"
+      ]
+    },
+    "ultrabrain": {
+      "model": "jiutian/z.ai/glm-5.2",
+      "description": "\u590d\u6742\u63a8\u7406 \u2014 GLM-5.2 (MATH-500 97.4%)",
+      "maxTokens": 32768,
+      "reasoningEffort": "high",
+      "fallback_models": [
+        "jiutian/z.ai/glm-5.1",
+        "deepseek/deepseek-v4-pro"
+      ]
+    },
+    "deep": {
+      "model": "jiutian/z.ai/glm-5.2",
+      "description": "\u6df1\u5ea6\u7814\u7a76 \u2014 GLM-5.2 (\u03c4\u00b2-Bench 89.7)",
+      "maxTokens": 16384,
+      "fallback_models": [
+        "jiutian/z.ai/glm-5.1",
+        "deepseek/deepseek-v4-pro"
+      ]
+    },
+    "quick": {
+      "model": "vllm/gemma4-26b-fp8",
+      "description": "\u5feb\u901f\u8f7b\u91cf \u2014 \u672c\u5730Gemma4 (82 t/s)",
+      "maxTokens": 4096,
+      "fallback_models": [
+        "mixapi/qwen3.6-27b",
+        "jiutian/jiutian-code-8b"
+      ]
+    },
+    "analysis-lite": {
+      "model": "mixapi/qwen3.6-27b",
+      "description": "\u8f7b\u91cf\u5206\u6790 \u2014 \u672c\u5730Qwen3.6 (100 t/s)",
+      "maxTokens": 4096,
+      "fallback_models": [
+        "jiutian/jiutian-code-8b",
+        "jiutian/jiutian-lan-13b"
+      ]
+    },
+    "unspecified-low": {
+      "model": "vllm/gemma4-26b-fp8",
+      "description": "\u4f4e\u4f18\u5148\u7ea7 \u2014 \u672c\u5730Gemma4 (82 t/s)",
+      "maxTokens": 4096,
+      "fallback_models": [
+        "mixapi/qwen3.6-27b"
+      ]
+    },
+    "visual-engineering": {
+      "model": "jiutian/moonshotai/kimi-k2.5-thinking",
+      "description": "\u524d\u7aef/UI/UX \u2014 K2.5 Thinking (\u591a\u6a21\u6001\u63a8\u7406)",
+      "maxTokens": 8192,
+      "fallback_models": [
+        "jiutian/moonshotai/kimi-k2.6",
+        "jiutian/openai/gpt-oss-120b"
+      ]
+    },
+    "artistry": {
+      "model": "jiutian/z.ai/glm-5.1",
+      "description": "\u521b\u610f\u5199\u4f5c \u2014 GLM-5.1 (\u53ef\u751f\u6210docx/pdf)",
+      "maxTokens": 8192,
+      "fallback_models": [
+        "jiutian/z.ai/glm-5.2",
+        "deepseek/deepseek-v4-pro"
+      ]
+    },
+    "writing": {
+      "model": "jiutian/z.ai/glm-5.1",
+      "description": "\u6587\u6863\u5199\u4f5c \u2014 GLM-5.1 (\u4e00\u952edocx/pdf/xlsx)",
+      "maxTokens": 16384,
+      "fallback_models": [
+        "jiutian/z.ai/glm-5.2",
+        "deepseek/deepseek-v4-pro"
+      ]
+    }
+  }
+}
