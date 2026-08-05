@@ -364,6 +364,20 @@ for _profile in mix-work mix-local work local debug; do
   fi
 done
 
+# ---------- 11g. opencode-diff-viewer ----------
+echo ""
+echo "[11g/14] Installing opencode-diff-viewer plugin..."
+echo "  Diff viewer for OpenCode: launch agents in tmux with diff viewing."
+echo "  npm: opencode-diff-viewer"
+npm_check_upgrade "opencode-diff-viewer" "diff-viewer"
+# 添加到 single 和所有 multi profile 配置
+_OC_SINGLE="${SCRIPT_DIR:-$(cd "$(dirname "$0")/.." && pwd)}/single"
+for _cfg in "$_OC_SINGLE/opencode.json" "$_OC_MULTI"/mix-work/opencode.json "$_OC_MULTI"/mix-local/opencode.json "$_OC_MULTI"/work/opencode.json "$_OC_MULTI"/local/opencode.json "$_OC_MULTI"/debug/opencode.json "$_OC_MULTI"/qoder/opencode.json; do
+  if [ -f "$_cfg" ]; then
+    plugin_add "$_cfg" "opencode-diff-viewer"
+  fi
+done
+
 # ---------- 12. Ghidra + ReVa ----------
 echo ""
 echo "[12/14] Installing Ghidra + ReVa (Reverse Engineering Assistant)..."

@@ -70,7 +70,8 @@
     "opencode-refactor-agent",
     "opencode-skill-creator",
     "opencode-mission-control",
-    "@cometjc/opencode-py-indent-guard"
+    "@cometjc/opencode-py-indent-guard",
+    "opencode-diff-viewer"
   ],
   "provider": {
     "deepseek": {
