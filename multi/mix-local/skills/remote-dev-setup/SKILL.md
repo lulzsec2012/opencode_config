@@ -2,6 +2,8 @@
 name: remote-dev-setup
 description: Set up a Docker-based development environment on a remote server. Triggers when a prompt contains a user@host pattern AND dev/setup intent, e.g. "在 user@ip 服务器上配置开发环境", "给 user@ip 配置开发环境", "setup dev environment on user@host", "configure remote dev on user@host", "provision dev server for user@host". Do NOT trigger for general Docker questions, SSH key management, or playground development questions.
 ---
+> ⚠️ 实际服务器地址/用户名见 `scripts/data/hosts.cfg`（gitignored，本机已配置）。占位符 `<user>` `<dev-host-ip>` `<tailscale-host-ip>` 等均从该文件读取。
+
 
 # Remote Dev Environment Setup
 
@@ -27,7 +29,7 @@ Every command in this skill MUST follow these rules to avoid "stuck" behavior:
 
 Extract `user`, `host`, `SSH_PORT`, `DEV_PORT` from the user's message.
 
-**Crucial: always use explicit `-p $SSH_PORT` in every SSH command.** The local machine's `~/.ssh/config` may have a `Host` entry that overrides the port (e.g., mapping `10.10.18.210` to port 2222). Without explicit `-p`, the SSH config would route to the wrong destination. `-p 22` overrides any SSH config port mapping and ensures we connect to the actual server.
+**Crucial: always use explicit `-p $SSH_PORT` in every SSH command.** The local machine's `~/.ssh/config` may have a `Host` entry that overrides the port (e.g., mapping `<dev-host-ip>` to port 2222). Without explicit `-p`, the SSH config would route to the wrong destination. `-p 22` overrides any SSH config port mapping and ensures we connect to the actual server.
 
 **Patterns:**
 - `user@host` → SSH_PORT=22, DEV_PORT=2222
@@ -37,8 +39,8 @@ Extract `user`, `host`, `SSH_PORT`, `DEV_PORT` from the user's message.
 
 Examples:
 - "在 root@192.168.1.100 服务器上配置开发环境" → root@192.168.1.100:22, DEV_PORT=2222
-- "给 lulizhi@10.10.18.210 配置开发环境" → lulizhi@10.10.18.210:22, DEV_PORT=2222
-- "给 lulizhi@10.10.18.210:2223 配置开发环境" → lulizhi@10.10.18.210:2223, DEV_PORT=2222
+- "给 <user>@<dev-host-ip> 配置开发环境" → <user>@<dev-host-ip>:22, DEV_PORT=2222
+- "给 <user>@<dev-host-ip>:2223 配置开发环境" → <user>@<dev-host-ip>:2223, DEV_PORT=2222
 - "在 root@10.0.0.5//3333 上配置" → root@10.0.0.5:22, DEV_PORT=3333
 - "setup dev on user@host:2222/2223" → user@host:2222, DEV_PORT=2223
 

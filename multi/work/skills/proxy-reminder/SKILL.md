@@ -2,6 +2,8 @@
 name: proxy-reminder
 description: Use when docker pull is slow/failing/timing out; when apt/pip/npm/npx install hangs; when git clone to external repos fails; when curl/wget to public sites times out; when downloading from HuggingFace, Docker Hub, or any external registry is slow or unreachable
 ---
+> ⚠️ 实际服务器地址/用户名见 `scripts/data/hosts.cfg`（gitignored，本机已配置）。占位符 `<user>` `<dev-host-ip>` `<tailscale-host-ip>` 等均从该文件读取。
+
 
 # Proxy Reminder
 
@@ -30,11 +32,11 @@ Docker daemon runs on the **host** (not in dev container). Configure host-side:
 
 ```bash
 # Option A: Registry mirrors (fastest, no proxy needed)
-ssh lulizhi@100.117.18.87
+ssh <user>@<tailscale-host-ip>
 sudo /workspace/playground/scripts/docker/setup-docker-mirror.sh
 
 # Option B: Docker daemon HTTP proxy
-ssh lulizhi@100.117.18.87
+ssh <user>@<tailscale-host-ip>
 sudo /workspace/playground/scripts/docker/setup-docker-proxy.sh
 ```
 

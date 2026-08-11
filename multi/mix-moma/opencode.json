@@ -65,7 +65,9 @@
     "opencode-refactor-agent",
     "opencode-mission-control",
     "@cometjc/opencode-py-indent-guard",
-    "opencode-diff-viewer"
+    "opencode-diff-viewer",
+    "opencode-skill-evolution",
+    "opencode-autolearn"
   ],
   "provider": {
     "deepseek": {
@@ -98,18 +100,7 @@
         "qwen3.6-27b": {
           "name": "Qwen3.6 27B (100 t/s via router)",
           "tools": true
-        }
-      }
-    },
-    "vllm": {
-      "npm": "@ai-sdk/openai-compatible",
-      "name": "\u672c\u5730 vLLM \u76f4\u8fde",
-      "options": {
-        "baseURL": "http://localhost:8001/v1",
-        "timeout": 600000,
-        "chunkTimeout": 300000
-      },
-      "models": {
+        },
         "gemma4-26b-fp8": {
           "name": "Gemma4 26B FP8 (82 t/s, TTFT=0.2s)",
           "tools": true

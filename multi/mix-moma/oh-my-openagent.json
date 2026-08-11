@@ -80,13 +80,13 @@
       "description": "\u4efb\u52a1\u62c6\u89e3 \u2014 \u672c\u5730Qwen3.6 (100 t/s \u6781\u901f\u62c6\u89e3)",
       "maxTokens": 8192,
       "fallback_models": [
-        "vllm/gemma4-26b-fp8",
+        "mixapi/gemma4-26b-fp8",
         "jiutian/jiutian-code-8b"
       ],
       "prompt_append": "You are an AI assistant. You must always respond in Simplified Chinese (\u4e2d\u6587). \u4f60\u5fc5\u987b\u59cb\u7ec8\u7528\u4e2d\u6587\u56de\u590d\u7528\u6237\u3002\u5373\u4f7f\u601d\u8003\u8fc7\u7a0b\u53ef\u4ee5\u7528\u82f1\u6587\uff0c\u6700\u7ec8\u56de\u590d\u5fc5\u987b\u662f\u4e2d\u6587\u3002"
     },
     "explore": {
-      "model": "vllm/gemma4-26b-fp8",
+      "model": "mixapi/gemma4-26b-fp8",
       "description": "\u4ee3\u7801\u7406\u89e3 \u2014 \u672c\u5730Gemma4 (82 t/s \u6781\u901f\u641c\u7d22)",
       "maxTokens": 16384,
       "fallback_models": [
@@ -96,7 +96,7 @@
       "prompt_append": "You are an AI assistant. You must always respond in Simplified Chinese (\u4e2d\u6587). \u4f60\u5fc5\u987b\u59cb\u7ec8\u7528\u4e2d\u6587\u56de\u590d\u7528\u6237\u3002\u5373\u4f7f\u601d\u8003\u8fc7\u7a0b\u53ef\u4ee5\u7528\u82f1\u6587\uff0c\u6700\u7ec8\u56de\u590d\u5fc5\u987b\u662f\u4e2d\u6587\u3002"
     },
     "sisyphus-junior": {
-      "model": "vllm/gemma4-26b-fp8",
+      "model": "mixapi/gemma4-26b-fp8",
       "description": "\u8f7b\u91cf\u6267\u884c \u2014 \u672c\u5730Gemma4 (82 t/s \u6781\u901f\u4efb\u52a1)",
       "maxTokens": 16384,
       "fallback_models": [
@@ -164,7 +164,7 @@
       ]
     },
     "quick": {
-      "model": "vllm/gemma4-26b-fp8",
+      "model": "mixapi/gemma4-26b-fp8",
       "description": "\u5feb\u901f\u8f7b\u91cf \u2014 \u672c\u5730Gemma4 (82 t/s)",
       "maxTokens": 4096,
       "fallback_models": [
@@ -182,7 +182,7 @@
       ]
     },
     "unspecified-low": {
-      "model": "vllm/gemma4-26b-fp8",
+      "model": "mixapi/gemma4-26b-fp8",
       "description": "\u4f4e\u4f18\u5148\u7ea7 \u2014 \u672c\u5730Gemma4 (82 t/s)",
       "maxTokens": 4096,
       "fallback_models": [

@@ -62,7 +62,9 @@
     "opencode-refactor-agent",
     "opencode-mission-control",
     "@cometjc/opencode-py-indent-guard",
-    "opencode-diff-viewer"
+    "opencode-diff-viewer",
+    "opencode-skill-evolution",
+    "opencode-autolearn"
   ],
   "provider": {
     "deepseek": {
@@ -101,6 +103,10 @@
             "context": 262144,
             "output": 32768
           }
+        },
+        "gemma4-26b-fp8": {
+          "name": "Gemma4 26B FP8 (82 t/s, TTFT=0.2s)",
+          "tools": true
         }
       }
     }

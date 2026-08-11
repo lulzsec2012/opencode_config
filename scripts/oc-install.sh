@@ -595,6 +595,36 @@ else
   python3 -m pip install --break-system-packages ruff 2>&1 | tail -1 || echo "  ⚠️ 安装失败"
 fi
 
+# opencode-autolearn — 自动学习插件
+echo ""
+echo "[13d/14] Installing opencode-autolearn skill..."
+_autolearn_dir="$HOME/.opencode/plugins/autolearn"
+if [ -f "$_autolearn_dir/autolearn.js" ] 2>/dev/null; then
+  echo "  opencode-autolearn 已安装"
+else
+  echo "  Cloning and installing opencode-autolearn..."
+  _tmp_clone="/tmp/opencode-autolearn"
+  rm -rf "$_tmp_clone"
+  git clone https://github.com/ericmjl/opencode-autolearn.git "$_tmp_clone" 2>&1 | tail -1
+  if [ -d "$_tmp_clone" ]; then
+    mkdir -p "$_autolearn_dir"
+    cp "$_tmp_clone/plugin/autolearn.js" "$_autolearn_dir/" 2>/dev/null
+    rm -rf "$_tmp_clone"
+    echo "  ✅ opencode-autolearn installed"
+  else
+    echo "  ⚠️  clone 失败"
+  fi
+fi
+
+# opencode-skill-evolution — 技能进化
+if npm ls -g --depth=0 opencode-skill-evolution 2>&1 | grep -q 'opencode-skill-evolution@'; then
+  echo "  opencode-skill-evolution 已安装"
+else
+  echo "  Installing opencode-skill-evolution..."
+  npm_install_user opencode-skill-evolution 2>&1 | tail -1
+fi
+
+
 # pytest + pytest-timeout + ipdb
 if python3 -c "import pytest, ipdb" 2>/dev/null; then
   echo "  pytest $(pytest --version 2>&1 | head -1) + ipdb 已安装"

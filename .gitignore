@@ -5,3 +5,6 @@ multi/*/bun.lock
 ._*
 __pycache__/
 __pycache__/
+# trae profile: opencode.json contains PAT generated from template
+# opencode.json.template is tracked, opencode.json is NOT
+multi/trae/opencode.json
