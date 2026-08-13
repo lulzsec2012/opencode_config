@@ -231,6 +231,24 @@ deploy_single() {
       ok "plugins → $OPENCODE_CFG/plugins"
     fi
   fi
+
+  # 部署 skills/ 目录（非破坏性：仅当目标缺失/为空/已是 repo 链接时建立软连接）
+  # 注意: 若 ~/.config/opencode/skills 已存在本机独有技能（如 category-pointer），
+  #       保持不动并告警，避免覆盖本机内容。
+  if [ -d "$SINGLE_SRC/skills" ]; then
+    if is_repo_link "$OPENCODE_CFG/skills"; then
+      ok "skills 已指向 repo，跳过"
+    elif [ ! -e "$OPENCODE_CFG/skills" ]; then
+      do_link "$SINGLE_SRC/skills" "$OPENCODE_CFG/skills"
+      ok "skills → $OPENCODE_CFG/skills"
+    elif [ -z "$(ls -A "$OPENCODE_CFG/skills" 2>/dev/null)" ]; then
+      rm -rf "$OPENCODE_CFG/skills"
+      do_link "$SINGLE_SRC/skills" "$OPENCODE_CFG/skills"
+      ok "skills → $OPENCODE_CFG/skills（原目录为空）"
+    else
+      warn "$OPENCODE_CFG/skills 存在本机独有技能，保持不动（如需同步到 repo，请手动合并）"
+    fi
+  fi
 }
 
 # ---------- deploy multi profiles ----------
