@@ -378,6 +378,50 @@ for _cfg in "$_OC_SINGLE/opencode.json" "$_OC_MULTI"/mix-work/opencode.json "$_O
   fi
 done
 
+# ---------- 11h. mattpocock-skills ----------
+echo ""
+echo "[11h/14] Installing mattpocock-skills (vendor + symlinks)..."
+echo "  Skills for Real Engineers: https://github.com/mattpocock/skills"
+_REPO="$(cd "$(dirname "$0")/.." && pwd)"
+_MP_DIR="$_REPO/vendor/mattpocock-skills"
+_MP_TARBALL="/tmp/mattpocock-skills.tar.gz"
+if [ ! -d "$_MP_DIR/skills/engineering" ] || [ "${1:-}" = "--update-mp" ]; then
+  echo "  Downloading mattpocock/skills from GitHub..."
+  if curl -sL --max-time 120 -o "$_MP_TARBALL" "https://codeload.github.com/mattpocock/skills/tar.gz/refs/heads/main"; then
+    mkdir -p "$_MP_DIR"
+    tar xzf "$_MP_TARBALL" -C "$_MP_DIR" --strip-components=1 \
+      --exclude='skills/misc' --exclude='skills/personal' \
+      --exclude='skills/in-progress' --exclude='skills/deprecated' 2>/dev/null
+    rm -f "$_MP_TARBALL"
+    echo "  OK vendor updated: $_MP_DIR"
+  else
+    echo "  Download failed (network?). Keeping existing vendor if present."
+  fi
+else
+  echo "  vendor exists: $_MP_DIR (force refresh: oc-install.sh --update-mp)"
+fi
+
+# promoted set: engineering(18) + productivity(7)
+_MP_ENG="ask-matt code-review codebase-design diagnosing-bugs domain-modeling grill-with-docs implement improve-codebase-architecture prototype research resolving-merge-conflicts setup-matt-pocock-skills tdd to-spec to-tickets triage wayfinder wizard"
+_MP_PROD="grill-me grilling handoff teach to-questionnaire wait-what writing-for-agents"
+mp_link() { # $1=skills dir, $2=rel prefix to repo root
+  local _dir="$1" _pre="$2" _s
+  for _s in $_MP_ENG; do
+    [ -d "$_dir/$_s" ] && [ ! -L "$_dir/$_s" ] && continue
+    ln -snf "$_pre/vendor/mattpocock-skills/skills/engineering/$_s" "$_dir/$_s"
+  done
+  for _s in $_MP_PROD; do
+    [ -d "$_dir/$_s" ] && [ ! -L "$_dir/$_s" ] && continue
+    ln -snf "$_pre/vendor/mattpocock-skills/skills/productivity/$_s" "$_dir/$_s"
+  done
+}
+mp_link "$_REPO/single/skills" "../.."
+for _profile in work local mix-work mix-local moma debug qoder trae; do
+  mp_link "$_REPO/multi/$_profile/skills" "../../.."
+done
+echo "  OK mattpocock skills symlinked into single/ + multi/*/"
+echo "  run /setup-matt-pocock-skills once per project to configure issue tracker"
+
 # ---------- 12. Ghidra + ReVa ----------
 echo ""
 echo "[12/14] Installing Ghidra + ReVa (Reverse Engineering Assistant)..."
