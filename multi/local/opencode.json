@@ -42,7 +42,7 @@
       "command": [
         "llm-router-mcp"
       ],
-      "enabled": true
+      "enabled": false
     }
   },
   "model": "mixapi/qwen3.6-27b",
@@ -53,7 +53,7 @@
     "opencode-codegraph",
     "opencode-debug-helper",
     "opencode-headroom",
-    "opencode-localmemory",
+    "opencode-mem",
     "opencode-qoder-auth",
     "opencode-skill-creator",
     "@dietrichgebert/ponytail",
@@ -63,8 +63,7 @@
     "opencode-mission-control",
     "@cometjc/opencode-py-indent-guard",
     "opencode-diff-viewer",
-    "opencode-skill-evolution",
-    "opencode-autolearn"
+    "opencode-skill-evolution"
   ],
   "provider": {
     "mixapi": {

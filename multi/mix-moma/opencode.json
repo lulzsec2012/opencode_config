@@ -42,7 +42,7 @@
       "command": [
         "llm-router-mcp"
       ],
-      "enabled": true
+      "enabled": false
     }
   },
   "model": "deepseek/deepseek-v4-flash",
@@ -55,7 +55,7 @@
     "opencode-agent-context",
     "opencode-autoresearch@latest",
     "opencode-codegraph",
-    "opencode-localmemory",
+    "opencode-mem",
     "opencode-qoder-auth",
     "opencode-skill-creator",
     "@dietrichgebert/ponytail",
@@ -66,8 +66,7 @@
     "opencode-mission-control",
     "@cometjc/opencode-py-indent-guard",
     "opencode-diff-viewer",
-    "opencode-skill-evolution",
-    "opencode-autolearn"
+    "opencode-skill-evolution"
   ],
   "provider": {
     "deepseek": {
