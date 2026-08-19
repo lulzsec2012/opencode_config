@@ -51,8 +51,15 @@ Do NOT try fixes blindly — instrument first, form hypotheses, verify root caus
 
 ## Python Code Quality
 
-- `@cometjc/opencode-py-indent-guard` 会在每次编辑后自动 `py_compile` 验证，缩进/语法错误即时回滚
-- 编辑 Python 后无需手动验证语法，插件已自动兜底
+- `@cometjc/opencode-py-indent-guard`（已安装）会在 **edit 工具** 修改 `.py` 后自动 `py_compile`，缩进/语法错误即时回滚
+- ⚠️ **插件边界**：只覆盖 edit 工具的语法错误。write 工具、语义错误（如数据表残留、逻辑改错）不受保护，以下验证**必须手动执行**：
+  1. 编辑后立即 `python3 -m py_compile <file>` 确认语法
+  2. 运行相关测试/demo 确认语义正确（语法正确 ≠ 逻辑正确）
+  3. `git diff` 检查无旧内容残留
+- **切片替换纪律**（防止替换弄坏文件）：
+  - 编辑前**重新读取目标文件**确认当前内容，不依赖上下文中的旧快照/记忆（行号会漂移）
+  - 大块替换（数据表、常量区）必须**覆盖完整旧块**，替换后 `git diff` 确认旧内容无残留
+  - 每次替换后运行 py_compile + 关联测试，通过才算完成
 - `ruff check <file>` 可用于额外的代码规范检查
 - **heredoc 防护**: 生成 `python3 << 'PYEOF'` 脚本时，先用 `write` 写到文件 → py_compile 检查 → 再执行，不要直接 pipe 到 python3
 - **import 检查**: 生成独立脚本时，确认 `import os/json/time/sys` 等标准库已在顶部声明

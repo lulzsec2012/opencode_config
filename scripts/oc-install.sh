@@ -244,6 +244,20 @@ for _pkg in opencode-debug-helper opencode-agent-context opencode-codegraph open
 	npm_check_upgrade "$_pkg"
 done
 
+# py-indent-guard: Python 缩进自动守卫 (声明在 opencode.json plugin, 需装在每个 profile 的 node_modules)
+_OC_MULTI_PKG="${XDG_CONFIG_HOME:-$HOME/.config}/opencode-multi/profiles"
+for _profile in mix-work mix-local work local debug moma qoder; do
+	_pkg_dir="$_OC_MULTI_PKG/$_profile"
+	if [ -d "$_pkg_dir" ]; then
+		if [ ! -d "$_pkg_dir/node_modules/@cometjc/opencode-py-indent-guard" ]; then
+			echo "  ⚙️  $_profile: installing @cometjc/opencode-py-indent-guard..."
+			( cd "$_pkg_dir" && npm install @cometjc/opencode-py-indent-guard --save --no-audit --no-fund 2>&1 | tail -1 )
+		else
+			echo "  ✅ $_profile: py-indent-guard 已安装"
+		fi
+	fi
+done
+
 # ---------- 11. ponytail ----------
 echo ""
 echo "[11/14] Installing ponytail plugin..."
